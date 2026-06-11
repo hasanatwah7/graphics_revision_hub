@@ -1,0 +1,65 @@
+{
+  "exam": "Computer Graphics Final 2021",
+  "questions": [
+    {
+      "number": 13,
+      "question": "In DDA line al",
+      "options": {
+        "A": "only Raster"
+      }
+    },
+    {
+      "number": 56,
+      "question": "b) 32 c) 10 : se an image has the original dimensions (width = 200 pixel, and height = ¥ yhere Y is an variable), if a designer has scaled this image to have the new 7 (width pixels= 100 pixels, and height = 400 pixels), and if 1 hee iad have the same aspect ratio as the original dimensions, then what is th ye ixels? leYinp 6) 800 (1200 oll m ing raster formats supports loseless compression? ae b) GIF c)PNG \\cters in a 2D game (cat and fish) have used box ea | ving settings (note that Y axis is inc",
+      "options": {}
+    },
+    {
+      "number": 4,
+      "question": "tf two vectors are perpendicular J!1+l:is, their dot product is",
+      "options": {
+        "A": "Zero b) Negative C) Positive"
+      }
+    },
+    {
+      "number": 5,
+      "question": "The result of calling LERP (start, end, 0.5) function between 2 points: (start) and (end), is a (an)",
+      "options": {
+        "A": "Start b) end c) middle point between start and end"
+      }
+    },
+    {
+      "number": 6,
+      "question": "The game loop consists of 3 phases: input processing, __ world, and generate output.",
+      "options": {
+        "A": "Update b) delete c) create"
+      }
+    },
+    {
+      "number": 7,
+      "question": "A____is a 2D visual object (image) within the game world that can be draw screen to represent characters or background. —_",
+      "options": {
+        "A": "Audio b) comment c) sprite"
+      }
+    },
+    {
+      "number": 8,
+      "question": "when your design contains many repeating parts (patterns ), then it’s b use Tile__. ner lowing is the most accurate 4% <i hitho Ms x type and ; More",
+      "options": {
+        "A": "Delta — b) device",
+        "C": "map"
+      }
+    },
+    {
+      "number": 9,
+      "question": "Which i b irection which the face et are same.",
+      "options": {
+        "B": "multiple hitboxes c"
+      }
+    },
+    {
+      "number": 2,
+      "question": "Normal : Scanned with CamScanner",
+      "options": {}
+    }
+  ]
+}

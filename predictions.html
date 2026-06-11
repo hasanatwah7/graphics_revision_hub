@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GFX Revision — Predictions</title>
+  <meta name="description" content="View high-yield exam predictions." />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav id="navbar"></nav>
+
+  <!-- Main content -->
+  <main id="main-content" class="container py-5">
+    
+    <!-- Title Section -->
+    <div class="mb-5 fade-in">
+      <h1 class="display-5 fw-bold mb-2">Exam <span class="card-title-accent">Predictions</span></h1>
+      <p class="text-muted mb-4">Highly predicted topics and practice questions based on past exam patterns and course lecture slides. Focus your revision on high-yield questions first!</p>
+
+      <!-- Filter Row -->
+      <div class="d-flex flex-wrap gap-2 align-items-center">
+        <span class="text-muted small fw-bold me-2"><i class="bi bi-filter"></i> Filter by Confidence:</span>
+        <button class="btn btn-sm btn-info filter-btn active-filter" data-confidence="all" style="font-family: var(--font-title); font-weight: 500;">All</button>
+        <button class="btn btn-sm btn-outline-danger filter-btn" data-confidence="High" style="font-family: var(--font-title); font-weight: 500;">High Probability</button>
+        <button class="btn btn-sm btn-outline-warning filter-btn" data-confidence="Medium" style="font-family: var(--font-title); font-weight: 500;">Medium Probability</button>
+        <button class="btn btn-sm btn-outline-info filter-btn" data-confidence="Low" style="font-family: var(--font-title); font-weight: 500;">Low Probability</button>
+      </div>
+    </div>
+
+    <!-- Predictions Container -->
+    <div class="row g-4 fade-in animate__animated animate__fadeIn" style="animation-delay: 0.1s;" id="predictions-container">
+      <!-- Injected by predictions.js -->
+      <div class="col-12 text-center py-5">
+        <div class="spinner-border text-info" role="status">
+          <span class="visually-hidden">Loading predictions...</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/predictions.js"></script>
+</body>
+</html>

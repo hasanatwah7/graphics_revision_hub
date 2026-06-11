@@ -1,0 +1,76 @@
+{
+  "title": "Computer Graphics Mock Exam",
+  "instructions": "Answer all questions. Show your steps where calculations are required.",
+  "questions": [
+    {
+      "id": "mock_q1",
+      "type": "short_answer",
+      "question": "Differentiate between Computer Graphics, Image Processing, and Computer Vision in terms of inputs, outputs, and purposes.",
+      "answer": "1. Computer Graphics: Input is geometric descriptions/models; Output is images. Purpose: Synthesis (creating visual content).\n2. Image Processing: Input is an image; Output is a modified/enhanced image. Purpose: Enhancing quality or filtering.\n3. Computer Vision: Input is images/videos; Output is high-level information/meaning. Purpose: Interpretation and analysis.",
+      "points": 5
+    },
+    {
+      "id": "mock_q2",
+      "type": "calculation",
+      "question": "Given a normalized RGB color (0.2, 0.5, 0.7), compute the corresponding CMY values.",
+      "answer": "CMY values are subtractive complements of RGB, computed as:\n- C = 1 - R = 1 - 0.2 = 0.8\n- M = 1 - G = 1 - 0.5 = 0.5\n- Y = 1 - B = 1 - 0.7 = 0.3\nThus, CMY = (0.8, 0.5, 0.3).",
+      "points": 5
+    },
+    {
+      "id": "mock_q3",
+      "type": "calculation",
+      "question": "An 8-bit grayscale image has a minimum intensity of 50 and a maximum intensity of 200. What linear transformation maps this range to [0, 255]?",
+      "answer": "The linear transformation formula for contrast stretching is:\nnew_val = (old_val - I_min) * (L - 1) / (I_max - I_min)\nHere, I_min = 50, I_max = 200, L = 256 (so L - 1 = 255).\nnew_val = (old_val - 50) * 255 / (200 - 50)\nnew_val = (old_val - 50) * 255 / 150 = (old_val - 50) * 1.7\nSo the mapping function is: f(x) = round(1.7 * (x - 50)).",
+      "points": 5
+    },
+    {
+      "id": "mock_q4",
+      "type": "calculation",
+      "question": "Apply a 90° counterclockwise rotation about the point (2, 3) to the point (5, 7). Show each step.",
+      "answer": "1. Translate the rotation center (2, 3) to the origin:\n   x1 = 5 - 2 = 3\n   y1 = 7 - 3 = 4\n2. Rotate by 90° CCW about origin using R = [[0, -1], [1, 0]]:\n   x2 = -y1 = -4\n   y2 = x1 = 3\n3. Translate back by adding (2, 3):\n   x3 = -4 + 2 = -2\n   y3 = 3 + 3 = 6\nThus, the rotated point is (-2, 6).",
+      "points": 8
+    },
+    {
+      "id": "mock_q5",
+      "type": "calculation",
+      "question": "Use Bresenham's line-drawing algorithm to calculate the pixel coordinates for a line starting from (2, 3) and ending at (7, 5).",
+      "answer": "dx = 7 - 2 = 5, dy = 5 - 3 = 2.\nSlope m = dy/dx = 2/5 = 0.4 (slight slope, walk in x).\nInitial decision parameter p0 = 2*dy - dx = 2*2 - 5 = -1.\nStart pixel: (2, 3)\n- Step 1: p0 < 0 -> next x is x+1 = 3, y remains 3. p1 = p0 + 2*dy = -1 + 4 = 3. Pixel: (3, 3)\n- Step 2: p1 >= 0 -> next x is x+1 = 4, y is y+1 = 4. p2 = p1 + 2*(dy - dx) = 3 + 2*(2-5) = 3 - 6 = -3. Pixel: (4, 4)\n- Step 3: p2 < 0 -> next x is x+1 = 5, y remains 4. p3 = p2 + 2*dy = -3 + 4 = 1. Pixel: (5, 4)\n- Step 4: p3 >= 0 -> next x is x+1 = 6, y is y+1 = 5. p4 = p3 + 2*(dy - dx) = 1 + 2*(2-5) = 1 - 6 = -5. Pixel: (6, 5)\n- Step 5: p4 < 0 -> next x is x+1 = 7, y remains 5. End reached. Pixel: (7, 5)\nPixels plotted: (2,3), (3,3), (4,4), (5,4), (6,5), (7,5).",
+      "points": 8
+    },
+    {
+      "id": "mock_q6",
+      "type": "short_answer",
+      "question": "List and briefly explain three types of Augmented Reality (AR).",
+      "answer": "1. Marker-based AR: Uses a physical visual marker (like a QR code or 2D image) recognized by a camera to position 3D virtual objects on top of it.\n2. Markerless/Location-based AR: Uses device sensors (like GPS, accelerometer, compass, or SLAM) to position 3D content in a physical space without predefined markers (e.g. Google Maps AR navigation).\n3. Projection-based AR: Projects digital light/graphics directly onto physical flat surfaces in the real world (e.g. interactive projection tables).",
+      "points": 5
+    },
+    {
+      "id": "mock_q7",
+      "type": "calculation",
+      "question": "Outline the steps of Bresenham's midpoint circle algorithm for radius r=5. Compute the coordinates in the first octant.",
+      "answer": "Start at (0, r) = (0, 5).\nInitial decision parameter p0 = 1 - r = 1 - 5 = -4.\n- Step 1 (x=0, y=5): p0 = -4 < 0. Next x is x+1 = 1, y stays 5. Plot (1, 5). p1 = p0 + 2*x_prev + 3 = -4 + 0 + 3 = -1.\n- Step 2 (x=1, y=5): p1 = -1 < 0. Next x is x+1 = 2, y stays 5. Plot (2, 5). p2 = p1 + 2*1 + 3 = 4.\n- Step 3 (x=2, y=5): p2 = 4 >= 0. Next x is x+1 = 3, y is y-1 = 4. Plot (3, 4). p3 = p2 + 2*(x_prev - y_prev) + 5 = 4 + 2*(2 - 5) + 5 = 4 - 6 + 5 = 3.\n- Step 4 (x=3, y=4): p3 = 3 >= 0. Next x is x+1 = 4, y is y-1 = 3. Since x > y (4 > 3), we stop.\nPoints in the first octant are: (0, 5), (1, 5), (2, 5), (3, 4). Symmetrical points will form the complete circle.",
+      "points": 10
+    },
+    {
+      "id": "mock_q8",
+      "type": "calculation",
+      "question": "Given the 3x3 patch below, apply a 3x3 mean filter and a 3x3 median filter to the center pixel (50):\n[[10, 20, 30],\n [20, 50, 40],\n [30, 40, 60]]",
+      "answer": "1. Mean Filter:\n   Sum of all 9 pixels = 10 + 20 + 30 + 20 + 50 + 40 + 30 + 40 + 60 = 300\n   Average = 300 / 9 = 33.33 (rounded to 33)\n   The new value of the center pixel is 33.\n\n2. Median Filter:\n   Sort the 9 pixel values: [10, 20, 20, 30, 30, 40, 40, 50, 60]\n   The middle (5th) value in the sorted array is 30.\n   The new value of the center pixel is 30.",
+      "points": 8
+    },
+    {
+      "id": "mock_q9",
+      "type": "short_answer",
+      "question": "Describe the three levels of Virtual Reality (VR) immersion and give an example device or scenario for each.",
+      "answer": "1. Non-immersive VR: Desktop simulation where the user views a 3D environment on a standard computer screen and interacts using a mouse/keyboard (e.g. driving simulator on a PC screen).\n2. Semi-immersive VR: Provides a wider field of view using multiple screens, large projection walls (like a CAVE environment), or physical cockpits (e.g. a flight simulator with real dashboard controls and projection screens).\n3. Fully immersive VR: Uses a Head-Mounted Display (HMD) with head tracking sensors to completely replace the real-world view with 360-degree graphics (e.g. Meta Quest 3 or HTC Vive).",
+      "points": 6
+    },
+    {
+      "id": "mock_q10",
+      "type": "calculation",
+      "question": "Find the composite 3x3 homogeneous matrix that translates an object by (1, 2), then rotates by 45° CCW, and then scales by factors of 2 in x and 0.5 in y (about the origin).",
+      "answer": "Translation matrix T = [[1, 0, 1], [0, 1, 2], [0, 0, 1]]\nRotation matrix R = [[cos 45°, -sin 45°, 0], [sin 45°, cos 45°, 0], [0, 0, 1]] = [[0.707, -0.707, 0], [0.707, 0.707, 0], [0, 0, 1]]\nScaling matrix S = [[2, 0, 0], [0, 0.5, 0], [0, 0, 1]]\n\nThe transformations are applied in order: T, then R, then S.\nComposite matrix M = S * R * T\n\n1. Multiply R * T:\n   RT = [[0.707, -0.707, 0.707 - 1.414], [0.707, 0.707, 0.707 + 1.414], [0, 0, 1]]\n   RT = [[0.707, -0.707, -0.707], [0.707, 0.707, 2.121], [0, 0, 1]]\n\n2. Multiply S * (RT):\n   M = [[2 * 0.707, 2 * -0.707, 2 * -0.707], [0.5 * 0.707, 0.5 * 0.707, 0.5 * 2.121], [0, 0, 1]]\n   M = [[1.414, -1.414, -1.414], [0.354, 0.354, 1.061], [0, 0, 1]]\n\nThis is the composite 3x3 transformation matrix.",
+      "points": 10
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "pred_1",
+    "title": "AR vs VR Comparison",
+    "confidence": "High",
+    "question": "Describe how Augmented Reality (AR) differs from Virtual Reality (VR) and give one example of each.",
+    "answer": "Augmented Reality (AR) overlays computer-generated digital content onto the real-world environment in real-time, keeping the user connected to their physical surroundings (e.g., IKEA Place app or Pokemon Go). Virtual Reality (VR) completely replaces the physical world with a fully computer-generated 3D environment, isolating the user from reality (e.g., Beat Saber on Oculus/Meta Quest).",
+    "explanation": "AR/VR differences are tested almost every year. Always highlight that AR augments/enhances reality, while VR replaces it."
+  },
+  {
+    "id": "pred_2",
+    "title": "2D Composite Transformation Sequence",
+    "confidence": "High",
+    "question": "Find the composite transformation matrix for a 2D rotation of 90° about an arbitrary point (x0, y0) followed by a translation of (tx, ty).",
+    "answer": "To rotate about an arbitrary point (x0, y0) and then translate:\n1. Translate the point (x0, y0) to the origin: T(-x0, -y0)\n2. Perform the rotation: R(90°)\n3. Translate the origin back to (x0, y0): T(x0, y0)\n4. Perform translation: T(tx, ty)\n\nComposite Matrix = T(tx, ty) * T(x0, y0) * R(90°) * T(-x0, -y0)\nMultiplying these matrices together gives the final homogeneous coordinates transformation matrix.",
+    "explanation": "Arbitrary point rotation is a classic exam question. Remember to translate to origin, rotate, translate back, and then apply any subsequent translations."
+  },
+  {
+    "id": "pred_3",
+    "title": "8-Bit Indexed Color Conversion",
+    "confidence": "Medium",
+    "question": "Convert 24-bit RGB(20, 33, 150) to an 8-bit indexed color using a 3-3-2 bits per channel quantization scheme.",
+    "answer": "1. 24-bit color has 8 bits per channel (0-255). 3-3-2 scheme gives:\n   - Red: 3 bits (8 slices, size = 32)\n   - Green: 3 bits (8 slices, size = 32)\n   - Blue: 2 bits (4 slices, size = 64)\n2. Quantize channels by floor division:\n   - Red index = floor(20 / 32) = 0\n   - Green index = floor(33 / 32) = 1\n   - Blue index = floor(150 / 64) = 2\n3. Compute lookup table index:\n   - Index = (Red_index * 8 + Green_index) * 4 + Blue_index\n   - Index = (0 * 8 + 1) * 4 + 2 = 6\nThe output index in the 8-bit palette is 6.",
+    "explanation": "Remember to use floor division for quantization. The index formula maps the channels sequentially into the 8-bit integer space."
+  },
+  {
+    "id": "pred_4",
+    "title": "DDA vs Bresenham Line Algorithms",
+    "confidence": "Medium",
+    "question": "Explain the difference between the DDA and Bresenham line-drawing algorithms. Why is Bresenham preferred?",
+    "answer": "DDA (Digital Differential Analyzer) is an incremental algorithm that uses floating-point additions and rounding at each step to determine pixel coordinates. Bresenham's algorithm uses integer-only arithmetic by utilizing a decision parameter that determines whether to increment the dependent coordinate. Bresenham is preferred because integer addition/subtraction is much faster than floating-point math on CPUs/GPUs, and it avoids rounding operations.",
+    "explanation": "DDA = float math, Bresenham = integer-only math. Speed and efficiency are the primary reasons Bresenham is preferred."
+  },
+  {
+    "id": "pred_5",
+    "title": "Histogram Equalization Purpose",
+    "confidence": "Medium-Low",
+    "question": "What is the mathematical purpose of histogram equalization, and how does it affect image contrast?",
+    "answer": "The purpose of histogram equalization is to obtain a uniform intensity distribution across the image. It uses the Cumulative Distribution Function (CDF) of the image's pixels to remap the intensity values, thereby flattening the histogram and stretching the dynamic range. This process increases the global contrast of the image, making details in low-contrast areas more visible.",
+    "explanation": "Equalization distributes intensities uniformly. Key concept: it uses the normalized CDF as the mapping function."
+  },
+  {
+    "id": "pred_6",
+    "title": "Boundary-Fill vs Flood-Fill",
+    "confidence": "Low",
+    "question": "Compare Boundary-Fill and Flood-Fill algorithms. When would you use one over the other?",
+    "answer": "Boundary-Fill is used when the region to be filled is bounded by pixels of a specific boundary color. The algorithm recursively colors pixels until it hits that boundary color. Flood-Fill is used when we want to replace an entire connected area of a single uniform color with a new color; it stops when it encounters any color other than the target background color.",
+    "explanation": "Use Boundary-Fill when you have an outline (like a polygon drawing). Use Flood-Fill when replacing a solid background color (like the paint bucket tool in drawing apps)."
+  }
+]

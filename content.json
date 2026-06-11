@@ -1,0 +1,934 @@
+{
+  "document_title": "Computer Graphics – Ultimate Exam Prep",
+  "source_pdf": "Computer Graphics – Ultimate Exam Prep.pdf",
+  "page_count": 19,
+  "pages": [
+    {
+      "page_number": 1,
+      "text": "Computer Graphics – Ultimate Exam Prep\n2D/3D Computer Graphics (Intro & Systems)\nMust-Know Concepts\nDefinition: Computer Graphics (CG) is the study of generating and manipulating images and\nanimations via computers【4†L226-L234】【4†L251-L258】. \nMain Tasks: Modeling (describe geometry), Rendering (generate 2D image from 3D), Animation\n(change over time). \nApplications: Games, simulations, CAD/CAM, medical imaging, virtual training, user interfaces, etc. \nGraphics Pipeline: Comprises stages like modeling, transformation, lighting, rasterization, and\ndisplay. (CG pipeline processes geometry → pixels.) \nGraphics System Components: Host CPU, GPU/graphics processor, large RAM, frame buffer\n(memory for pixel data), and display device (CRT/LCD). \nDisplay Hardware: Raster-scan displays update rows of pixels; resolution and refresh rate matter.\n(E.g. frame buffer stores pixel RGB values.) \nCoordinate Systems: Objects defined in world coordinates; transformed to device coordinates (via\nviewport mapping) for display.\nHigh-Yield Notes\nVector vs Raster: Vector images are resolution-independent; raster images (bitmaps) depend on\npixel grid. CG often rasterizes vectors into pixels. \nMemory vs Quality: More color depth/higher resolution = more memory. Exams may ask trade-offs\n(speed vs quality). \nCommon Trap: “CG = real-time only” is false – CG also used offline (film/VFX). Be clear on intent (e.g.\nphoto-realism vs illustration). \nPrecision: Integer math vs float – some algorithms (like Bresenham’s) use integer arithmetic for\nspeed.\nReinforcement Questions\nQ: Define computer graphics and list its three main tasks.\nA: CG is the creation/manipulation of visual images and animations via computers【4†L226-L234】\n【4†L251-L258】. Main tasks are Modeling (geometry), Rendering (image generation), and Animation\n(time-variation).\nExplanation: The definition and tasks are core (per slides and sources). Model geometry → Render\nto pixels → Animate changes over time.\nQ: What are typical components of a graphics system, and what is the role of the frame buffer?\nA: A graphics system includes a CPU/GPU, memory, and a frame buffer connected to a display. The \nframe buffer is a block of RAM holding pixel color values for the screen.\n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n1. \n2. \n1\n"
+    },
+    {
+      "page_number": 2,
+      "text": "Explanation: The frame buffer stores the image that gets sent to the display. High resolution or\ncolor depth means a larger frame buffer (more memory needed).\nQ: Compare vector graphics and raster graphics.\nA: Vector graphics store geometry (points, lines) mathematically and scale without quality loss; Raster\ngraphics store pixels in a grid. Vector-to-display requires rasterization, while rasters have fixed\nresolution.\nExplanation: This tests understanding of how images are represented and why rasterization is\nneeded.\nQ: Why might one use lower color depth or resolution?\nA: To reduce memory usage and increase processing speed at the cost of image quality. It trades off\ndetail (fewer bits or pixels) for performance or storage.\nExplanation: This links to “trade image quality for speed” (slide outcome). Common exam trap is\nforgetting the performance benefit of quantization.\nQ: Name one example of a real-time CG application and one offline CG application.\nA: Real-time example: video game graphics. Offline example: CGI in movies or visual effects.\nExplanation: Show difference – games run on the fly, film rendering can take hours per frame.\nColor Theory & Color Models\nMust-Know Concepts\nColor Model: A mathematical scheme to represent colors as tuples (e.g. RGB triple). (Color space is\nspecific values interpreted with viewing conditions.)【4†L226-L234】【4†L251-L258】 \nRGB (Additive): Based on mixing Red, Green, Blue light. Used for displays. (0,0,0=black; 1,1,1 or\n255,255,255=white.) \nCMY(K) (Subtractive): Cyan, Magenta, Yellow (and often Black for printers). Relation: C=1–R, M=1–G,\nY=1–B. CMYK used in printing (K = black for efficiency). Undercolor removal in CMYK subtracts CMY\ncomponents to add pure black ink, saving color ink. \nHSV/HSL: Hue (color type, angle 0–360°), Saturation (intensity of color), Value/Lightness (brightness).\nUseful for color selection. \nYIQ/YUV: Luma-chroma models (used in TV); Y = brightness, I/Q or U/V = color differences. (Often\nused for compression; not heavily tested unless slides covered them.) \nRGB Cube: Colors form a cube in RGB space. Diagonal from (0,0,0) to (1,1,1) goes from black to white\nwith gray shades. \nGamma Correction (Trap): Real displays do not respond linearly to voltage. In many problems, \nassume gamma = 1 (ignored) unless stated. (The slide warns “gamma correction usually ignored.”) \nIndexed Color & LUT: An image can use an 8-bit index into a 256-color palette (LUT). To convert 24-\nbit (true color) to 8-bit, quantize each channel (e.g. 3 bits R, 3 G, 2 B) and compute palette index. E.g.,\nindex = (r_index8 + g_index)4 + b_index. \nHigh-Yield Notes\nGamma Caveat: Always clarify if gamma correction is applied. Many solutions on exams assume no\ngamma (linear). The slide explicitly warns that gamma is usually ignored – an exam trap. \n3. \n4. \n5. \n• \n• \n• \n• \n• \n• \n• \n• \n• \n2\n"
+    },
+    {
+      "page_number": 3,
+      "text": "Color Model Distinctions: Don’t confuse HSV vs HSL; Hue is the same, but HSL’s L (lightness) is\ndifferent from HSV’s V. Some instructors expect noting that HSL = 0 saturation still yields grayscale. \nRGB vs CMY Relations: A common mistake is mixing them up; remember CMY subtracts light, so\nwhite (all light) is (0,0,0) in RGB, but (0,0,0) in CMY yields white too (if defined as 1–RGB). \nUndercolor Removal: Adding K in printers avoids muddy colors. If asked, note CMYK allows using\nless ink. \nQuantization: When computing LUT index, remember to floor or use integer division. Errors often\nhappen by off-by-one in slice calculation. \nReinforcement Questions\nQ: What is the difference between additive and subtractive color models? Give an example of each.\nA: Additive (e.g. RGB) mixes light; adding R, G, B yields white light. Subtractive (e.g. CMY) mixes\npigments or filters; mixing C, M, Y gives black (ideally).\nExplanation: RGB for screens, CMY for printing. Additive starts at black (no light), subtractive starts\nat white (paper).\nQ: How does histogram equalization improve image contrast? Write the basic transformation\nformula.\nA: It remaps pixel intensities using the CDF of the image so that output intensities are spread across\n[0, L–1]. The transform is $T(i) = \\mathrm{CDF}(i)$ (normalized)【19†L254-L262】【19†L273-L281】.\nExplanation: The CDF-based mapping makes output histogram uniform. Key formula: new intensity\n= cumulative probability up to old intensity.\nQ: Convert 24-bit RGB (R=20, G=33, B=150) to an 8-bit indexed color using 3-3-2 bits per channel.\nShow steps.\nA: Divide 0–255 into 8 slices for R,G, 4 slices for B. R-index = ⌊20/32⌋ = 0; G-index = ⌊33/32⌋ = 1; B-\nindex = ⌊150/64⌋ = 2. Then index = (08 + 1)4 + 2 = 6.\nExplanation: Each 24-bit color channel is quantized. The formula is (R_slice * 8 + G_slice)*4 + B_slice\nfor 3-3-2 bits.\nQ: What is the RGB value of pure yellow? In CMY terms, what would that be?\nA: Yellow = (255,255,0) in RGB. In CMY, that’s C=0, M=0, Y=1 (or 0% cyan, 0% magenta, 100% yellow)\nbecause Y = 1–B = 1.\nExplanation: Yellow light is red+green. In CMY, B=0 → Y=1; R=1→C=0, G=1→M=0.\nQ: Give one advantage of the HSV model over RGB for user color selection.\nA: HSV separates color (hue) from intensity (value), so users can pick a hue and then adjust\nsaturation/brightness. It’s more intuitive (turn “color wheel” for hue).\nExplanation: In RGB, hue and brightness are entangled across three numbers, but HSV’s H,S,V\ncorrespond more to human color concepts.\n2D Geometric Transformations\nMust-Know Concepts\nTranslation: Moves points by (tx, ty): \n• \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n• \n3\n"
+    },
+    {
+      "page_number": 4,
+      "text": "Scaling: Resizes about origin by (Sx, Sy): \nRotation: Rotate by θ about origin: \n(From math sources: $R(\\theta) = [[\\cos\\theta, -\\sin\\theta]; [\\sin\\theta, \\cos\\theta]]$【16†L12-L15】.)\nReflection: Flip across an axis or line. Common reflections: \nAcross x-axis: $x'=x$, $y'=-y$. \nAcross y-axis: $x'=-x$, $y'=y$. \nAcross line $y=x$: $x'=y$, $y'=x$. \nShearing: Slants shape. For an x-shear by factor Shx: $x' = x + Sh_x\\,y$, $y'=y$. For a y-shear by Shy:\n$x'=x$, $y' = y + Sh_y\\,x$. \nHomogeneous Coordinates: Use (x,y,1) with 3×3 matrices to combine these transforms. Example:\ntranslation matrix = \n. \nOrder Matters: Transformations are non-commutative. E.g. rotating then translating ≠ translating\nthen rotating (unless center is origin). Always apply matrix operations in correct sequence. \nHigh-Yield Notes\nComposition: To rotate about point (a,b), translate (−a,−b), rotate, then translate back. Many exam\ntraps involve rotating around origin vs arbitrary point. \nRotation Signs: Positive θ typically means CCW (counterclockwise). If not specified, assume right-\nhanded coordinate system (x right, y up). \nScaling Negatives: Negative scaling factors cause reflections (flip axes). If asked reflection + scaling,\nnote the sign effect. \nShear Distortion: Shear changes shape but keeps area same. Horizontal shear moves x by fraction\nof y. \nMatrix Multiplication Order: When combining transforms in homogeneous form, multiply the\ncorresponding matrices in the reverse order of intended application. (Students often get the order\nwrong.) \nReinforcement Questions\nQ: Write the 2D rotation matrix for angle θ and use it to compute the image of point (1,0) when\nθ=90°.\nA: $R(90°) = \\begin{pmatrix}0&-1\\1&0\\end{pmatrix}$. Applying to (1,0) gives $(x',y')=(0,1)$.\nExplanation: Cos(90°)=0, sin(90°)=1. The matrix sends (1,0) to (0,1), a 90° CCW rotation.\nx =\n′\nx + t ,\ny =\nx\n′\ny + t .\ny\n• \nx =\n′\nS x,\ny =\nx\n′\nS y.\ny\n• \n=\n(x′\ny′)\n.\n(cos θ\nsin θ\n−sin θ\ncos θ ) (x\ny)\n• \n• \n• \n• \n• \n• \n1\n0\n0\n0\n1\n0\ntx\nty\n1\n• \n• \n• \n• \n• \n• \n1. \n4\n"
+    },
+    {
+      "page_number": 5,
+      "text": "Q: How would you reflect the point (3,5) across the line y=x?\nA: Swap coordinates: (x',y') = (5,3).\nExplanation: Reflection in y=x just swaps x and y. A trap is mixing up axes – memorize swap.\nQ: Given point (2,3), apply shear with Shx=1 (x-shear), then translation (tx=1, ty=–2). What is the final\npoint?\nA: First shear: $x' = 2 + 13 = 5$, $y' = 3$. After translation: $(x'',y'') = (5+1,\\,3-2) = (6,1)$.\nExplanation:* Order is shear then translate. Check each step carefully.\nQ: What happens if you apply scaling by (–1,1)?\nA: x' = –1·x, y' = 1·y. This reflects the object across the y-axis (and scales by 1).\nExplanation: Negative scale flips direction. A scale of (–1,1) is equivalent to reflecting in y-axis.\nQ: Why do we use homogeneous coordinates for 2D transforms? Give one advantage.\nA: It allows representing translation as matrix multiplication (by adding a 3rd coordinate 1). This\nunifies all transforms (translation, rotation, scale, etc.) as matrix multiplications.\nExplanation: Without homogeneous coords, translation isn’t linear. Homogeneous makes\ncombining transforms straightforward (just multiply 3×3 matrices).\nRasterization (Scan Conversion)\nPoints and Lines\nMust-Know Concepts\nPixels vs Coordinates: Logical coordinates (real numbers) map to pixel grid. To draw a point at (x,y),\nusually round or floor to nearest integer pixel (floor gives largest integer ≤ coordinate). \nDDA Line Algorithm: Incremental method. Given endpoints P1(x1,y1), P2(x2,y2), compute steps =\nmax(Δx,Δy). Increment x and y by small amounts each step. Formula uses floating arithmetic. \nBresenham’s Line Algorithm: Integer-based. Uses a decision parameter to choose whether to\nincrement y (for gentle slopes). More efficient than DDA (uses only addition, no floating). Common\npseudocode initializes error = 2Δy–Δx, etc. \nSlope Cases: For slopes >1 or negative slopes, reflect or swap axes. In practice, ensure walking in the\ndominant direction (steep vs shallow) to keep one axis as independent. \nEndpoint Handling: Typically plot both endpoints. Many implementations ensure P1 and P2 are\nboth drawn. \nAliasing: Raster lines show stair-step “jaggies”. Antialiasing reduces this but usually not covered in\nbasic CG. \nHigh-Yield Notes\nComparisons: DDA easier conceptually but slower (float mults). Bresenham is faster (only integer\nadd/sub) – exam may ask which is more efficient. \nCommon Pitfall: Forgetting to initialize error correctly or increment y at right times. Many students\nget off-by-one errors. \nContinuity: Must handle all octants: usually take absolute values of slope and step accordingly. \n2. \n3. \n4. \n5. \n• \n• \n• \n• \n• \n• \n• \n• \n• \n5\n"
+    },
+    {
+      "page_number": 6,
+      "text": "Traps: If asked about line at 45°, both methods will work, but Bresenham’s decision parameter\nequals 0 at some point, watch pixel choice. \nEndpoint Order: If x1 > x2, swap endpoints for algorithms expecting left-to-right scanning.\nReinforcement Questions\nQ: Compare DDA and Bresenham line algorithms in terms of arithmetic operations.\nA: DDA uses floating-point increments (multiplication/addition each step). Bresenham uses only\ninteger addition/subtraction (decision variable), making it faster and more efficient.\nExplanation: Bresenham’s algorithm avoids costly floats. On older hardware, Bresenham was\npreferred for speed.\nQ: Using Bresenham’s algorithm, what decision would you make at the midpoint for a line from (0,0)\nto (5,3)? (Outline steps.)\nA: Δx=5, Δy=3, initial p = 2Δy–Δx = 23–5 = 1. Steps: at x=0->1 (p=1>=0) → y=1, new p = p + 2(Δy–Δx) =\n1+2(3–5) = -3. Next, p<0 → (x2,y1), update p = -3+2Δy=3. Continue similarly. The sequence of chosen\npixels approximates the line.\nExplanation:* Illustrates decision variable updates. For brevity, the key is showing update logic.\nQ: Why does Bresenham’s algorithm produce a straight line without gaps?\nA: It always steps one pixel in x (and sometimes in y), ensuring continuous adjacency. The decision\nparam ensures the best approximation to the true line each step.\nExplanation: Unlike simply rounding, Bresenham’s logic keeps one pixel gap-free.\nQ: How is a single point drawn in raster coordinates?\nA: Take the real (x,y) coordinates and use a rounding or floor method to choose the nearest pixel\n(e.g., Pixel(floor(x), floor(y))).\nExplanation: In practice we map float to int. The slide suggests Floor method (largest integer ≤\ncoord).\nQ: For a line with negative slope, how do line-drawing algorithms handle it?\nA: Reflect or swap endpoints so slope is positive, draw the line, then reflect back. For Bresenham,\none can increment y downward when needed (treat Δy as absolute and adjust sign).\nExplanation: Algorithms are usually described for slope 0–1; handling other octants requires\nsymmetry or sign adjustment.\nCircles (and Ellipses)\nMust-Know Concepts\nCircle Definition: $x^2 + y^2 = r^2$. Only need compute 1/8th of circle (from 0° to 45°) and mirror to\nother octants. \nMidpoint Circle Algorithm: Similar to Bresenham line. Starts at (0,r). Uses decision variable $p = 1-\nr$; iterate x from 0 to y, update p: if p<0, choose E pixel (x+1,y); else choose SE pixel (x+1,y-1) and\nupdate p with different increments. Plot symmetry points. \n8-way Symmetry: From computed (x,y), plot points (±x,±y) and (±y,±x). (Total 8 per octant). \n• \n• \n1. \n2. \n3. \n4. \n5. \n• \n• \n• \n6\n"
+    },
+    {
+      "page_number": 7,
+      "text": "Ellipse Algorithm (if any): Midpoint ellipse analog splits into two regions (slope 1 boundary). (Often\nnot tested unless lecture explicitly taught.) \nParameters: Only need integer radius. If center ≠ origin, translate after computation. \nHigh-Yield Notes\nFirst Octant: Compute until x=y (45°) or decision changes. After that, swap roles of x and y. \nDecisions: The initial p = 1–r, update rules p_new = p + 2x + 3 (when E) or p + 2(x–y) + 5 (when SE).\nOff-by-one in these formulas is a common exam pitfall. \nSymmetry: Always mirror the points. Often students forget to plot all 8 symmetrical points. \nComparison: Like lines, uses only adds (no multiplications) and integer operations – it’s efficient. \nTrap: Remember to plot at least one point per octant; the trivial (r,0) and (0,r) points.\nReinforcement Questions\nQ: Why do we only calculate 1/8th of a circle when using midpoint algorithms?\nA: Because of 8-way symmetry. Computing one octant and reflecting yields the full circle, greatly\nreducing work (by factor 8).\nExplanation: For each (x,y) in one octant, the other points (±x,±y, ±y,±x) are placed.\nQ: What is the initial decision parameter $p$ for the midpoint circle algorithm of radius r?\nA: $p_0 = 1 - r$.\nExplanation: Standard derivation (see textbooks). The first step uses this to choose pixel at (1,r) or\n(1,r–1).\nQ: If at a given step $p<0$, which pixel do you choose and how do you update $p$?\nA: If $p<0$, the next pixel is East: $(x+1, y)$ and update $p = p + 2x + 3$.\nExplanation: This maintains $p$ = difference from true circle. The formula comes from evaluating\n$p + 2x + 3$.\nQ: How is ellipsis drawing different from circles? (Conceptual)\nA: An ellipse has two radii (rx, ry) and lower symmetry (4-way). The midpoint ellipse algorithm\nhandles two regions (dx>dy vs dx<dy) separately. It uses different decision criteria because $x^2/a^2\n+ y^2/b^2 = 1$ is not rotationally invariant like a circle.\nExplanation: Unless needed, mention main difference: shape formula and 4-way symmetry.\nQ: What is a common advantage of midpoint-based drawing algorithms?\nA: They use only integer arithmetic (efficient) and ensure continuity. Also, by using symmetry they\nreduce computations.\nExplanation: Contrast with naive approaches (like computing y via sqrt) which would be slow.\n• \n• \n• \n• \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n7\n"
+    },
+    {
+      "page_number": 8,
+      "text": "Region Filling\nMust-Know Concepts\nBoundary Fill: Start from an interior seed point and expand until a boundary color is reached.\nTypically recursive: at pixel (x,y), if its color ≠ boundary and ≠ fill color, set to fill color and recurse\non neighbors. \nFlood Fill: Similar but stops on a specified original color instead of a boundary color. (Flood fill fills all\nconnected pixels of an original color.) \nConnectivity: 4-connected (up, down, left, right) or 8-connected (diagonals included). E.g. 4-\nconnected has 4 neighbors, 8-connected has 8 neighbors. \nUse Cases: Fill closed shapes (like coloring in a polygon). \nHigh-Yield Notes\nRecursion Pitfall: Naïve boundary/flood fill can cause stack overflow if region is large. (Non-\nrecursive methods or scan-line fills avoid this.) \nSeed Selection: Must start inside region; if outside boundary color polygon, nothing happens. \nBoundary vs Flood: Boundary-fill requires a clear boundary color; flood-fill requires a known original\ncolor. \nExam Trap: Don’t confuse with clipping. Fill colors inside region only. Check connectivity definition in\nquestion (4 vs 8 connectivity changes result). \nImplementation: Ensure base case checks both boundary and already filled colors to avoid infinite\nloops.\nReinforcement Questions\nQ: What’s the difference between boundary fill and flood fill algorithms?\nA: Boundary-fill stops at boundary color; it fills until it reaches a boundary color. Flood-fill stops when\nit hits the original color it’s replacing. In other words, boundary-fill uses a boundary value, flood-fill\nuses the initial region color as the stopping condition.\nExplanation: If filling a region until edge, boundary-fill is used. If filling by color match, flood-fill.\nQ: Why might a flood-fill algorithm fill an unintended area?\nA: If the starting seed color is shared with other regions (not isolated), flood-fill will spread through\nall connected same-color areas. If boundary not properly enclosed, fill leaks.\nExplanation: Make sure boundaries or segmentation isolate areas, or choose correct seed.\nQ: How can using 8-connected neighbors instead of 4-connected affect fill?\nA: 8-connected includes diagonals, so more pixels get filled (diagonal adjacency allows “leakage”).\nUsing 4-connected may leave diagonal holes in a diagonally connected region.\nExplanation: 8-connectivity yields a “solid” fill; 4-connectivity can leave corner gaps.\nQ: Outline a pseudocode snippet for boundary-fill with 4 neighbors.\nA:\n• \n• \n• \n• \n• \n• \n• \n• \n• \n1. \n2. \n3. \n4. \n8\n"
+    },
+    {
+      "page_number": 9,
+      "text": "Fill(x, y, boundaryColor, fillColor):\n  if (color(x,y) ≠ boundaryColor AND color(x,y) ≠ fillColor):\n    setPixel(x,y, fillColor)\n    Fill(x+1, y, boundaryColor, fillColor)\n    Fill(x-1, y, boundaryColor, fillColor)\n    Fill(x, y+1, boundaryColor, fillColor)\n    Fill(x, y-1, boundaryColor, fillColor)\nExplanation: Recursively fills up/down/left/right until boundaryColor reached.\nQ: What is a drawback of recursive fill methods, and how to mitigate?\nA: They can cause stack overflow on large regions. A mitigation is to use an iterative approach (e.g.,\nscan-line fill, or breadth-first queue) instead of recursion.\nExplanation: Iterative methods manage memory better and can fill large areas without recursion\ndepth issues.\nImage Enhancement (Spatial Domain)\nContrast Stretching and Histogram Equalization\nMust-Know Concepts\nHistogram of an Image: Graph of frequency of each intensity level. \nContrast Stretch (Linear): Scale pixel values so the darkest becomes 0 and brightest becomes 255.\nFormula: \nHistogram Equalization: Spread intensities to flatten histogram. Compute the cumulative\ndistribution function (CDF) of pixel values, then map each pixel to its CDF value scaled. Result: more\nuniform histogram. Key idea: $T(i) = \\mathrm{CDF}(i)$ (normalized)【19†L254-L262】【19†L273-\nL281】. \nGamma Correction: Adjust brightness nonlinearly: new = old^γ (or inverse). Useful for correcting\ndisplay gamma or brightening/darkening images. (E.g., γ<1 brightens dark images.) \nHigh-Yield Notes\nDarkest/Brightest Pixels: Contrast stretch requires finding I_min, I_max (often by scanning\nhistogram endpoints). If a few pixels are extreme (outliers), stretching can oversaturate. \nHistogram Equalization Trap: It maximizes contrast globally but can produce weird effects (e.g.,\namplify noise). It’s not local adaptive enhancement. \nColor Images: Usually apply equalization to intensity (grayscale or luminance), not per RGB channel,\nto avoid color shifts (unless instructed otherwise). \n1. \n• \n• \nnew =\n×\nI\n−I\nmax\nmin\nold −Imin\n(L −1).\n• \n• \n• \n• \n• \n9\n"
+    },
+    {
+      "page_number": 10,
+      "text": "Gamma Usage: If device has gamma ≠1, sometimes first linearize by gamma-1, do processing, then\nre-apply gamma. Exams might assume gamma=1 (no correction needed). \nSampled Data CDF: Use normalized CDF (range 0–1) then scale to [0,L–1]. Rounding at end. \nReinforcement Questions\nQ: A 3-bit grayscale image has intensity values {0,1,2,...,7}. If a pixel value 2 occurs 5 times, 4 occurs\n10 times, and 6 occurs 5 times (total 20 pixels), what is the equalized value of intensity 4?\nA: CDF up to 4: P(0-4) = (5+10)/(20) = 15/20=0.75. New value = round(0.75(7)) = round(5.25) = 5.\nExplanation:* Equalization maps 4 to 5. Shows using CDF formula.\nQ: What effect does a 3x3 mean filter have on an image?\nA: It replaces each pixel with the average of its 3×3 neighborhood, smoothing (blurring) the image\nand reducing random noise, but it also blurs edges.\nExplanation: Mean filter is linear low-pass. It reduces variance (noise) but also reduces detail.\nQ: Why is a median filter preferred for salt-and-pepper noise?\nA: Because median preserves edges better and effectively removes isolated extreme pixels.\nReplacing center with median kills outliers without blurring edges as much as averaging.\nExplanation: Median is non-linear and robust to impulse noise.\nQ: Explain unsharp masking in image sharpening.\nA: Compute a blurred version of the image, subtract from original to get high-frequency (edges),\nthen add back to original. Formula: I_new = I_orig + k(I_orig – I_blur). Equivalently, use a Laplacian filter.\nExplanation:* It’s called “unsharp” because you subtract a smoothed (unsharp) image to emphasize\nedges.\nQ: What does applying a high-pass filter to an image do? Give an example of a high-pass mask.\nA: It enhances edges by removing low-frequency content. Example Laplacian mask: [[0,-1,0],[-1,4,-1],\n[0,-1,0]] highlights regions where pixel differs from neighbors.\nExplanation: High-pass allows fine details, edges; reduces smooth areas. Laplacian is common.\nImage Processing (Frequency Domain)\nMust-Know Concepts\nFrequency Domain: Represent image with Fourier transform. Low frequencies = smooth variations;\nhigh frequencies = edges/detail. \nDiscrete Fourier Transform (DFT): Converts 2D image to frequency components. (No need formula\non exam, just concept.) \nFiltering: In freq domain, low-pass filtering removes high frequencies (blur/smooth), high-pass filters\nremove low frequencies (sharpen/enhance edges). \nConvolution Theorem: Spatial convolution = multiplication in freq domain. Often faster for large\nkernels with FFT. \nFilter Examples: Ideal low-pass (circular cutoff), Gaussian low-pass, Butterworth, etc. Ideal often\ncauses ringing (Gibbs phenomenon). \n• \n• \n1. \n2. \n3. \n4. \n5. \n• \n• \n• \n• \n• \n10\n"
+    },
+    {
+      "page_number": 11,
+      "text": "Spatial vs Frequency: Some tasks (e.g., blurring) can be done in either domain. Multi-step:\ntransform, multiply by mask, inverse transform. \nHigh-Yield Notes\nSpace vs Frequency Complexity: For large kernels, FFT can be more efficient (O(N log N) vs\nO(Nk^2)). The midterm has a question hinting “FFT more efficient for large kernels” (likely high\nconfidence concept). \nEdge Effects: Frequency domain filtering assumes periodic extension; check image padding/\ntruncation issues. \nTraps: Don’t confuse high-pass with “removes edges” – actually it emphasizes edges. (See exam\nmisconceptions in Lecture 8 Q’s: “High-pass filtering removes edges” is false – it removes low\nfrequencies, preserving edges.) \nSharpening in Frequency: Adding a high-pass result to original image (like unsharp mask) yields\nenhancement.\nReinforcement Questions\nQ: Describe what a 2D Gaussian low-pass filter does to an image and why it’s separable.\nA: It smooths (blurs) the image by averaging pixel values with a Gaussian-weighted kernel,\npreserving edges less than an ideal filter. Separable because a 2D Gaussian = row-wise 1D Gaussian\nfollowed by column-wise 1D Gaussian.\nExplanation: Separable means convolution can be done in two passes (rows then columns),\nspeeding computation.\nQ: A filter has frequency response that is 1 for |f|<f_c and 0 otherwise. What is this filter and what\nartifact can it introduce?\nA: Ideal low-pass filter (circular cutoff). It can introduce ringing artifacts (Gibbs effect) near sharp\nedges in spatial domain.\nExplanation: The abrupt cutoff in freq causes oscillations in space.\nQ: Why might one use the frequency domain to apply a large filter instead of doing it directly in the\nspatial domain?\nA: Because convolution with large kernels is faster via FFTs (O(N log N) operations) than direct\nconvolution (O(N k^2)). Large 2D kernels are impractical to implement by direct summation.\nExplanation: Efficiency trade-off: overhead of FFT but gains for large sizes.\nQ: In the context of image smoothing, what is the difference between a box filter and a Gaussian\nfilter?\nA: A box (mean) filter assigns equal weight to neighbors; a Gaussian gives more weight to nearer\npixels. Gaussian causes less blockiness and better preserves central intensity.\nExplanation: Gaussian is smoother in frequency (no sharp cutoff).\nQ: What is the effect of multiplying an image by −1 before displaying it (in frequency domain)?\nA: Multiplying by (−1)^(x+y) (sometimes done to center freq) shifts the zero-frequency to center. This\nis standard practice but exam likely won't ask this detail.\nExplanation: Not crucial, skip if not needed.\n• \n• \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n11\n"
+    },
+    {
+      "page_number": 12,
+      "text": "Augmented & Virtual/Mixed Reality\nMust-Know Concepts\nAugmented Reality (AR): Overlays computer-generated content onto the real environment\n【11†L279-L287】. It enhances reality by adding virtual objects in real-time. (e.g. Pokemon Go on a\ncamera view.) \nVR vs AR: VR is a fully virtual environment, replacing reality【13†L242-L250】. AR uses the real world\nas base. (AR adds to real; VR immerses in all virtual.)【11†L279-L287】 \nAR Types:\nMarker-based: Recognizes a printed marker (e.g. ARToolkit) to place 3D model. \nMarkerless/Location-based: Uses GPS/SLAM (Simultaneous Localization and Mapping) to align 3D\ncontent with real world (no pre-defined markers). \nProjection-based: Projects images onto real surfaces. \nVR Levels:\nNon-immersive: Desktop 3D simulation (not full immersion, e.g. PC driving sim). \nSemi-immersive: Big screens or partial VR (like flight simulators with a cockpit). \nFully immersive: HMDs (head-mounted displays) or VR caves. \nMixed Reality (MR/XR): A continuum blending real and virtual. MR usually means digital objects\nanchored to real world and able to interact with it. XR (Extended Reality) is an umbrella for\nAR+VR+MR. \n360° Video: Full spherical video capturing all angles. When viewed on HMD, user can look around.\nIt’s not interactive (camera motion only), but provides an immersive scene. \nHigh-Yield Notes\nAR Workflow: AR uses tracking (often SLAM) to determine device pose. SLAM builds a map and\ntracks camera simultaneously. It's often asked in AR context. \nHead Tracking (VR): VR uses sensors (accelerometers, gyros) to update viewpoint continuously. Lag\ncan cause nausea. \nApplications: AR in medicine (overlaying anatomy on patient), maintenance (instructions overlay).\nVR in training (flight simulators, surgery). \nTraps: Don’t confuse 360° video with VR – it’s passive (no interaction, just 360 panorama). \nField of View: VR hardware often asks FOV or resolution specs. AR on smartphones usually smaller\nFOV than AR glasses.\nReinforcement Questions\nQ: Define Augmented Reality and give one example of its use.\nA: AR overlays computer-generated images or info onto the real world in real-time【11†L279-L287】.\nExample: Smartphones showing virtual furniture in a room (e.g. IKEA Place app).\nExplanation: It’s interactive and contextual. AR enables enhancing real scenes, unlike VR.\nQ: What is SLAM and why is it important in AR?\nA: SLAM = Simultaneous Localization and Mapping. It builds a map of unknown environment while\ntracking device location. In AR, it allows markerless tracking (the device understands its position\n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n1. \n2. \n12\n"
+    },
+    {
+      "page_number": 13,
+      "text": "relative to environment) without pre-set markers.\nExplanation: Markerless AR and HoloLens use SLAM to place objects stably in real world.\nQ: Describe one difference between Virtual Reality and Augmented Reality.\nA: VR immerses the user in a fully digital environment (blocks real world)【13†L242-L250】, while AR\nkeeps the real world and overlays additional info【11†L279-L287】.\nExplanation: Key difference: AR augments reality, VR replaces it. This is often tested.\nQ: What are the three levels of VR immersion?\nA: Non-immersive (desktop 3D, e.g. computer game), semi-immersive (CAVE or wide-screen\nsimulators), fully immersive (HMD or dome with head tracking).\nExplanation: This taxonomy comes from slides (though exact terms may vary).\nQ: What is a 360° video and how does it relate to VR?\nA: A 360° video is a spherical video that captures all directions. When viewed on VR goggles, you can\nlook around in the fixed viewpoint (the camera can’t move). It’s a passive VR experience (no motion\ninside scene).\nExplanation: It’s like watching a pre-recorded real scene from all angles.\nComputer Vision Basics\nMust-Know Concepts\nDefinition: Computer Vision (CV) is about interpreting images and videos – enabling computers to\n“see” and extract information. Unlike CG (create images) and IP (enhance images), CV analyzes\nimages. \nPipeline: Steps often: Acquire image → Preprocess (noise reduction) → Feature Extraction (edges,\ncorners, textures) → Recognition/Classification/Detection → Decision (class label, object identity, etc.). \nCV Tasks:\nClassification: Identify main object (one label for whole image). E.g. “This is a cat.” \nObject Detection: Find and classify objects with bounding boxes. E.g. “Person at (x,y), Car at (u,v).” \nSegmentation: Label each pixel (e.g. background vs object; semantic segmentation or instance\nsegmentation). \nEdge Detection: Find pixel-level edges (Sobel, Canny). Preliminary step for many tasks. \nThresholding: Simple segmentation by intensity cutoff (binary image creation). Useful if objects\nclearly brighter/darker. \nEdge Detection (Example): Filters (like Sobel) compute gradients; Canny applies Gaussian blur +\ngradient + non-max suppression + hysteresis thresholding. \nSegmentation: Can be global (thresholding) or more advanced (region growing, clustering, deep\nlearning). \nHigh-Yield Notes\nData Difference: CG creates synthetic data; CV deals with noisy real data (lighting, occlusions).\nEmphasize that. \nFeature vs Template: Early CV used hand-crafted features; modern CV (not likely covered) uses ML/\nAI. But exam likely sticks to basics (edges, thresholds). \n3. \n4. \n5. \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n13\n"
+    },
+    {
+      "page_number": 14,
+      "text": "Common Trap: Don’t mix “detection” with “segmentation.” Detection boxes vs pixel classification. \nExample Application: Brain tumor detection via threshold (slides gave that example). They might\nask to describe steps: e.g. “Threshold MRI to segment tumor vs background.” \nMultiple Objects: Classification handles one object per image; detection can handle many;\nsegmentation yields precise shape. \nReinforcement Questions\nQ: What is the main goal of computer vision? How is it different from image processing?\nA: CV’s goal is to extract meaningful information from images (interpret content). Image Processing\nmainly modifies images (improve quality, transform). CV analyzes, IP enhances.\nExplanation: Distinguish generation/enhancement vs analysis. Example: IP might denoise; CV might\ndetect a tumor in the denoised image.\nQ: A system labels an image as “cat” or “dog.” Is this classification, detection, or segmentation?\nA: Classification (assign one label to the whole image).\nExplanation: There’s no localization or per-pixel mask, just global label.\nQ: How does object detection differ from semantic segmentation?\nA: Object detection finds objects and draws bounding boxes. Semantic segmentation labels every\npixel with a class. Detection gives coarse location; segmentation gives exact shape.\nExplanation: Key difference: segmentation is pixel-level classification.\nQ: Explain the role of thresholding in CV, with an example.\nA: Thresholding converts a grayscale image to binary by choosing a cutoff (T). E.g. to detect bright\nobjects, set pixels > T = object (1), else background (0). Example: simple tumor detection on MRI.\nExplanation: Simple but effective if object is much brighter/darker.\nQ: What is an edge detector (e.g. Sobel or Canny) used for?\nA: To find significant intensity changes (edges) in an image. Edges often correspond to object\nboundaries or features.\nExplanation: Preprocessing step, often feeding into higher-level tasks (like segmentation or\nrecognition).\nPrevious Exams Analysis\nTopic Frequency Analysis\nWe examined finals/midterms (2021–2025). The most frequently tested topics (present in current syllabus)\nare:\nAugmented Reality (AR): Appears consistently high (e.g. 14–15 mentions/year after 2021). AR is a top\npriority. \nGraphics Systems & Coordinate Concepts: (Fundamentals: frame buffer, pixels, transformations).\nFrequent mentions (3→9→9 per year, rising). \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n• \n• \n14\n"
+    },
+    {
+      "page_number": 15,
+      "text": "Color Models & Theory: (RGB, CMY, HSV, color spaces). Rare in 2021-22 but jumped (0→12 mentions\nin 2023 onward). Now important. \n2D Transformations: (Translation/rotation/reflection, etc.) Constant: ~3–6 mentions yearly.\nMaintaining stable importance. \nVirtual Reality (VR): Some focus (a few questions); often paired with AR sections or definitions. \nComputer Vision & Image Processing: Rare (very few mentions); likely lower priority given syllabus.\n(We see 1–2 mentions of thresholding or segmentation, mostly context.) \nTrends: AR/VR topics are very hot (rising and high frequency). Color theory usage increased (perhaps new\nto syllabus recently). Rasterization (scan conversion) has low frequency historically (few line-circle-fill\nquestions in old exams), but they are core syllabus – they could appear, but past suggests moderate priority.\nImage processing appears infrequently in exams, but still worthy as Tier C.\nTopic\nAppearances (2021–2025)\nTrend/Notes\nAugmented Reality (AR)\n~15 per year (2023–25)\nIncreasing\nVirtual/Mixed Reality (VR/MR)\nfew mentions\nStable low\nGraphics Systems & Displays\n~3→9 per year\nIncreasing\nColor Models/Theory\n0→12 per year\nIncreasing\n2D Transformations\n~3–6 per year\nStable\nRasterization (Lines/Circles)\nVery few\nDecreasing\nRegion Filling\nNone\nNot tested yet\nImage Enhancement (filters)\nVery few\nNot tested often\nComputer Vision Tasks\n0–2 mentions\nVery low\nPattern Analysis\nAR/VR Questions: Often definition or concept. E.g. “Name AR types”, “SLAM vs markers”, “VR immersion\nlevels”. They repeat vocabulary and differences (AR vs VR). They test conceptual understanding, not\nnumeric calculation. \nColor/Display: Newer trend: color spaces often grouped (RGB vs CMY vs HSV). Past Qs may ask for\nconversions or properties (e.g. “subtract CMY from 1”). Watch for “gamut problems” or “undercolor\nremoval” type traps. \nTransformations: Common style: “Given a sequence of transforms, find final matrix or coordinates.” Or\nconceptual “properties of transform matrices”. Professors often invert order or change pivot – check\nslides on center-of-rotation (traps). \nRaster Lines: Rare but when asked, usually algorithmic: e.g. “What is decision parameter after k steps?”\nor “Compare DDA vs Bresenham”. Sometimes fill-in-a-table of coordinates for a line. \nCircle Algorithms: Even rarer. Possibly “midpoint circle vs parametric” or “point symmetry logic.” Might\ntest understanding of octant plotting. \nHistogram/Filters: When used, in multiple-choice quizzes in slides. But few exam Qs. If asked, likely\nconcept: “Which filter preserves edges best?” (Answer: median) or “What does histogram\nequalization do?”. \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n15\n"
+    },
+    {
+      "page_number": 16,
+      "text": "Computer Vision/Thresholding: Rare single questions, often conceptual “CV vs CG vs IP?” or \n“Thresholding example.” The slides had a few MCQs (like “Thresholding outputs binary image”).\nWhy they appear: AR/VR and color are newer syllabus areas with broad interest. Transforms and displays\nare fundamental CG topics. Repetition of AR/VR suggests professor’s focus (Tier A). Rasterization, filling,\nimage processing have been less emphasized historically (Tier B/C) but still core taught topics. Possibly\nfilling will show up on exam once.\nHigh-Priority Focus Areas\nTier A (Highest Priority): Augmented Reality/Virtual Reality (AR/VR/MR/XR), Color Models, Graphics\nSystems/Display, 2D Transformations.\nJustification: These topics have the most frequent exam appearances and are heavily covered in\nlectures. AR/VR are consistently tested; professor emphasizes differences and types. Color theory\nand transformation fundamentals are also repeated and appear critical.\nTier B (Important): Rasterization (lines, circles) and core image processing (filtering, histogram).\nJustification: While less frequent historically, these are core to the syllabus. Questions on line\nalgorithms or smoothing/sharpening could appear. Should prepare well but prioritize after Tier A.\nTier C (Lower Priority): Region filling algorithms, advanced vision (classification/detection details),\n360° video.\nJustification: No past exam questions on filling or 360° specifically; likely less tested. Understanding is\nstill needed, but after A/B. If time is limited, focus on A/B first.\nExam Prediction\nConfidence Levels: Based on syllabus emphasis and past trends.\n(High) AR/VR Concept Question: e.g. “Describe how augmented reality differs from virtual reality and\ngive one example of each.”\nReason: AR/VR repeatedly appear; definitions and differences are asked almost yearly. Lecture slides\nexplicitly compare AR vs VR【11†L279-L287】【13†L242-L250】. \n(High) 2D Transform Sequence: e.g. “Find the composite transformation matrix for a rotation of 30°\nabout point (x0,y0) followed by a translation.”\nReason: 2D transform formulas and composition are core; many exam Qs involve combining\ntransforms or specific cases (rotate about origin vs other point). \n(Medium) Color Conversion: e.g. “Convert RGB(255,128,0) to HSV.” or “Given a color, compute its LUT\nindex in 8-bit.”\nReason: Color is now heavily covered; slides included examples of LUT indexing. Likely an example\ncalculation (similar to our reinforcement Q). \n(Medium) Bresenham vs DDA: e.g. “Explain Bresenham’s algorithm for lines; why is it faster than\nDDA?”\nReason: Lines seldom appear, but this concept was taught explicitly; could be a short-answer or MCQ.\n• \n• \n• \n• \n• \n• \n• \n• \n16\n"
+    },
+    {
+      "page_number": 17,
+      "text": "(Medium/Low) Histogram Equalization: e.g. “What does histogram equalization do to an image’s\ncontrast?” Possibly accompanied by a small histogram example.\nReason: One question on histogram was in slides; less tested in past, but fair chance for a conceptual\nquestion. \n(Low) Region Filling Pseudocode: e.g. “Give pseudocode for flood-fill with 4-neighbors.”\nReason: Lecture included it, but no past exam Q. Could appear, but less certain. \n(Low) 360° Video: e.g. “What is a 360° video and how is it used?”\nReason: Lecture had it, but historical exam frequency is zero. Could be a single MCQ or a small part of\na larger AR question.\nFor each prediction, support patterns: AR/VR predictions from frequent past questions (Professor loves XR\ntopics). Transforms from fundamental importance. Color from new slides + patterns. Low-confidence if no\ndirect precedent but aligned with recent syllabus.\nMock Exam\nInstructions: Solve all parts. Use lecture concepts; show relevant formulas or reasoning.\n(Easy) Computer Graphics vs Computer Vision: Briefly differentiate CG, Image Processing, and\nComputer Vision in terms of purpose and outputs. \n(Easy) RGB and CMY: Given an RGB color (0.2, 0.5, 0.7), compute the corresponding CMY values. \n(Easy) Histogram Stretch: An 8-bit image has min intensity 50, max 200. What linear transformation\nmaps this range to [0,255]? \n(Medium) 2D Transform: Apply a 90° rotation about the point (2,3) to the point (5,7). Show steps\n(translate, rotate, translate back). \n(Medium) Line Rasterization: Draw by calculation (DDA or Bresenham) the pixels for the line from\n(2,3) to (7,5). (List coordinates of chosen pixels.) \n(Medium) Augmented Reality: List and briefly explain three types of AR. \n(Hard) Circle Drawing: Outline Bresenham’s midpoint circle algorithm steps for radius r=5. Compute\nthe first few points. \n(Hard) Image Filtering: Given a 5×5 grayscale patch, apply a 3×3 mean filter and a 3×3 median filter to\nthe center pixel. (Use given values.) \n(Hard) Virtual Reality: Describe three levels of VR immersion and give an example device or scenario\nfor each. \n(Hard) Composite Transform: Find the single 3×3 homogeneous matrix that translates by (1,2), then\nrotates 45°, then scales by 2 in x and 0.5 in y (about the origin). \nAnswer Key\nAnswer: CG generates images; IP enhances/filters images; CV interprets/analyzes images.\nExplanation: CG = synthesis (e.g. rendering objects). IP = modify existing image (denoise). CV =\nextract info (detect faces). \nAnswer: CMY = (1–R, 1–G, 1–B) = (0.8, 0.5, 0.3).\nExplanation: Subtractive complement of RGB (assuming normalized [0,1]). \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n6. \n7. \n8. \n9. \n10. \n1. \n2. \n17\n"
+    },
+    {
+      "page_number": 18,
+      "text": "Answer: New = round((old–50)(255/(200–50))). Formula: new = (old–50)1.7 (approx).\nExplanation: It linearly maps 50→0 and 200→255. (Exact factor=255/150 = 1.7). \nAnswer: Translate (2,3) to origin: (x–2, y–3): (5–2,7–3)=(3,4). Rotate 90°: (x',y')=(-4,3). Translate back:\nadd (2,3): (x'',y'') = (-4+2,3+3)=(-2,6).\nExplanation: Rotation matrix used is [0 -1;1 0]. Check each step. \nAnswer: Δx=5, Δy=2, Δx>Δy. Using Bresenham: start at (2,3). p0 = 2Δy–Δx = 4–5 = -1. \nStep 1: (3,3), p<0 → p1 = p0+2Δy = -1+4=3. \nStep 2: (4,4), p1>=0 → p2 = p1+2(Δy–Δx) = 3+2*(2–5) = -3. \nStep 3: (5,4), p2<0 → p3 = -3+4 = 1. \nStep 4: (6,5), p3>=0 → p4 = 1+2*(2–5) = -5. \nStep 5: (7,5).\nPixels: (2,3), (3,3), (4,4), (5,4), (6,5), (7,5).\nExplanation: This sequence approximates the line. Verify symmetrical stepping.\nAnswer: (a) Marker-based AR: Uses visual markers to place content (e.g. QR codes for AR). (b) \nMarkerless/SLAM: Uses camera/IMU to map environment (e.g. AR navigation on phone). (c) Projection\nAR: Projects images onto surfaces (e.g. interactive tabletop display).\nExplanation: Each type augments differently; lecture listed these categories.\nAnswer: Radius=5. Start at (x=0,y=5), p=1–5=–4. \n(0,5): plot. p<0 → next (1,5), p1=−4+2*0+3=−1. \np1<0 → next (2,5), p2=−1+2*1+3=4. \np2>=0 → next (3,4), p3=4+2(2−5)+5=4+2(−3)+5=−1. \np3<0 → (4,4), p4=−1+2*3+3=8. \nContinue until x>y. Points in first octant: (0,5), (1,5), (2,5), (3,4), (4,4). (Then symmetric).\nExplanation: This follows midpoint logic. (Full fill would mirror these points to get the circle.) \nAnswer: Suppose center value= C, neighbors shown (example needed). For mean: replace center\nwith average of 3×3 values. For median: sort 9 values, pick middle.\nExample: If patch = \n10 20 30\n20 50 40\n30 40 60\n3. \n4. \n5. \n6. \n7. \n8. \n9. \n10. \n11. \n12. \n13. \n14. \n15. \n16. \n17. \n18. \n18\n"
+    },
+    {
+      "page_number": 19,
+      "text": "Mean: (sum=300) avg=33 (rounded). Median: sorted [10,20,20,30,30,40,40,50,60], median=30.\nExplanation: Mean blurs uniformly, median preserves a typical neighbor.\nAnswer: (a) Non-immersive: PC or console games (simple 3D on screen). (b) Semi-immersive: Flight\nsimulators with partial cockpit or large screen. (c) Fully immersive: VR headset (e.g. Oculus Rift) gives\n360° view and tracking.\nExplanation: These align with lecture: lower levels offer partial immersion, full requires HMD.\nAnswer: Translation(1,2): $T=\\begin{pmatrix}1&0&1\\0&1&2\\0&0&1\\end{pmatrix}$. Rotation45°:\n$R=\\begin{pmatrix}c&-s&0\\s&c&0\\0&0&1\\end{pmatrix}$ with $c=\\cos45°=0.7071$, $s=0.7071$.\nScaling: $S=\\begin{pmatrix}2&0&0\\0&0.5&0\\0&0&1\\end{pmatrix}$. Composite = $S \\cdot R \\cdot T$\n(matrix multiply in that order).\nNumerically: \n(Final numeric multiplication yields the answer matrix.)\nExplanation: Multiply as 3×3. Order: last applied is leftmost or vice versa depending convention;\ncareful to match lecture convention.\n1. \n2. \nM =\n.\n2\n0\n0\n0\n0.5\n0\n0\n0\n1\n0.7071\n0.7071\n0\n−0.7071\n0.7071\n0\n0\n0\n1\n1\n0\n0\n0\n1\n0\n1\n2\n1\n19\n"
+    }
+  ],
+  "sections": [
+    {
+      "id": "intro_systems",
+      "title": "2D/3D Computer Graphics (Intro & Systems)",
+      "pages": [
+        1,
+        2
+      ],
+      "raw_text": "Computer Graphics – Ultimate Exam Prep\n2D/3D Computer Graphics (Intro & Systems)\nMust-Know Concepts\nDefinition: Computer Graphics (CG) is the study of generating and manipulating images and\nanimations via computers【4†L226-L234】【4†L251-L258】. \nMain Tasks: Modeling (describe geometry), Rendering (generate 2D image from 3D), Animation\n(change over time). \nApplications: Games, simulations, CAD/CAM, medical imaging, virtual training, user interfaces, etc. \nGraphics Pipeline: Comprises stages like modeling, transformation, lighting, rasterization, and\ndisplay. (CG pipeline processes geometry → pixels.) \nGraphics System Components: Host CPU, GPU/graphics processor, large RAM, frame buffer\n(memory for pixel data), and display device (CRT/LCD). \nDisplay Hardware: Raster-scan displays update rows of pixels; resolution and refresh rate matter.\n(E.g. frame buffer stores pixel RGB values.) \nCoordinate Systems: Objects defined in world coordinates; transformed to device coordinates (via\nviewport mapping) for display.\nHigh-Yield Notes\nVector vs Raster: Vector images are resolution-independent; raster images (bitmaps) depend on\npixel grid. CG often rasterizes vectors into pixels. \nMemory vs Quality: More color depth/higher resolution = more memory. Exams may ask trade-offs\n(speed vs quality). \nCommon Trap: “CG = real-time only” is false – CG also used offline (film/VFX). Be clear on intent (e.g.\nphoto-realism vs illustration). \nPrecision: Integer math vs float – some algorithms (like Bresenham’s) use integer arithmetic for\nspeed.\nReinforcement Questions\nQ: Define computer graphics and list its three main tasks.\nA: CG is the creation/manipulation of visual images and animations via computers【4†L226-L234】\n【4†L251-L258】. Main tasks are Modeling (geometry), Rendering (image generation), and Animation\n(time-variation).\nExplanation: The definition and tasks are core (per slides and sources). Model geometry → Render\nto pixels → Animate changes over time.\nQ: What are typical components of a graphics system, and what is the role of the frame buffer?\nA: A graphics system includes a CPU/GPU, memory, and a frame buffer connected to a display. The \nframe buffer is a block of RAM holding pixel color values for the screen.\n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n1. \n2. \n1\n\n\nExplanation: The frame buffer stores the image that gets sent to the display. High resolution or\ncolor depth means a larger frame buffer (more memory needed).\nQ: Compare vector graphics and raster graphics.\nA: Vector graphics store geometry (points, lines) mathematically and scale without quality loss; Raster\ngraphics store pixels in a grid. Vector-to-display requires rasterization, while rasters have fixed\nresolution.\nExplanation: This tests understanding of how images are represented and why rasterization is\nneeded.\nQ: Why might one use lower color depth or resolution?\nA: To reduce memory usage and increase processing speed at the cost of image quality. It trades off\ndetail (fewer bits or pixels) for performance or storage.\nExplanation: This links to “trade image quality for speed” (slide outcome). Common exam trap is\nforgetting the performance benefit of quantization.\nQ: Name one example of a real-time CG application and one offline CG application.\nA: Real-time example: video game graphics. Offline example: CGI in movies or visual effects.\nExplanation: Show difference – games run on the fly, film rendering can take hours per frame.\nColor Theory & Color Models\nMust-Know Concepts\nColor Model: A mathematical scheme to represent colors as tuples (e.g. RGB triple). (Color space is\nspecific values interpreted with viewing conditions.)【4†L226-L234】【4†L251-L258】 \nRGB (Additive): Based on mixing Red, Green, Blue light. Used for displays. (0,0,0=black; 1,1,1 or\n255,255,255=white.) \nCMY(K) (Subtractive): Cyan, Magenta, Yellow (and often Black for printers). Relation: C=1–R, M=1–G,\nY=1–B. CMYK used in printing (K = black for efficiency). Undercolor removal in CMYK subtracts CMY\ncomponents to add pure black ink, saving color ink. \nHSV/HSL: Hue (color type, angle 0–360°), Saturation (intensity of color), Value/Lightness (brightness).\nUseful for color selection. \nYIQ/YUV: Luma-chroma models (used in TV); Y = brightness, I/Q or U/V = color differences. (Often\nused for compression; not heavily tested unless slides covered them.) \nRGB Cube: Colors form a cube in RGB space. Diagonal from (0,0,0) to (1,1,1) goes from black to white\nwith gray shades. \nGamma Correction (Trap): Real displays do not respond linearly to voltage. In many problems, \nassume gamma = 1 (ignored) unless stated. (The slide warns “gamma correction usually ignored.”) \nIndexed Color & LUT: An image can use an 8-bit index into a 256-color palette (LUT). To convert 24-\nbit (true color) to 8-bit, quantize each channel (e.g. 3 bits R, 3 G, 2 B) and compute palette index. E.g.,\nindex = (r_index8 + g_index)4 + b_index. \nHigh-Yield Notes\nGamma Caveat: Always clarify if gamma correction is applied. Many solutions on exams assume no\ngamma (linear). The slide explicitly warns that gamma is usually ignored – an exam trap. \n3. \n4. \n5. \n• \n• \n• \n• \n• \n• \n• \n• \n• \n2\n",
+      "subsections": [
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Definition: Computer Graphics (CG) is the study of generating and manipulating images and animations via computers.",
+            "Main Tasks: Modeling (describe geometry), Rendering (generate 2D image from 3D), Animation (change over time).",
+            "Applications: Games, simulations, CAD/CAM, medical imaging, virtual training, user interfaces, etc.",
+            "Graphics Pipeline: Comprises stages like modeling, transformation, lighting, rasterization, and display. (CG pipeline processes geometry → pixels.)",
+            "Graphics System Components: Host CPU, GPU/graphics processor, large RAM, frame buffer (memory for pixel data), and display device (CRT/LCD).",
+            "Display Hardware: Raster-scan displays update rows of pixels; resolution and refresh rate matter. (E.g. frame buffer stores pixel RGB values.)",
+            "Coordinate Systems: Objects defined in world coordinates; transformed to device coordinates (via viewport mapping) for display."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "Vector vs Raster: Vector images are resolution-independent; raster images (bitmaps) depend on pixel grid. CG often rasterizes vectors into pixels.",
+            "Memory vs Quality: More color depth/higher resolution = more memory. Exams may ask trade-offs (speed vs quality).",
+            "Common Trap: “CG = real-time only” is false – CG also used offline (film/VFX). Be clear on intent (e.g. photo-realism vs illustration).",
+            "Precision: Integer math vs float – some algorithms (like Bresenham’s) use integer arithmetic for speed."
+          ]
+        },
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "Define computer graphics and list its three main tasks.",
+              "answer": "CG is the creation/manipulation of visual images and animations via computers . Main tasks are Modeling (geometry), Rendering (image generation), and Animation (time-variation).",
+              "explanation": "The definition and tasks are core (per slides and sources). Model geometry → Render to pixels → Animate changes over time."
+            },
+            {
+              "question": "What are typical components of a graphics system, and what is the role of the frame buffer?",
+              "answer": "A graphics system includes a CPU/GPU, memory, and a frame buffer connected to a display. The frame buffer is a block of RAM holding pixel color values for the screen.",
+              "explanation": "The frame buffer stores the image that gets sent to the display. High resolution or color depth means a larger frame buffer (more memory needed)."
+            },
+            {
+              "question": "Compare vector graphics and raster graphics.",
+              "answer": "Vector graphics store geometry (points, lines) mathematically and scale without quality loss; Raster graphics store pixels in a grid. Vector-to-display requires rasterization, while rasters have fixed resolution.",
+              "explanation": "This tests understanding of how images are represented and why rasterization is needed."
+            },
+            {
+              "question": "Why might one use lower color depth or resolution?",
+              "answer": "To reduce memory usage and increase processing speed at the cost of image quality. It trades off detail (fewer bits or pixels) for performance or storage.",
+              "explanation": "This links to “trade image quality for speed” (slide outcome). Common exam trap is forgetting the performance benefit of quantization."
+            },
+            {
+              "question": "Name one example of a real-time CG application and one offline CG application.",
+              "answer": "Real-time example: video game graphics. Offline example: CGI in movies or visual effects.",
+              "explanation": "Show difference – games run on the fly, film rendering can take hours per frame."
+            }
+          ]
+        },
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Color Model: A mathematical scheme to represent colors as tuples (e.g. RGB triple). (Color space is specific values interpreted with viewing conditions.)",
+            "RGB (Additive): Based on mixing Red, Green, Blue light. Used for displays. (0,0,0=black; 1,1,1 or",
+            "255,255,255=white.)",
+            "CMY(K) (Subtractive): Cyan, Magenta, Yellow (and often Black for printers). Relation: C=1–R, M=1–G,",
+            "Y=1–B. CMYK used in printing (K = black for efficiency). Undercolor removal in CMYK subtracts CMY components to add pure black ink, saving color ink.",
+            "HSV/HSL: Hue (color type, angle 0–360°), Saturation (intensity of color), Value/Lightness (brightness).",
+            "Useful for color selection.",
+            "YIQ/YUV: Luma-chroma models (used in TV); Y = brightness, I/Q or U/V = color differences. (Often used for compression; not heavily tested unless slides covered them.)",
+            "RGB Cube: Colors form a cube in RGB space. Diagonal from (0,0,0) to (1,1,1) goes from black to white with gray shades.",
+            "Gamma Correction (Trap): Real displays do not respond linearly to voltage. In many problems, assume gamma = 1 (ignored) unless stated. (The slide warns “gamma correction usually ignored.”)",
+            "Indexed Color & LUT: An image can use an 8-bit index into a 256-color palette (LUT). To convert 24- bit (true color) to 8-bit, quantize each channel (e.g. 3 bits R, 3 G, 2 B) and compute palette index. E.g., index = (r_index8 + g_index)4 + b_index."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "Gamma Caveat: Always clarify if gamma correction is applied. Many solutions on exams assume no gamma (linear). The slide explicitly warns that gamma is usually ignored – an exam trap."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "color_theory",
+      "title": "Color Theory & Color Models",
+      "pages": [
+        2,
+        3
+      ],
+      "raw_text": "Explanation: The frame buffer stores the image that gets sent to the display. High resolution or\ncolor depth means a larger frame buffer (more memory needed).\nQ: Compare vector graphics and raster graphics.\nA: Vector graphics store geometry (points, lines) mathematically and scale without quality loss; Raster\ngraphics store pixels in a grid. Vector-to-display requires rasterization, while rasters have fixed\nresolution.\nExplanation: This tests understanding of how images are represented and why rasterization is\nneeded.\nQ: Why might one use lower color depth or resolution?\nA: To reduce memory usage and increase processing speed at the cost of image quality. It trades off\ndetail (fewer bits or pixels) for performance or storage.\nExplanation: This links to “trade image quality for speed” (slide outcome). Common exam trap is\nforgetting the performance benefit of quantization.\nQ: Name one example of a real-time CG application and one offline CG application.\nA: Real-time example: video game graphics. Offline example: CGI in movies or visual effects.\nExplanation: Show difference – games run on the fly, film rendering can take hours per frame.\nColor Theory & Color Models\nMust-Know Concepts\nColor Model: A mathematical scheme to represent colors as tuples (e.g. RGB triple). (Color space is\nspecific values interpreted with viewing conditions.)【4†L226-L234】【4†L251-L258】 \nRGB (Additive): Based on mixing Red, Green, Blue light. Used for displays. (0,0,0=black; 1,1,1 or\n255,255,255=white.) \nCMY(K) (Subtractive): Cyan, Magenta, Yellow (and often Black for printers). Relation: C=1–R, M=1–G,\nY=1–B. CMYK used in printing (K = black for efficiency). Undercolor removal in CMYK subtracts CMY\ncomponents to add pure black ink, saving color ink. \nHSV/HSL: Hue (color type, angle 0–360°), Saturation (intensity of color), Value/Lightness (brightness).\nUseful for color selection. \nYIQ/YUV: Luma-chroma models (used in TV); Y = brightness, I/Q or U/V = color differences. (Often\nused for compression; not heavily tested unless slides covered them.) \nRGB Cube: Colors form a cube in RGB space. Diagonal from (0,0,0) to (1,1,1) goes from black to white\nwith gray shades. \nGamma Correction (Trap): Real displays do not respond linearly to voltage. In many problems, \nassume gamma = 1 (ignored) unless stated. (The slide warns “gamma correction usually ignored.”) \nIndexed Color & LUT: An image can use an 8-bit index into a 256-color palette (LUT). To convert 24-\nbit (true color) to 8-bit, quantize each channel (e.g. 3 bits R, 3 G, 2 B) and compute palette index. E.g.,\nindex = (r_index8 + g_index)4 + b_index. \nHigh-Yield Notes\nGamma Caveat: Always clarify if gamma correction is applied. Many solutions on exams assume no\ngamma (linear). The slide explicitly warns that gamma is usually ignored – an exam trap. \n3. \n4. \n5. \n• \n• \n• \n• \n• \n• \n• \n• \n• \n2\n\n\nColor Model Distinctions: Don’t confuse HSV vs HSL; Hue is the same, but HSL’s L (lightness) is\ndifferent from HSV’s V. Some instructors expect noting that HSL = 0 saturation still yields grayscale. \nRGB vs CMY Relations: A common mistake is mixing them up; remember CMY subtracts light, so\nwhite (all light) is (0,0,0) in RGB, but (0,0,0) in CMY yields white too (if defined as 1–RGB). \nUndercolor Removal: Adding K in printers avoids muddy colors. If asked, note CMYK allows using\nless ink. \nQuantization: When computing LUT index, remember to floor or use integer division. Errors often\nhappen by off-by-one in slice calculation. \nReinforcement Questions\nQ: What is the difference between additive and subtractive color models? Give an example of each.\nA: Additive (e.g. RGB) mixes light; adding R, G, B yields white light. Subtractive (e.g. CMY) mixes\npigments or filters; mixing C, M, Y gives black (ideally).\nExplanation: RGB for screens, CMY for printing. Additive starts at black (no light), subtractive starts\nat white (paper).\nQ: How does histogram equalization improve image contrast? Write the basic transformation\nformula.\nA: It remaps pixel intensities using the CDF of the image so that output intensities are spread across\n[0, L–1]. The transform is $T(i) = \\mathrm{CDF}(i)$ (normalized)【19†L254-L262】【19†L273-L281】.\nExplanation: The CDF-based mapping makes output histogram uniform. Key formula: new intensity\n= cumulative probability up to old intensity.\nQ: Convert 24-bit RGB (R=20, G=33, B=150) to an 8-bit indexed color using 3-3-2 bits per channel.\nShow steps.\nA: Divide 0–255 into 8 slices for R,G, 4 slices for B. R-index = ⌊20/32⌋ = 0; G-index = ⌊33/32⌋ = 1; B-\nindex = ⌊150/64⌋ = 2. Then index = (08 + 1)4 + 2 = 6.\nExplanation: Each 24-bit color channel is quantized. The formula is (R_slice * 8 + G_slice)*4 + B_slice\nfor 3-3-2 bits.\nQ: What is the RGB value of pure yellow? In CMY terms, what would that be?\nA: Yellow = (255,255,0) in RGB. In CMY, that’s C=0, M=0, Y=1 (or 0% cyan, 0% magenta, 100% yellow)\nbecause Y = 1–B = 1.\nExplanation: Yellow light is red+green. In CMY, B=0 → Y=1; R=1→C=0, G=1→M=0.\nQ: Give one advantage of the HSV model over RGB for user color selection.\nA: HSV separates color (hue) from intensity (value), so users can pick a hue and then adjust\nsaturation/brightness. It’s more intuitive (turn “color wheel” for hue).\nExplanation: In RGB, hue and brightness are entangled across three numbers, but HSV’s H,S,V\ncorrespond more to human color concepts.\n2D Geometric Transformations\nMust-Know Concepts\nTranslation: Moves points by (tx, ty): \n• \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n• \n3\n",
+      "subsections": [
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Color Model: A mathematical scheme to represent colors as tuples (e.g. RGB triple). (Color space is specific values interpreted with viewing conditions.)",
+            "RGB (Additive): Based on mixing Red, Green, Blue light. Used for displays. (0,0,0=black; 1,1,1 or",
+            "255,255,255=white.)",
+            "CMY(K) (Subtractive): Cyan, Magenta, Yellow (and often Black for printers). Relation: C=1–R, M=1–G,",
+            "Y=1–B. CMYK used in printing (K = black for efficiency). Undercolor removal in CMYK subtracts CMY components to add pure black ink, saving color ink.",
+            "HSV/HSL: Hue (color type, angle 0–360°), Saturation (intensity of color), Value/Lightness (brightness).",
+            "Useful for color selection.",
+            "YIQ/YUV: Luma-chroma models (used in TV); Y = brightness, I/Q or U/V = color differences. (Often used for compression; not heavily tested unless slides covered them.)",
+            "RGB Cube: Colors form a cube in RGB space. Diagonal from (0,0,0) to (1,1,1) goes from black to white with gray shades.",
+            "Gamma Correction (Trap): Real displays do not respond linearly to voltage. In many problems, assume gamma = 1 (ignored) unless stated. (The slide warns “gamma correction usually ignored.”)",
+            "Indexed Color & LUT: An image can use an 8-bit index into a 256-color palette (LUT). To convert 24- bit (true color) to 8-bit, quantize each channel (e.g. 3 bits R, 3 G, 2 B) and compute palette index. E.g., index = (r_index8 + g_index)4 + b_index."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "Gamma Caveat: Always clarify if gamma correction is applied. Many solutions on exams assume no gamma (linear). The slide explicitly warns that gamma is usually ignored – an exam trap.",
+            "Color Model Distinctions: Don’t confuse HSV vs HSL; Hue is the same, but HSL’s L (lightness) is different from HSV’s V. Some instructors expect noting that HSL = 0 saturation still yields grayscale.",
+            "RGB vs CMY Relations: A common mistake is mixing them up; remember CMY subtracts light, so white (all light) is (0,0,0) in RGB, but (0,0,0) in CMY yields white too (if defined as 1–RGB).",
+            "Undercolor Removal: Adding K in printers avoids muddy colors. If asked, note CMYK allows using less ink.",
+            "Quantization: When computing LUT index, remember to floor or use integer division. Errors often happen by off-by-one in slice calculation."
+          ]
+        },
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "What is the difference between additive and subtractive color models? Give an example of each.",
+              "answer": "Additive (e.g. RGB) mixes light; adding R, G, B yields white light. Subtractive (e.g. CMY) mixes pigments or filters; mixing C, M, Y gives black (ideally).",
+              "explanation": "RGB for screens, CMY for printing. Additive starts at black (no light), subtractive starts at white (paper)."
+            },
+            {
+              "question": "How does histogram equalization improve image contrast? Write the basic transformation formula.",
+              "answer": "It remaps pixel intensities using the CDF of the image so that output intensities are spread across [0, L–1]. The transform is $T(i) = \\mathrm{CDF}(i)$ (normalized).",
+              "explanation": "The CDF-based mapping makes output histogram uniform. Key formula: new intensity = cumulative probability up to old intensity."
+            },
+            {
+              "question": "Convert 24-bit RGB (R=20, G=33, B=150) to an 8-bit indexed color using 3-3-2 bits per channel. Show steps.",
+              "answer": "Divide 0–255 into 8 slices for R,G, 4 slices for B. R-index = ⌊20/32⌋ = 0; G-index = ⌊33/32⌋ = 1; B- index = ⌊150/64⌋ = 2. Then index = (08 + 1)4 + 2 = 6.",
+              "explanation": "Each 24-bit color channel is quantized. The formula is (R_slice * 8 + G_slice)*4 + B_slice for 3-3-2 bits."
+            },
+            {
+              "question": "What is the RGB value of pure yellow? In CMY terms, what would that be?",
+              "answer": "Yellow = (255,255,0) in RGB. In CMY, that’s C=0, M=0, Y=1 (or 0% cyan, 0% magenta, 100% yellow) because Y = 1–B = 1.",
+              "explanation": "Yellow light is red+green. In CMY, B=0 → Y=1; R=1→C=0, G=1→M=0."
+            },
+            {
+              "question": "Give one advantage of the HSV model over RGB for user color selection.",
+              "answer": "HSV separates color (hue) from intensity (value), so users can pick a hue and then adjust saturation/brightness. It’s more intuitive (turn “color wheel” for hue).",
+              "explanation": "In RGB, hue and brightness are entangled across three numbers, but HSV’s H,S,V correspond more to human color concepts."
+            }
+          ]
+        },
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Translation: Moves points by (tx, ty):"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transformations",
+      "title": "2D Geometric Transformations",
+      "pages": [
+        3,
+        4,
+        5
+      ],
+      "raw_text": "Color Model Distinctions: Don’t confuse HSV vs HSL; Hue is the same, but HSL’s L (lightness) is\ndifferent from HSV’s V. Some instructors expect noting that HSL = 0 saturation still yields grayscale. \nRGB vs CMY Relations: A common mistake is mixing them up; remember CMY subtracts light, so\nwhite (all light) is (0,0,0) in RGB, but (0,0,0) in CMY yields white too (if defined as 1–RGB). \nUndercolor Removal: Adding K in printers avoids muddy colors. If asked, note CMYK allows using\nless ink. \nQuantization: When computing LUT index, remember to floor or use integer division. Errors often\nhappen by off-by-one in slice calculation. \nReinforcement Questions\nQ: What is the difference between additive and subtractive color models? Give an example of each.\nA: Additive (e.g. RGB) mixes light; adding R, G, B yields white light. Subtractive (e.g. CMY) mixes\npigments or filters; mixing C, M, Y gives black (ideally).\nExplanation: RGB for screens, CMY for printing. Additive starts at black (no light), subtractive starts\nat white (paper).\nQ: How does histogram equalization improve image contrast? Write the basic transformation\nformula.\nA: It remaps pixel intensities using the CDF of the image so that output intensities are spread across\n[0, L–1]. The transform is $T(i) = \\mathrm{CDF}(i)$ (normalized)【19†L254-L262】【19†L273-L281】.\nExplanation: The CDF-based mapping makes output histogram uniform. Key formula: new intensity\n= cumulative probability up to old intensity.\nQ: Convert 24-bit RGB (R=20, G=33, B=150) to an 8-bit indexed color using 3-3-2 bits per channel.\nShow steps.\nA: Divide 0–255 into 8 slices for R,G, 4 slices for B. R-index = ⌊20/32⌋ = 0; G-index = ⌊33/32⌋ = 1; B-\nindex = ⌊150/64⌋ = 2. Then index = (08 + 1)4 + 2 = 6.\nExplanation: Each 24-bit color channel is quantized. The formula is (R_slice * 8 + G_slice)*4 + B_slice\nfor 3-3-2 bits.\nQ: What is the RGB value of pure yellow? In CMY terms, what would that be?\nA: Yellow = (255,255,0) in RGB. In CMY, that’s C=0, M=0, Y=1 (or 0% cyan, 0% magenta, 100% yellow)\nbecause Y = 1–B = 1.\nExplanation: Yellow light is red+green. In CMY, B=0 → Y=1; R=1→C=0, G=1→M=0.\nQ: Give one advantage of the HSV model over RGB for user color selection.\nA: HSV separates color (hue) from intensity (value), so users can pick a hue and then adjust\nsaturation/brightness. It’s more intuitive (turn “color wheel” for hue).\nExplanation: In RGB, hue and brightness are entangled across three numbers, but HSV’s H,S,V\ncorrespond more to human color concepts.\n2D Geometric Transformations\nMust-Know Concepts\nTranslation: Moves points by (tx, ty): \n• \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n• \n3\n\n\nScaling: Resizes about origin by (Sx, Sy): \nRotation: Rotate by θ about origin: \n(From math sources: $R(\\theta) = [[\\cos\\theta, -\\sin\\theta]; [\\sin\\theta, \\cos\\theta]]$【16†L12-L15】.)\nReflection: Flip across an axis or line. Common reflections: \nAcross x-axis: $x'=x$, $y'=-y$. \nAcross y-axis: $x'=-x$, $y'=y$. \nAcross line $y=x$: $x'=y$, $y'=x$. \nShearing: Slants shape. For an x-shear by factor Shx: $x' = x + Sh_x\\,y$, $y'=y$. For a y-shear by Shy:\n$x'=x$, $y' = y + Sh_y\\,x$. \nHomogeneous Coordinates: Use (x,y,1) with 3×3 matrices to combine these transforms. Example:\ntranslation matrix = \n. \nOrder Matters: Transformations are non-commutative. E.g. rotating then translating ≠ translating\nthen rotating (unless center is origin). Always apply matrix operations in correct sequence. \nHigh-Yield Notes\nComposition: To rotate about point (a,b), translate (−a,−b), rotate, then translate back. Many exam\ntraps involve rotating around origin vs arbitrary point. \nRotation Signs: Positive θ typically means CCW (counterclockwise). If not specified, assume right-\nhanded coordinate system (x right, y up). \nScaling Negatives: Negative scaling factors cause reflections (flip axes). If asked reflection + scaling,\nnote the sign effect. \nShear Distortion: Shear changes shape but keeps area same. Horizontal shear moves x by fraction\nof y. \nMatrix Multiplication Order: When combining transforms in homogeneous form, multiply the\ncorresponding matrices in the reverse order of intended application. (Students often get the order\nwrong.) \nReinforcement Questions\nQ: Write the 2D rotation matrix for angle θ and use it to compute the image of point (1,0) when\nθ=90°.\nA: $R(90°) = \\begin{pmatrix}0&-1\\1&0\\end{pmatrix}$. Applying to (1,0) gives $(x',y')=(0,1)$.\nExplanation: Cos(90°)=0, sin(90°)=1. The matrix sends (1,0) to (0,1), a 90° CCW rotation.\nx =\n′\nx + t ,\ny =\nx\n′\ny + t .\ny\n• \nx =\n′\nS x,\ny =\nx\n′\nS y.\ny\n• \n=\n(x′\ny′)\n.\n(cos θ\nsin θ\n−sin θ\ncos θ ) (x\ny)\n• \n• \n• \n• \n• \n• \n1\n0\n0\n0\n1\n0\ntx\nty\n1\n• \n• \n• \n• \n• \n• \n1. \n4\n\n\nQ: How would you reflect the point (3,5) across the line y=x?\nA: Swap coordinates: (x',y') = (5,3).\nExplanation: Reflection in y=x just swaps x and y. A trap is mixing up axes – memorize swap.\nQ: Given point (2,3), apply shear with Shx=1 (x-shear), then translation (tx=1, ty=–2). What is the final\npoint?\nA: First shear: $x' = 2 + 13 = 5$, $y' = 3$. After translation: $(x'',y'') = (5+1,\\,3-2) = (6,1)$.\nExplanation:* Order is shear then translate. Check each step carefully.\nQ: What happens if you apply scaling by (–1,1)?\nA: x' = –1·x, y' = 1·y. This reflects the object across the y-axis (and scales by 1).\nExplanation: Negative scale flips direction. A scale of (–1,1) is equivalent to reflecting in y-axis.\nQ: Why do we use homogeneous coordinates for 2D transforms? Give one advantage.\nA: It allows representing translation as matrix multiplication (by adding a 3rd coordinate 1). This\nunifies all transforms (translation, rotation, scale, etc.) as matrix multiplications.\nExplanation: Without homogeneous coords, translation isn’t linear. Homogeneous makes\ncombining transforms straightforward (just multiply 3×3 matrices).\nRasterization (Scan Conversion)\nPoints and Lines\nMust-Know Concepts\nPixels vs Coordinates: Logical coordinates (real numbers) map to pixel grid. To draw a point at (x,y),\nusually round or floor to nearest integer pixel (floor gives largest integer ≤ coordinate). \nDDA Line Algorithm: Incremental method. Given endpoints P1(x1,y1), P2(x2,y2), compute steps =\nmax(Δx,Δy). Increment x and y by small amounts each step. Formula uses floating arithmetic. \nBresenham’s Line Algorithm: Integer-based. Uses a decision parameter to choose whether to\nincrement y (for gentle slopes). More efficient than DDA (uses only addition, no floating). Common\npseudocode initializes error = 2Δy–Δx, etc. \nSlope Cases: For slopes >1 or negative slopes, reflect or swap axes. In practice, ensure walking in the\ndominant direction (steep vs shallow) to keep one axis as independent. \nEndpoint Handling: Typically plot both endpoints. Many implementations ensure P1 and P2 are\nboth drawn. \nAliasing: Raster lines show stair-step “jaggies”. Antialiasing reduces this but usually not covered in\nbasic CG. \nHigh-Yield Notes\nComparisons: DDA easier conceptually but slower (float mults). Bresenham is faster (only integer\nadd/sub) – exam may ask which is more efficient. \nCommon Pitfall: Forgetting to initialize error correctly or increment y at right times. Many students\nget off-by-one errors. \nContinuity: Must handle all octants: usually take absolute values of slope and step accordingly. \n2. \n3. \n4. \n5. \n• \n• \n• \n• \n• \n• \n• \n• \n• \n5\n",
+      "subsections": [
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "What is the difference between additive and subtractive color models? Give an example of each.",
+              "answer": "Additive (e.g. RGB) mixes light; adding R, G, B yields white light. Subtractive (e.g. CMY) mixes pigments or filters; mixing C, M, Y gives black (ideally).",
+              "explanation": "RGB for screens, CMY for printing. Additive starts at black (no light), subtractive starts at white (paper)."
+            },
+            {
+              "question": "How does histogram equalization improve image contrast? Write the basic transformation formula.",
+              "answer": "It remaps pixel intensities using the CDF of the image so that output intensities are spread across [0, L–1]. The transform is $T(i) = \\mathrm{CDF}(i)$ (normalized).",
+              "explanation": "The CDF-based mapping makes output histogram uniform. Key formula: new intensity = cumulative probability up to old intensity."
+            },
+            {
+              "question": "Convert 24-bit RGB (R=20, G=33, B=150) to an 8-bit indexed color using 3-3-2 bits per channel. Show steps.",
+              "answer": "Divide 0–255 into 8 slices for R,G, 4 slices for B. R-index = ⌊20/32⌋ = 0; G-index = ⌊33/32⌋ = 1; B- index = ⌊150/64⌋ = 2. Then index = (08 + 1)4 + 2 = 6.",
+              "explanation": "Each 24-bit color channel is quantized. The formula is (R_slice * 8 + G_slice)*4 + B_slice for 3-3-2 bits."
+            },
+            {
+              "question": "What is the RGB value of pure yellow? In CMY terms, what would that be?",
+              "answer": "Yellow = (255,255,0) in RGB. In CMY, that’s C=0, M=0, Y=1 (or 0% cyan, 0% magenta, 100% yellow) because Y = 1–B = 1.",
+              "explanation": "Yellow light is red+green. In CMY, B=0 → Y=1; R=1→C=0, G=1→M=0."
+            },
+            {
+              "question": "Give one advantage of the HSV model over RGB for user color selection.",
+              "answer": "HSV separates color (hue) from intensity (value), so users can pick a hue and then adjust saturation/brightness. It’s more intuitive (turn “color wheel” for hue).",
+              "explanation": "In RGB, hue and brightness are entangled across three numbers, but HSV’s H,S,V correspond more to human color concepts."
+            }
+          ]
+        },
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Translation: Moves points by (tx, ty):",
+            "Scaling: Resizes about origin by (Sx, Sy):",
+            "Rotation: Rotate by θ about origin: (From math sources: $R(\\theta) = [[\\cos\\theta, -\\sin\\theta]; [\\sin\\theta, \\cos\\theta]]$.)",
+            "Reflection: Flip across an axis or line. Common reflections:",
+            "Across x-axis: $x'=x$, $y'=-y$.",
+            "Across y-axis: $x'=-x$, $y'=y$.",
+            "Across line $y=x$: $x'=y$, $y'=x$.",
+            "Shearing: Slants shape. For an x-shear by factor Shx: $x' = x + Sh_x\\,y$, $y'=y$. For a y-shear by Shy:",
+            "$x'=x$, $y' = y + Sh_y\\,x$.",
+            "Homogeneous Coordinates: Use (x,y,1) with 3×3 matrices to combine these transforms. Example: translation matrix =",
+            "Order Matters: Transformations are non-commutative. E.g. rotating then translating ≠ translating then rotating (unless center is origin). Always apply matrix operations in correct sequence."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "Composition: To rotate about point (a,b), translate (−a,−b), rotate, then translate back. Many exam traps involve rotating around origin vs arbitrary point.",
+            "Rotation Signs: Positive θ typically means CCW (counterclockwise). If not specified, assume right- handed coordinate system (x right, y up).",
+            "Scaling Negatives: Negative scaling factors cause reflections (flip axes). If asked reflection + scaling, note the sign effect.",
+            "Shear Distortion: Shear changes shape but keeps area same. Horizontal shear moves x by fraction of y.",
+            "Matrix Multiplication Order: When combining transforms in homogeneous form, multiply the corresponding matrices in the reverse order of intended application. (Students often get the order wrong.)"
+          ]
+        },
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "Write the 2D rotation matrix for angle θ and use it to compute the image of point (1,0) when θ=90°.",
+              "answer": "The 2D rotation matrix is:\nR(θ) = [[cos θ, -sin θ], [sin θ, cos θ]]\n\nFor θ = 90°:\ncos 90° = 0, sin 90° = 1\nR(90°) = [[0, -1], [1, 0]]\n\nApplying to point (1, 0):\nx' = 1 * cos 90° - 0 * sin 90° = 0\ny' = 1 * sin 90° + 0 * cos 90° = 1\nThus, the rotated point is (0, 1).",
+              "explanation": "Cos(90°)=0, sin(90°)=1. The matrix sends (1,0) to (0,1), a 90° CCW rotation. x = ′ x + t , y = x ′ y + t . y • x = ′ S x, y = x ′ S y. y • = (x′ y′) . (cos θ sin θ −sin θ cos θ ) (x y) • • • • • • 1 0 0 0 1 0 tx ty 1"
+            },
+            {
+              "question": "How would you reflect the point (3,5) across the line y=x?",
+              "answer": "Swap coordinates: (x',y') = (5,3).",
+              "explanation": "Reflection in y=x just swaps x and y. A trap is mixing up axes – memorize swap."
+            },
+            {
+              "question": "Given point (2,3), apply shear with Shx=1 (x-shear), then translation (tx=1, ty=–2). What is the final point?",
+              "answer": "First shear: $x' = 2 + 13 = 5$, $y' = 3$. After translation: $(x'',y'') = (5+1,\\,3-2) = (6,1)$.",
+              "explanation": "* Order is shear then translate. Check each step carefully."
+            },
+            {
+              "question": "What happens if you apply scaling by (–1,1)?",
+              "answer": "x' = –1·x, y' = 1·y. This reflects the object across the y-axis (and scales by 1).",
+              "explanation": "Negative scale flips direction. A scale of (–1,1) is equivalent to reflecting in y-axis."
+            },
+            {
+              "question": "Why do we use homogeneous coordinates for 2D transforms? Give one advantage.",
+              "answer": "It allows representing translation as matrix multiplication (by adding a 3rd coordinate 1). This unifies all transforms (translation, rotation, scale, etc.) as matrix multiplications.",
+              "explanation": "Without homogeneous coords, translation isn’t linear. Homogeneous makes combining transforms straightforward (just multiply 3×3 matrices)."
+            }
+          ]
+        },
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Pixels vs Coordinates: Logical coordinates (real numbers) map to pixel grid. To draw a point at (x,y), usually round or floor to nearest integer pixel (floor gives largest integer ≤ coordinate).",
+            "DDA Line Algorithm: Incremental method. Given endpoints P1(x1,y1), P2(x2,y2), compute steps = max(Δx,Δy). Increment x and y by small amounts each step. Formula uses floating arithmetic.",
+            "Bresenham’s Line Algorithm: Integer-based. Uses a decision parameter to choose whether to increment y (for gentle slopes). More efficient than DDA (uses only addition, no floating). Common pseudocode initializes error = 2Δy–Δx, etc.",
+            "Slope Cases: For slopes >1 or negative slopes, reflect or swap axes. In practice, ensure walking in the dominant direction (steep vs shallow) to keep one axis as independent.",
+            "Endpoint Handling: Typically plot both endpoints. Many implementations ensure P1 and P2 are both drawn.",
+            "Aliasing: Raster lines show stair-step “jaggies”. Antialiasing reduces this but usually not covered in basic CG."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "Comparisons: DDA easier conceptually but slower (float mults). Bresenham is faster (only integer add/sub) – exam may ask which is more efficient.",
+            "Common Pitfall: Forgetting to initialize error correctly or increment y at right times. Many students get off-by-one errors.",
+            "Continuity: Must handle all octants: usually take absolute values of slope and step accordingly."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rasterization",
+      "title": "Rasterization (Scan Conversion)",
+      "pages": [
+        5,
+        6,
+        7
+      ],
+      "raw_text": "Q: How would you reflect the point (3,5) across the line y=x?\nA: Swap coordinates: (x',y') = (5,3).\nExplanation: Reflection in y=x just swaps x and y. A trap is mixing up axes – memorize swap.\nQ: Given point (2,3), apply shear with Shx=1 (x-shear), then translation (tx=1, ty=–2). What is the final\npoint?\nA: First shear: $x' = 2 + 13 = 5$, $y' = 3$. After translation: $(x'',y'') = (5+1,\\,3-2) = (6,1)$.\nExplanation:* Order is shear then translate. Check each step carefully.\nQ: What happens if you apply scaling by (–1,1)?\nA: x' = –1·x, y' = 1·y. This reflects the object across the y-axis (and scales by 1).\nExplanation: Negative scale flips direction. A scale of (–1,1) is equivalent to reflecting in y-axis.\nQ: Why do we use homogeneous coordinates for 2D transforms? Give one advantage.\nA: It allows representing translation as matrix multiplication (by adding a 3rd coordinate 1). This\nunifies all transforms (translation, rotation, scale, etc.) as matrix multiplications.\nExplanation: Without homogeneous coords, translation isn’t linear. Homogeneous makes\ncombining transforms straightforward (just multiply 3×3 matrices).\nRasterization (Scan Conversion)\nPoints and Lines\nMust-Know Concepts\nPixels vs Coordinates: Logical coordinates (real numbers) map to pixel grid. To draw a point at (x,y),\nusually round or floor to nearest integer pixel (floor gives largest integer ≤ coordinate). \nDDA Line Algorithm: Incremental method. Given endpoints P1(x1,y1), P2(x2,y2), compute steps =\nmax(Δx,Δy). Increment x and y by small amounts each step. Formula uses floating arithmetic. \nBresenham’s Line Algorithm: Integer-based. Uses a decision parameter to choose whether to\nincrement y (for gentle slopes). More efficient than DDA (uses only addition, no floating). Common\npseudocode initializes error = 2Δy–Δx, etc. \nSlope Cases: For slopes >1 or negative slopes, reflect or swap axes. In practice, ensure walking in the\ndominant direction (steep vs shallow) to keep one axis as independent. \nEndpoint Handling: Typically plot both endpoints. Many implementations ensure P1 and P2 are\nboth drawn. \nAliasing: Raster lines show stair-step “jaggies”. Antialiasing reduces this but usually not covered in\nbasic CG. \nHigh-Yield Notes\nComparisons: DDA easier conceptually but slower (float mults). Bresenham is faster (only integer\nadd/sub) – exam may ask which is more efficient. \nCommon Pitfall: Forgetting to initialize error correctly or increment y at right times. Many students\nget off-by-one errors. \nContinuity: Must handle all octants: usually take absolute values of slope and step accordingly. \n2. \n3. \n4. \n5. \n• \n• \n• \n• \n• \n• \n• \n• \n• \n5\n\n\nTraps: If asked about line at 45°, both methods will work, but Bresenham’s decision parameter\nequals 0 at some point, watch pixel choice. \nEndpoint Order: If x1 > x2, swap endpoints for algorithms expecting left-to-right scanning.\nReinforcement Questions\nQ: Compare DDA and Bresenham line algorithms in terms of arithmetic operations.\nA: DDA uses floating-point increments (multiplication/addition each step). Bresenham uses only\ninteger addition/subtraction (decision variable), making it faster and more efficient.\nExplanation: Bresenham’s algorithm avoids costly floats. On older hardware, Bresenham was\npreferred for speed.\nQ: Using Bresenham’s algorithm, what decision would you make at the midpoint for a line from (0,0)\nto (5,3)? (Outline steps.)\nA: Δx=5, Δy=3, initial p = 2Δy–Δx = 23–5 = 1. Steps: at x=0->1 (p=1>=0) → y=1, new p = p + 2(Δy–Δx) =\n1+2(3–5) = -3. Next, p<0 → (x2,y1), update p = -3+2Δy=3. Continue similarly. The sequence of chosen\npixels approximates the line.\nExplanation:* Illustrates decision variable updates. For brevity, the key is showing update logic.\nQ: Why does Bresenham’s algorithm produce a straight line without gaps?\nA: It always steps one pixel in x (and sometimes in y), ensuring continuous adjacency. The decision\nparam ensures the best approximation to the true line each step.\nExplanation: Unlike simply rounding, Bresenham’s logic keeps one pixel gap-free.\nQ: How is a single point drawn in raster coordinates?\nA: Take the real (x,y) coordinates and use a rounding or floor method to choose the nearest pixel\n(e.g., Pixel(floor(x), floor(y))).\nExplanation: In practice we map float to int. The slide suggests Floor method (largest integer ≤\ncoord).\nQ: For a line with negative slope, how do line-drawing algorithms handle it?\nA: Reflect or swap endpoints so slope is positive, draw the line, then reflect back. For Bresenham,\none can increment y downward when needed (treat Δy as absolute and adjust sign).\nExplanation: Algorithms are usually described for slope 0–1; handling other octants requires\nsymmetry or sign adjustment.\nCircles (and Ellipses)\nMust-Know Concepts\nCircle Definition: $x^2 + y^2 = r^2$. Only need compute 1/8th of circle (from 0° to 45°) and mirror to\nother octants. \nMidpoint Circle Algorithm: Similar to Bresenham line. Starts at (0,r). Uses decision variable $p = 1-\nr$; iterate x from 0 to y, update p: if p<0, choose E pixel (x+1,y); else choose SE pixel (x+1,y-1) and\nupdate p with different increments. Plot symmetry points. \n8-way Symmetry: From computed (x,y), plot points (±x,±y) and (±y,±x). (Total 8 per octant). \n• \n• \n1. \n2. \n3. \n4. \n5. \n• \n• \n• \n6\n\n\nEllipse Algorithm (if any): Midpoint ellipse analog splits into two regions (slope 1 boundary). (Often\nnot tested unless lecture explicitly taught.) \nParameters: Only need integer radius. If center ≠ origin, translate after computation. \nHigh-Yield Notes\nFirst Octant: Compute until x=y (45°) or decision changes. After that, swap roles of x and y. \nDecisions: The initial p = 1–r, update rules p_new = p + 2x + 3 (when E) or p + 2(x–y) + 5 (when SE).\nOff-by-one in these formulas is a common exam pitfall. \nSymmetry: Always mirror the points. Often students forget to plot all 8 symmetrical points. \nComparison: Like lines, uses only adds (no multiplications) and integer operations – it’s efficient. \nTrap: Remember to plot at least one point per octant; the trivial (r,0) and (0,r) points.\nReinforcement Questions\nQ: Why do we only calculate 1/8th of a circle when using midpoint algorithms?\nA: Because of 8-way symmetry. Computing one octant and reflecting yields the full circle, greatly\nreducing work (by factor 8).\nExplanation: For each (x,y) in one octant, the other points (±x,±y, ±y,±x) are placed.\nQ: What is the initial decision parameter $p$ for the midpoint circle algorithm of radius r?\nA: $p_0 = 1 - r$.\nExplanation: Standard derivation (see textbooks). The first step uses this to choose pixel at (1,r) or\n(1,r–1).\nQ: If at a given step $p<0$, which pixel do you choose and how do you update $p$?\nA: If $p<0$, the next pixel is East: $(x+1, y)$ and update $p = p + 2x + 3$.\nExplanation: This maintains $p$ = difference from true circle. The formula comes from evaluating\n$p + 2x + 3$.\nQ: How is ellipsis drawing different from circles? (Conceptual)\nA: An ellipse has two radii (rx, ry) and lower symmetry (4-way). The midpoint ellipse algorithm\nhandles two regions (dx>dy vs dx<dy) separately. It uses different decision criteria because $x^2/a^2\n+ y^2/b^2 = 1$ is not rotationally invariant like a circle.\nExplanation: Unless needed, mention main difference: shape formula and 4-way symmetry.\nQ: What is a common advantage of midpoint-based drawing algorithms?\nA: They use only integer arithmetic (efficient) and ensure continuity. Also, by using symmetry they\nreduce computations.\nExplanation: Contrast with naive approaches (like computing y via sqrt) which would be slow.\n• \n• \n• \n• \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n7\n",
+      "subsections": [
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Pixels vs Coordinates: Logical coordinates (real numbers) map to pixel grid. To draw a point at (x,y), usually round or floor to nearest integer pixel (floor gives largest integer ≤ coordinate).",
+            "DDA Line Algorithm: Incremental method. Given endpoints P1(x1,y1), P2(x2,y2), compute steps = max(Δx,Δy). Increment x and y by small amounts each step. Formula uses floating arithmetic.",
+            "Bresenham’s Line Algorithm: Integer-based. Uses a decision parameter to choose whether to increment y (for gentle slopes). More efficient than DDA (uses only addition, no floating). Common pseudocode initializes error = 2Δy–Δx, etc.",
+            "Slope Cases: For slopes >1 or negative slopes, reflect or swap axes. In practice, ensure walking in the dominant direction (steep vs shallow) to keep one axis as independent.",
+            "Endpoint Handling: Typically plot both endpoints. Many implementations ensure P1 and P2 are both drawn.",
+            "Aliasing: Raster lines show stair-step “jaggies”. Antialiasing reduces this but usually not covered in basic CG."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "Comparisons: DDA easier conceptually but slower (float mults). Bresenham is faster (only integer add/sub) – exam may ask which is more efficient.",
+            "Common Pitfall: Forgetting to initialize error correctly or increment y at right times. Many students get off-by-one errors.",
+            "Continuity: Must handle all octants: usually take absolute values of slope and step accordingly.",
+            "Traps: If asked about line at 45°, both methods will work, but Bresenham’s decision parameter equals 0 at some point, watch pixel choice.",
+            "Endpoint Order: If x1 > x2, swap endpoints for algorithms expecting left-to-right scanning."
+          ]
+        },
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "Compare DDA and Bresenham line algorithms in terms of arithmetic operations.",
+              "answer": "DDA uses floating-point increments (multiplication/addition each step). Bresenham uses only integer addition/subtraction (decision variable), making it faster and more efficient.",
+              "explanation": "Bresenham’s algorithm avoids costly floats. On older hardware, Bresenham was preferred for speed."
+            },
+            {
+              "question": "Using Bresenham’s algorithm, what decision would you make at the midpoint for a line from (0,0) to (5,3)? (Outline steps.)",
+              "answer": "Δx=5, Δy=3, initial p = 2Δy–Δx = 23–5 = 1. Steps: at x=0->1 (p=1>=0) → y=1, new p = p + 2(Δy–Δx) = 1+2(3–5) = -3. Next, p<0 → (x2,y1), update p = -3+2Δy=3. Continue similarly. The sequence of chosen pixels approximates the line.",
+              "explanation": "* Illustrates decision variable updates. For brevity, the key is showing update logic."
+            },
+            {
+              "question": "Why does Bresenham’s algorithm produce a straight line without gaps?",
+              "answer": "It always steps one pixel in x (and sometimes in y), ensuring continuous adjacency. The decision param ensures the best approximation to the true line each step.",
+              "explanation": "Unlike simply rounding, Bresenham’s logic keeps one pixel gap-free."
+            },
+            {
+              "question": "How is a single point drawn in raster coordinates?",
+              "answer": "Take the real (x,y) coordinates and use a rounding or floor method to choose the nearest pixel (e.g., Pixel(floor(x), floor(y))).",
+              "explanation": "In practice we map float to int. The slide suggests Floor method (largest integer ≤ coord)."
+            },
+            {
+              "question": "For a line with negative slope, how do line-drawing algorithms handle it?",
+              "answer": "Reflect or swap endpoints so slope is positive, draw the line, then reflect back. For Bresenham, one can increment y downward when needed (treat Δy as absolute and adjust sign).",
+              "explanation": "Algorithms are usually described for slope 0–1; handling other octants requires symmetry or sign adjustment."
+            }
+          ]
+        },
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Circle Definition: $x^2 + y^2 = r^2$. Only need compute 1/8th of circle (from 0° to 45°) and mirror to other octants.",
+            "Midpoint Circle Algorithm: Similar to Bresenham line. Starts at (0,r). Uses decision variable $p = 1- r$; iterate x from 0 to y, update p: if p<0, choose E pixel (x+1,y); else choose SE pixel (x+1,y-1) and update p with different increments. Plot symmetry points.",
+            "8-way Symmetry: From computed (x,y), plot points (±x,±y) and (±y,±x). (Total 8 per octant).",
+            "6",
+            "Ellipse Algorithm (if any): Midpoint ellipse analog splits into two regions (slope 1 boundary). (Often not tested unless lecture explicitly taught.)",
+            "Parameters: Only need integer radius. If center ≠ origin, translate after computation."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "First Octant: Compute until x=y (45°) or decision changes. After that, swap roles of x and y.",
+            "Decisions: The initial p = 1–r, update rules p_new = p + 2x + 3 (when E) or p + 2(x–y) + 5 (when SE).",
+            "Off-by-one in these formulas is a common exam pitfall.",
+            "Symmetry: Always mirror the points. Often students forget to plot all 8 symmetrical points.",
+            "Comparison: Like lines, uses only adds (no multiplications) and integer operations – it’s efficient.",
+            "Trap: Remember to plot at least one point per octant; the trivial (r,0) and (0,r) points."
+          ]
+        },
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "Why do we only calculate 1/8th of a circle when using midpoint algorithms?",
+              "answer": "Because of 8-way symmetry. Computing one octant and reflecting yields the full circle, greatly reducing work (by factor 8).",
+              "explanation": "For each (x,y) in one octant, the other points (±x,±y, ±y,±x) are placed."
+            },
+            {
+              "question": "What is the initial decision parameter $p$ for the midpoint circle algorithm of radius r?",
+              "answer": "$p_0 = 1 - r$.",
+              "explanation": "Standard derivation (see textbooks). The first step uses this to choose pixel at (1,r) or (1,r–1)."
+            },
+            {
+              "question": "If at a given step $p<0$, which pixel do you choose and how do you update $p$?",
+              "answer": "If $p<0$, the next pixel is East: $(x+1, y)$ and update $p = p + 2x + 3$.",
+              "explanation": "This maintains $p$ = difference from true circle. The formula comes from evaluating $p + 2x + 3$."
+            },
+            {
+              "question": "How is ellipsis drawing different from circles? (Conceptual)",
+              "answer": "An ellipse has two radii (rx, ry) and lower symmetry (4-way). The midpoint ellipse algorithm handles two regions (dx>dy vs dx<dy) separately. It uses different decision criteria because $x^2/a^2 + y^2/b^2 = 1$ is not rotationally invariant like a circle.",
+              "explanation": "Unless needed, mention main difference: shape formula and 4-way symmetry."
+            },
+            {
+              "question": "What is a common advantage of midpoint-based drawing algorithms?",
+              "answer": "They use only integer arithmetic (efficient) and ensure continuity. Also, by using symmetry they reduce computations.",
+              "explanation": "Contrast with naive approaches (like computing y via sqrt) which would be slow."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "region_filling",
+      "title": "Region Filling",
+      "pages": [
+        8
+      ],
+      "raw_text": "Region Filling\nMust-Know Concepts\nBoundary Fill: Start from an interior seed point and expand until a boundary color is reached.\nTypically recursive: at pixel (x,y), if its color ≠ boundary and ≠ fill color, set to fill color and recurse\non neighbors. \nFlood Fill: Similar but stops on a specified original color instead of a boundary color. (Flood fill fills all\nconnected pixels of an original color.) \nConnectivity: 4-connected (up, down, left, right) or 8-connected (diagonals included). E.g. 4-\nconnected has 4 neighbors, 8-connected has 8 neighbors. \nUse Cases: Fill closed shapes (like coloring in a polygon). \nHigh-Yield Notes\nRecursion Pitfall: Naïve boundary/flood fill can cause stack overflow if region is large. (Non-\nrecursive methods or scan-line fills avoid this.) \nSeed Selection: Must start inside region; if outside boundary color polygon, nothing happens. \nBoundary vs Flood: Boundary-fill requires a clear boundary color; flood-fill requires a known original\ncolor. \nExam Trap: Don’t confuse with clipping. Fill colors inside region only. Check connectivity definition in\nquestion (4 vs 8 connectivity changes result). \nImplementation: Ensure base case checks both boundary and already filled colors to avoid infinite\nloops.\nReinforcement Questions\nQ: What’s the difference between boundary fill and flood fill algorithms?\nA: Boundary-fill stops at boundary color; it fills until it reaches a boundary color. Flood-fill stops when\nit hits the original color it’s replacing. In other words, boundary-fill uses a boundary value, flood-fill\nuses the initial region color as the stopping condition.\nExplanation: If filling a region until edge, boundary-fill is used. If filling by color match, flood-fill.\nQ: Why might a flood-fill algorithm fill an unintended area?\nA: If the starting seed color is shared with other regions (not isolated), flood-fill will spread through\nall connected same-color areas. If boundary not properly enclosed, fill leaks.\nExplanation: Make sure boundaries or segmentation isolate areas, or choose correct seed.\nQ: How can using 8-connected neighbors instead of 4-connected affect fill?\nA: 8-connected includes diagonals, so more pixels get filled (diagonal adjacency allows “leakage”).\nUsing 4-connected may leave diagonal holes in a diagonally connected region.\nExplanation: 8-connectivity yields a “solid” fill; 4-connectivity can leave corner gaps.\nQ: Outline a pseudocode snippet for boundary-fill with 4 neighbors.\nA:\n• \n• \n• \n• \n• \n• \n• \n• \n• \n1. \n2. \n3. \n4. \n8\n",
+      "subsections": [
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Boundary Fill: Start from an interior seed point and expand until a boundary color is reached.",
+            "Typically recursive: at pixel (x,y), if its color ≠ boundary and ≠ fill color, set to fill color and recurse on neighbors.",
+            "Flood Fill: Similar but stops on a specified original color instead of a boundary color. (Flood fill fills all connected pixels of an original color.)",
+            "Connectivity: 4-connected (up, down, left, right) or 8-connected (diagonals included). E.g. 4- connected has 4 neighbors, 8-connected has 8 neighbors.",
+            "Use Cases: Fill closed shapes (like coloring in a polygon)."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "Recursion Pitfall: Naïve boundary/flood fill can cause stack overflow if region is large. (Non- recursive methods or scan-line fills avoid this.)",
+            "Seed Selection: Must start inside region; if outside boundary color polygon, nothing happens.",
+            "Boundary vs Flood: Boundary-fill requires a clear boundary color; flood-fill requires a known original color.",
+            "Exam Trap: Don’t confuse with clipping. Fill colors inside region only. Check connectivity definition in question (4 vs 8 connectivity changes result).",
+            "Implementation: Ensure base case checks both boundary and already filled colors to avoid infinite loops."
+          ]
+        },
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "What’s the difference between boundary fill and flood fill algorithms?",
+              "answer": "Boundary-fill stops at boundary color; it fills until it reaches a boundary color. Flood-fill stops when it hits the original color it’s replacing. In other words, boundary-fill uses a boundary value, flood-fill uses the initial region color as the stopping condition.",
+              "explanation": "If filling a region until edge, boundary-fill is used. If filling by color match, flood-fill."
+            },
+            {
+              "question": "Why might a flood-fill algorithm fill an unintended area?",
+              "answer": "If the starting seed color is shared with other regions (not isolated), flood-fill will spread through all connected same-color areas. If boundary not properly enclosed, fill leaks.",
+              "explanation": "Make sure boundaries or segmentation isolate areas, or choose correct seed."
+            },
+            {
+              "question": "How can using 8-connected neighbors instead of 4-connected affect fill?",
+              "answer": "8-connected includes diagonals, so more pixels get filled (diagonal adjacency allows “leakage”). Using 4-connected may leave diagonal holes in a diagonally connected region.",
+              "explanation": "8-connectivity yields a “solid” fill; 4-connectivity can leave corner gaps."
+            },
+            {
+              "question": "Outline a pseudocode snippet for boundary-fill with 4 neighbors.",
+              "answer": "void boundaryFill(int x, int y, int fillColor, int boundaryColor) {\n    int current = getPixel(x, y);\n    if (current != boundaryColor && current != fillColor) {\n        setPixel(x, y, fillColor);\n        boundaryFill(x + 1, y, fillColor, boundaryColor);\n        boundaryFill(x - 1, y, fillColor, boundaryColor);\n        boundaryFill(x, y + 1, fillColor, boundaryColor);\n        boundaryFill(x, y - 1, fillColor, boundaryColor);\n    }\n}",
+              "explanation": "Recursively fills the 4-connected neighboring pixels (up, down, left, right) until a pixel with the boundary color or already-filled color is encountered."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "image_enhancement",
+      "title": "Image Enhancement (Spatial Domain)",
+      "pages": [
+        9,
+        10
+      ],
+      "raw_text": "Fill(x, y, boundaryColor, fillColor):\n  if (color(x,y) ≠ boundaryColor AND color(x,y) ≠ fillColor):\n    setPixel(x,y, fillColor)\n    Fill(x+1, y, boundaryColor, fillColor)\n    Fill(x-1, y, boundaryColor, fillColor)\n    Fill(x, y+1, boundaryColor, fillColor)\n    Fill(x, y-1, boundaryColor, fillColor)\nExplanation: Recursively fills up/down/left/right until boundaryColor reached.\nQ: What is a drawback of recursive fill methods, and how to mitigate?\nA: They can cause stack overflow on large regions. A mitigation is to use an iterative approach (e.g.,\nscan-line fill, or breadth-first queue) instead of recursion.\nExplanation: Iterative methods manage memory better and can fill large areas without recursion\ndepth issues.\nImage Enhancement (Spatial Domain)\nContrast Stretching and Histogram Equalization\nMust-Know Concepts\nHistogram of an Image: Graph of frequency of each intensity level. \nContrast Stretch (Linear): Scale pixel values so the darkest becomes 0 and brightest becomes 255.\nFormula: \nHistogram Equalization: Spread intensities to flatten histogram. Compute the cumulative\ndistribution function (CDF) of pixel values, then map each pixel to its CDF value scaled. Result: more\nuniform histogram. Key idea: $T(i) = \\mathrm{CDF}(i)$ (normalized)【19†L254-L262】【19†L273-\nL281】. \nGamma Correction: Adjust brightness nonlinearly: new = old^γ (or inverse). Useful for correcting\ndisplay gamma or brightening/darkening images. (E.g., γ<1 brightens dark images.) \nHigh-Yield Notes\nDarkest/Brightest Pixels: Contrast stretch requires finding I_min, I_max (often by scanning\nhistogram endpoints). If a few pixels are extreme (outliers), stretching can oversaturate. \nHistogram Equalization Trap: It maximizes contrast globally but can produce weird effects (e.g.,\namplify noise). It’s not local adaptive enhancement. \nColor Images: Usually apply equalization to intensity (grayscale or luminance), not per RGB channel,\nto avoid color shifts (unless instructed otherwise). \n1. \n• \n• \nnew =\n×\nI\n−I\nmax\nmin\nold −Imin\n(L −1).\n• \n• \n• \n• \n• \n9\n\n\nGamma Usage: If device has gamma ≠1, sometimes first linearize by gamma-1, do processing, then\nre-apply gamma. Exams might assume gamma=1 (no correction needed). \nSampled Data CDF: Use normalized CDF (range 0–1) then scale to [0,L–1]. Rounding at end. \nReinforcement Questions\nQ: A 3-bit grayscale image has intensity values {0,1,2,...,7}. If a pixel value 2 occurs 5 times, 4 occurs\n10 times, and 6 occurs 5 times (total 20 pixels), what is the equalized value of intensity 4?\nA: CDF up to 4: P(0-4) = (5+10)/(20) = 15/20=0.75. New value = round(0.75(7)) = round(5.25) = 5.\nExplanation:* Equalization maps 4 to 5. Shows using CDF formula.\nQ: What effect does a 3x3 mean filter have on an image?\nA: It replaces each pixel with the average of its 3×3 neighborhood, smoothing (blurring) the image\nand reducing random noise, but it also blurs edges.\nExplanation: Mean filter is linear low-pass. It reduces variance (noise) but also reduces detail.\nQ: Why is a median filter preferred for salt-and-pepper noise?\nA: Because median preserves edges better and effectively removes isolated extreme pixels.\nReplacing center with median kills outliers without blurring edges as much as averaging.\nExplanation: Median is non-linear and robust to impulse noise.\nQ: Explain unsharp masking in image sharpening.\nA: Compute a blurred version of the image, subtract from original to get high-frequency (edges),\nthen add back to original. Formula: I_new = I_orig + k(I_orig – I_blur). Equivalently, use a Laplacian filter.\nExplanation:* It’s called “unsharp” because you subtract a smoothed (unsharp) image to emphasize\nedges.\nQ: What does applying a high-pass filter to an image do? Give an example of a high-pass mask.\nA: It enhances edges by removing low-frequency content. Example Laplacian mask: [[0,-1,0],[-1,4,-1],\n[0,-1,0]] highlights regions where pixel differs from neighbors.\nExplanation: High-pass allows fine details, edges; reduces smooth areas. Laplacian is common.\nImage Processing (Frequency Domain)\nMust-Know Concepts\nFrequency Domain: Represent image with Fourier transform. Low frequencies = smooth variations;\nhigh frequencies = edges/detail. \nDiscrete Fourier Transform (DFT): Converts 2D image to frequency components. (No need formula\non exam, just concept.) \nFiltering: In freq domain, low-pass filtering removes high frequencies (blur/smooth), high-pass filters\nremove low frequencies (sharpen/enhance edges). \nConvolution Theorem: Spatial convolution = multiplication in freq domain. Often faster for large\nkernels with FFT. \nFilter Examples: Ideal low-pass (circular cutoff), Gaussian low-pass, Butterworth, etc. Ideal often\ncauses ringing (Gibbs phenomenon). \n• \n• \n1. \n2. \n3. \n4. \n5. \n• \n• \n• \n• \n• \n10\n",
+      "subsections": [
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Histogram of an Image: Graph of frequency of each intensity level.",
+            "Contrast Stretch (Linear): Scale pixel values so the darkest becomes 0 and brightest becomes 255.",
+            "Formula:",
+            "Histogram Equalization: Spread intensities to flatten histogram. Compute the cumulative distribution function (CDF) of pixel values, then map each pixel to its CDF value scaled. Result: more uniform histogram. Key idea: $T(i) = \\mathrm{CDF}(i)$ (normalized)【19†L273-",
+            "L281】.",
+            "Gamma Correction: Adjust brightness nonlinearly: new = old^γ (or inverse). Useful for correcting display gamma or brightening/darkening images. (E.g., γ<1 brightens dark images.)"
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "Darkest/Brightest Pixels: Contrast stretch requires finding I_min, I_max (often by scanning histogram endpoints). If a few pixels are extreme (outliers), stretching can oversaturate.",
+            "Histogram Equalization Trap: It maximizes contrast globally but can produce weird effects (e.g., amplify noise). It’s not local adaptive enhancement.",
+            "Color Images: Usually apply equalization to intensity (grayscale or luminance), not per RGB channel, to avoid color shifts (unless instructed otherwise).",
+            "Gamma Usage: If device has gamma ≠1, sometimes first linearize by gamma-1, do processing, then re-apply gamma. Exams might assume gamma=1 (no correction needed).",
+            "Sampled Data CDF: Use normalized CDF (range 0–1) then scale to [0,L–1]. Rounding at end."
+          ]
+        },
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "A 3-bit grayscale image has intensity values {0,1,2,...,7}. If a pixel value 2 occurs 5 times, 4 occurs 10 times, and 6 occurs 5 times (total 20 pixels), what is the equalized value of intensity 4?",
+              "answer": "CDF up to 4: P(0-4) = (5+10)/(20) = 15/20=0.75. New value = round(0.75(7)) = round(5.25) = 5.",
+              "explanation": "* Equalization maps 4 to 5. Shows using CDF formula."
+            },
+            {
+              "question": "What effect does a 3x3 mean filter have on an image?",
+              "answer": "It replaces each pixel with the average of its 3×3 neighborhood, smoothing (blurring) the image and reducing random noise, but it also blurs edges.",
+              "explanation": "Mean filter is linear low-pass. It reduces variance (noise) but also reduces detail."
+            },
+            {
+              "question": "Why is a median filter preferred for salt-and-pepper noise?",
+              "answer": "Because median preserves edges better and effectively removes isolated extreme pixels. Replacing center with median kills outliers without blurring edges as much as averaging.",
+              "explanation": "Median is non-linear and robust to impulse noise."
+            },
+            {
+              "question": "Explain unsharp masking in image sharpening.",
+              "answer": "Compute a blurred version of the image, subtract from original to get high-frequency (edges), then add back to original. Formula: I_new = I_orig + k(I_orig – I_blur). Equivalently, use a Laplacian filter.",
+              "explanation": "* It’s called “unsharp” because you subtract a smoothed (unsharp) image to emphasize edges."
+            },
+            {
+              "question": "What does applying a high-pass filter to an image do? Give an example of a high-pass mask.",
+              "answer": "It enhances edges by removing low-frequency content. Example Laplacian mask: [[0,-1,0],[-1,4,-1], [0,-1,0]] highlights regions where pixel differs from neighbors.",
+              "explanation": "High-pass allows fine details, edges; reduces smooth areas. Laplacian is common."
+            }
+          ]
+        },
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Frequency Domain: Represent image with Fourier transform. Low frequencies = smooth variations; high frequencies = edges/detail.",
+            "Discrete Fourier Transform (DFT): Converts 2D image to frequency components. (No need formula on exam, just concept.)",
+            "Filtering: In freq domain, low-pass filtering removes high frequencies (blur/smooth), high-pass filters remove low frequencies (sharpen/enhance edges).",
+            "Convolution Theorem: Spatial convolution = multiplication in freq domain. Often faster for large kernels with FFT.",
+            "Filter Examples: Ideal low-pass (circular cutoff), Gaussian low-pass, Butterworth, etc. Ideal often causes ringing (Gibbs phenomenon)."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frequency_domain",
+      "title": "Image Processing (Frequency Domain)",
+      "pages": [
+        10,
+        11
+      ],
+      "raw_text": "Gamma Usage: If device has gamma ≠1, sometimes first linearize by gamma-1, do processing, then\nre-apply gamma. Exams might assume gamma=1 (no correction needed). \nSampled Data CDF: Use normalized CDF (range 0–1) then scale to [0,L–1]. Rounding at end. \nReinforcement Questions\nQ: A 3-bit grayscale image has intensity values {0,1,2,...,7}. If a pixel value 2 occurs 5 times, 4 occurs\n10 times, and 6 occurs 5 times (total 20 pixels), what is the equalized value of intensity 4?\nA: CDF up to 4: P(0-4) = (5+10)/(20) = 15/20=0.75. New value = round(0.75(7)) = round(5.25) = 5.\nExplanation:* Equalization maps 4 to 5. Shows using CDF formula.\nQ: What effect does a 3x3 mean filter have on an image?\nA: It replaces each pixel with the average of its 3×3 neighborhood, smoothing (blurring) the image\nand reducing random noise, but it also blurs edges.\nExplanation: Mean filter is linear low-pass. It reduces variance (noise) but also reduces detail.\nQ: Why is a median filter preferred for salt-and-pepper noise?\nA: Because median preserves edges better and effectively removes isolated extreme pixels.\nReplacing center with median kills outliers without blurring edges as much as averaging.\nExplanation: Median is non-linear and robust to impulse noise.\nQ: Explain unsharp masking in image sharpening.\nA: Compute a blurred version of the image, subtract from original to get high-frequency (edges),\nthen add back to original. Formula: I_new = I_orig + k(I_orig – I_blur). Equivalently, use a Laplacian filter.\nExplanation:* It’s called “unsharp” because you subtract a smoothed (unsharp) image to emphasize\nedges.\nQ: What does applying a high-pass filter to an image do? Give an example of a high-pass mask.\nA: It enhances edges by removing low-frequency content. Example Laplacian mask: [[0,-1,0],[-1,4,-1],\n[0,-1,0]] highlights regions where pixel differs from neighbors.\nExplanation: High-pass allows fine details, edges; reduces smooth areas. Laplacian is common.\nImage Processing (Frequency Domain)\nMust-Know Concepts\nFrequency Domain: Represent image with Fourier transform. Low frequencies = smooth variations;\nhigh frequencies = edges/detail. \nDiscrete Fourier Transform (DFT): Converts 2D image to frequency components. (No need formula\non exam, just concept.) \nFiltering: In freq domain, low-pass filtering removes high frequencies (blur/smooth), high-pass filters\nremove low frequencies (sharpen/enhance edges). \nConvolution Theorem: Spatial convolution = multiplication in freq domain. Often faster for large\nkernels with FFT. \nFilter Examples: Ideal low-pass (circular cutoff), Gaussian low-pass, Butterworth, etc. Ideal often\ncauses ringing (Gibbs phenomenon). \n• \n• \n1. \n2. \n3. \n4. \n5. \n• \n• \n• \n• \n• \n10\n\n\nSpatial vs Frequency: Some tasks (e.g., blurring) can be done in either domain. Multi-step:\ntransform, multiply by mask, inverse transform. \nHigh-Yield Notes\nSpace vs Frequency Complexity: For large kernels, FFT can be more efficient (O(N log N) vs\nO(Nk^2)). The midterm has a question hinting “FFT more efficient for large kernels” (likely high\nconfidence concept). \nEdge Effects: Frequency domain filtering assumes periodic extension; check image padding/\ntruncation issues. \nTraps: Don’t confuse high-pass with “removes edges” – actually it emphasizes edges. (See exam\nmisconceptions in Lecture 8 Q’s: “High-pass filtering removes edges” is false – it removes low\nfrequencies, preserving edges.) \nSharpening in Frequency: Adding a high-pass result to original image (like unsharp mask) yields\nenhancement.\nReinforcement Questions\nQ: Describe what a 2D Gaussian low-pass filter does to an image and why it’s separable.\nA: It smooths (blurs) the image by averaging pixel values with a Gaussian-weighted kernel,\npreserving edges less than an ideal filter. Separable because a 2D Gaussian = row-wise 1D Gaussian\nfollowed by column-wise 1D Gaussian.\nExplanation: Separable means convolution can be done in two passes (rows then columns),\nspeeding computation.\nQ: A filter has frequency response that is 1 for |f|<f_c and 0 otherwise. What is this filter and what\nartifact can it introduce?\nA: Ideal low-pass filter (circular cutoff). It can introduce ringing artifacts (Gibbs effect) near sharp\nedges in spatial domain.\nExplanation: The abrupt cutoff in freq causes oscillations in space.\nQ: Why might one use the frequency domain to apply a large filter instead of doing it directly in the\nspatial domain?\nA: Because convolution with large kernels is faster via FFTs (O(N log N) operations) than direct\nconvolution (O(N k^2)). Large 2D kernels are impractical to implement by direct summation.\nExplanation: Efficiency trade-off: overhead of FFT but gains for large sizes.\nQ: In the context of image smoothing, what is the difference between a box filter and a Gaussian\nfilter?\nA: A box (mean) filter assigns equal weight to neighbors; a Gaussian gives more weight to nearer\npixels. Gaussian causes less blockiness and better preserves central intensity.\nExplanation: Gaussian is smoother in frequency (no sharp cutoff).\nQ: What is the effect of multiplying an image by −1 before displaying it (in frequency domain)?\nA: Multiplying by (−1)^(x+y) (sometimes done to center freq) shifts the zero-frequency to center. This\nis standard practice but exam likely won't ask this detail.\nExplanation: Not crucial, skip if not needed.\n• \n• \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n11\n",
+      "subsections": [
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "A 3-bit grayscale image has intensity values {0,1,2,...,7}. If a pixel value 2 occurs 5 times, 4 occurs 10 times, and 6 occurs 5 times (total 20 pixels), what is the equalized value of intensity 4?",
+              "answer": "CDF up to 4: P(0-4) = (5+10)/(20) = 15/20=0.75. New value = round(0.75(7)) = round(5.25) = 5.",
+              "explanation": "* Equalization maps 4 to 5. Shows using CDF formula."
+            },
+            {
+              "question": "What effect does a 3x3 mean filter have on an image?",
+              "answer": "It replaces each pixel with the average of its 3×3 neighborhood, smoothing (blurring) the image and reducing random noise, but it also blurs edges.",
+              "explanation": "Mean filter is linear low-pass. It reduces variance (noise) but also reduces detail."
+            },
+            {
+              "question": "Why is a median filter preferred for salt-and-pepper noise?",
+              "answer": "Because median preserves edges better and effectively removes isolated extreme pixels. Replacing center with median kills outliers without blurring edges as much as averaging.",
+              "explanation": "Median is non-linear and robust to impulse noise."
+            },
+            {
+              "question": "Explain unsharp masking in image sharpening.",
+              "answer": "Compute a blurred version of the image, subtract from original to get high-frequency (edges), then add back to original. Formula: I_new = I_orig + k(I_orig – I_blur). Equivalently, use a Laplacian filter.",
+              "explanation": "* It’s called “unsharp” because you subtract a smoothed (unsharp) image to emphasize edges."
+            },
+            {
+              "question": "What does applying a high-pass filter to an image do? Give an example of a high-pass mask.",
+              "answer": "It enhances edges by removing low-frequency content. Example Laplacian mask: [[0,-1,0],[-1,4,-1], [0,-1,0]] highlights regions where pixel differs from neighbors.",
+              "explanation": "High-pass allows fine details, edges; reduces smooth areas. Laplacian is common."
+            }
+          ]
+        },
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Frequency Domain: Represent image with Fourier transform. Low frequencies = smooth variations; high frequencies = edges/detail.",
+            "Discrete Fourier Transform (DFT): Converts 2D image to frequency components. (No need formula on exam, just concept.)",
+            "Filtering: In freq domain, low-pass filtering removes high frequencies (blur/smooth), high-pass filters remove low frequencies (sharpen/enhance edges).",
+            "Convolution Theorem: Spatial convolution = multiplication in freq domain. Often faster for large kernels with FFT.",
+            "Filter Examples: Ideal low-pass (circular cutoff), Gaussian low-pass, Butterworth, etc. Ideal often causes ringing (Gibbs phenomenon).",
+            "Spatial vs Frequency: Some tasks (e.g., blurring) can be done in either domain. Multi-step: transform, multiply by mask, inverse transform."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "Space vs Frequency Complexity: For large kernels, FFT can be more efficient (O(N log N) vs O(Nk^2)). The midterm has a question hinting “FFT more efficient for large kernels” (likely high confidence concept).",
+            "Edge Effects: Frequency domain filtering assumes periodic extension; check image padding/ truncation issues.",
+            "Traps: Don’t confuse high-pass with “removes edges” – actually it emphasizes edges. (See exam misconceptions in Lecture 8 Q’s: “High-pass filtering removes edges” is false – it removes low frequencies, preserving edges.)",
+            "Sharpening in Frequency: Adding a high-pass result to original image (like unsharp mask) yields enhancement."
+          ]
+        },
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "Describe what a 2D Gaussian low-pass filter does to an image and why it’s separable.",
+              "answer": "It smooths (blurs) the image by averaging pixel values with a Gaussian-weighted kernel, preserving edges less than an ideal filter. Separable because a 2D Gaussian = row-wise 1D Gaussian followed by column-wise 1D Gaussian.",
+              "explanation": "Separable means convolution can be done in two passes (rows then columns), speeding computation."
+            },
+            {
+              "question": "A filter has frequency response that is 1 for |f|<f_c and 0 otherwise. What is this filter and what artifact can it introduce?",
+              "answer": "Ideal low-pass filter (circular cutoff). It can introduce ringing artifacts (Gibbs effect) near sharp edges in spatial domain.",
+              "explanation": "The abrupt cutoff in freq causes oscillations in space."
+            },
+            {
+              "question": "Why might one use the frequency domain to apply a large filter instead of doing it directly in the spatial domain?",
+              "answer": "Because convolution with large kernels is faster via FFTs (O(N log N) operations) than direct convolution (O(N k^2)). Large 2D kernels are impractical to implement by direct summation.",
+              "explanation": "Efficiency trade-off: overhead of FFT but gains for large sizes."
+            },
+            {
+              "question": "In the context of image smoothing, what is the difference between a box filter and a Gaussian filter?",
+              "answer": "A box (mean) filter assigns equal weight to neighbors; a Gaussian gives more weight to nearer pixels. Gaussian causes less blockiness and better preserves central intensity.",
+              "explanation": "Gaussian is smoother in frequency (no sharp cutoff)."
+            },
+            {
+              "question": "What is the effect of multiplying an image by −1 before displaying it (in frequency domain)?",
+              "answer": "Multiplying by (−1)^(x+y) (sometimes done to center freq) shifts the zero-frequency to center. This is standard practice but exam likely won't ask this detail.",
+              "explanation": "Not crucial, skip if not needed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ar_vr",
+      "title": "Augmented & Virtual/Mixed Reality",
+      "pages": [
+        12,
+        13
+      ],
+      "raw_text": "Augmented & Virtual/Mixed Reality\nMust-Know Concepts\nAugmented Reality (AR): Overlays computer-generated content onto the real environment\n【11†L279-L287】. It enhances reality by adding virtual objects in real-time. (e.g. Pokemon Go on a\ncamera view.) \nVR vs AR: VR is a fully virtual environment, replacing reality【13†L242-L250】. AR uses the real world\nas base. (AR adds to real; VR immerses in all virtual.)【11†L279-L287】 \nAR Types:\nMarker-based: Recognizes a printed marker (e.g. ARToolkit) to place 3D model. \nMarkerless/Location-based: Uses GPS/SLAM (Simultaneous Localization and Mapping) to align 3D\ncontent with real world (no pre-defined markers). \nProjection-based: Projects images onto real surfaces. \nVR Levels:\nNon-immersive: Desktop 3D simulation (not full immersion, e.g. PC driving sim). \nSemi-immersive: Big screens or partial VR (like flight simulators with a cockpit). \nFully immersive: HMDs (head-mounted displays) or VR caves. \nMixed Reality (MR/XR): A continuum blending real and virtual. MR usually means digital objects\nanchored to real world and able to interact with it. XR (Extended Reality) is an umbrella for\nAR+VR+MR. \n360° Video: Full spherical video capturing all angles. When viewed on HMD, user can look around.\nIt’s not interactive (camera motion only), but provides an immersive scene. \nHigh-Yield Notes\nAR Workflow: AR uses tracking (often SLAM) to determine device pose. SLAM builds a map and\ntracks camera simultaneously. It's often asked in AR context. \nHead Tracking (VR): VR uses sensors (accelerometers, gyros) to update viewpoint continuously. Lag\ncan cause nausea. \nApplications: AR in medicine (overlaying anatomy on patient), maintenance (instructions overlay).\nVR in training (flight simulators, surgery). \nTraps: Don’t confuse 360° video with VR – it’s passive (no interaction, just 360 panorama). \nField of View: VR hardware often asks FOV or resolution specs. AR on smartphones usually smaller\nFOV than AR glasses.\nReinforcement Questions\nQ: Define Augmented Reality and give one example of its use.\nA: AR overlays computer-generated images or info onto the real world in real-time【11†L279-L287】.\nExample: Smartphones showing virtual furniture in a room (e.g. IKEA Place app).\nExplanation: It’s interactive and contextual. AR enables enhancing real scenes, unlike VR.\nQ: What is SLAM and why is it important in AR?\nA: SLAM = Simultaneous Localization and Mapping. It builds a map of unknown environment while\ntracking device location. In AR, it allows markerless tracking (the device understands its position\n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n1. \n2. \n12\n\n\nrelative to environment) without pre-set markers.\nExplanation: Markerless AR and HoloLens use SLAM to place objects stably in real world.\nQ: Describe one difference between Virtual Reality and Augmented Reality.\nA: VR immerses the user in a fully digital environment (blocks real world)【13†L242-L250】, while AR\nkeeps the real world and overlays additional info【11†L279-L287】.\nExplanation: Key difference: AR augments reality, VR replaces it. This is often tested.\nQ: What are the three levels of VR immersion?\nA: Non-immersive (desktop 3D, e.g. computer game), semi-immersive (CAVE or wide-screen\nsimulators), fully immersive (HMD or dome with head tracking).\nExplanation: This taxonomy comes from slides (though exact terms may vary).\nQ: What is a 360° video and how does it relate to VR?\nA: A 360° video is a spherical video that captures all directions. When viewed on VR goggles, you can\nlook around in the fixed viewpoint (the camera can’t move). It’s a passive VR experience (no motion\ninside scene).\nExplanation: It’s like watching a pre-recorded real scene from all angles.\nComputer Vision Basics\nMust-Know Concepts\nDefinition: Computer Vision (CV) is about interpreting images and videos – enabling computers to\n“see” and extract information. Unlike CG (create images) and IP (enhance images), CV analyzes\nimages. \nPipeline: Steps often: Acquire image → Preprocess (noise reduction) → Feature Extraction (edges,\ncorners, textures) → Recognition/Classification/Detection → Decision (class label, object identity, etc.). \nCV Tasks:\nClassification: Identify main object (one label for whole image). E.g. “This is a cat.” \nObject Detection: Find and classify objects with bounding boxes. E.g. “Person at (x,y), Car at (u,v).” \nSegmentation: Label each pixel (e.g. background vs object; semantic segmentation or instance\nsegmentation). \nEdge Detection: Find pixel-level edges (Sobel, Canny). Preliminary step for many tasks. \nThresholding: Simple segmentation by intensity cutoff (binary image creation). Useful if objects\nclearly brighter/darker. \nEdge Detection (Example): Filters (like Sobel) compute gradients; Canny applies Gaussian blur +\ngradient + non-max suppression + hysteresis thresholding. \nSegmentation: Can be global (thresholding) or more advanced (region growing, clustering, deep\nlearning). \nHigh-Yield Notes\nData Difference: CG creates synthetic data; CV deals with noisy real data (lighting, occlusions).\nEmphasize that. \nFeature vs Template: Early CV used hand-crafted features; modern CV (not likely covered) uses ML/\nAI. But exam likely sticks to basics (edges, thresholds). \n3. \n4. \n5. \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n13\n",
+      "subsections": [
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Augmented Reality (AR): Overlays computer-generated content onto the real environment",
+            ". It enhances reality by adding virtual objects in real-time. (e.g. Pokemon Go on a camera view.)",
+            "VR vs AR: VR is a fully virtual environment, replacing reality. AR uses the real world as base. (AR adds to real; VR immerses in all virtual.)",
+            "AR Types:",
+            "Marker-based: Recognizes a printed marker (e.g. ARToolkit) to place 3D model.",
+            "Markerless/Location-based: Uses GPS/SLAM (Simultaneous Localization and Mapping) to align 3D content with real world (no pre-defined markers).",
+            "Projection-based: Projects images onto real surfaces.",
+            "VR Levels:",
+            "Non-immersive: Desktop 3D simulation (not full immersion, e.g. PC driving sim).",
+            "Semi-immersive: Big screens or partial VR (like flight simulators with a cockpit).",
+            "Fully immersive: HMDs (head-mounted displays) or VR caves.",
+            "Mixed Reality (MR/XR): A continuum blending real and virtual. MR usually means digital objects anchored to real world and able to interact with it. XR (Extended Reality) is an umbrella for",
+            "AR+VR+MR.",
+            "360° Video: Full spherical video capturing all angles. When viewed on HMD, user can look around.",
+            "It’s not interactive (camera motion only), but provides an immersive scene."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "AR Workflow: AR uses tracking (often SLAM) to determine device pose. SLAM builds a map and tracks camera simultaneously. It's often asked in AR context.",
+            "Head Tracking (VR): VR uses sensors (accelerometers, gyros) to update viewpoint continuously. Lag can cause nausea.",
+            "Applications: AR in medicine (overlaying anatomy on patient), maintenance (instructions overlay). VR in training (flight simulators, surgery).",
+            "Traps: Don’t confuse 360° video with VR – it’s passive (no interaction, just 360 panorama).",
+            "Field of View: VR hardware often asks FOV or resolution specs. AR on smartphones usually smaller FOV than AR glasses."
+          ]
+        },
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "Define Augmented Reality and give one example of its use.",
+              "answer": "AR overlays computer-generated images or info onto the real world in real-time. Example: Smartphones showing virtual furniture in a room (e.g. IKEA Place app).",
+              "explanation": "It’s interactive and contextual. AR enables enhancing real scenes, unlike VR."
+            },
+            {
+              "question": "What is SLAM and why is it important in AR?",
+              "answer": "SLAM = Simultaneous Localization and Mapping. It builds a map of unknown environment while tracking device location. In AR, it allows markerless tracking (the device understands its position • • • • • • • • • • • • • • • • • 1. 2. 12 relative to environment) without pre-set markers.",
+              "explanation": "Markerless AR and HoloLens use SLAM to place objects stably in real world."
+            },
+            {
+              "question": "Describe one difference between Virtual Reality and Augmented Reality.",
+              "answer": "VR immerses the user in a fully digital environment (blocks real world), while AR keeps the real world and overlays additional info.",
+              "explanation": "Key difference: AR augments reality, VR replaces it. This is often tested."
+            },
+            {
+              "question": "What are the three levels of VR immersion?",
+              "answer": "Non-immersive (desktop 3D, e.g. computer game), semi-immersive (CAVE or wide-screen simulators), fully immersive (HMD or dome with head tracking).",
+              "explanation": "This taxonomy comes from slides (though exact terms may vary)."
+            },
+            {
+              "question": "What is a 360° video and how does it relate to VR?",
+              "answer": "A 360° video is a spherical video that captures all directions. When viewed on VR goggles, you can look around in the fixed viewpoint (the camera can’t move). It’s a passive VR experience (no motion inside scene).",
+              "explanation": "It’s like watching a pre-recorded real scene from all angles."
+            }
+          ]
+        },
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Definition: Computer Vision (CV) is about interpreting images and videos – enabling computers to",
+            "“see” and extract information. Unlike CG (create images) and IP (enhance images), CV analyzes images.",
+            "Pipeline: Steps often: Acquire image → Preprocess (noise reduction) → Feature Extraction (edges, corners, textures) → Recognition/Classification/Detection → Decision (class label, object identity, etc.).",
+            "CV Tasks:",
+            "Classification: Identify main object (one label for whole image). E.g. “This is a cat.”",
+            "Object Detection: Find and classify objects with bounding boxes. E.g. “Person at (x,y), Car at (u,v).”",
+            "Segmentation: Label each pixel (e.g. background vs object; semantic segmentation or instance segmentation).",
+            "Edge Detection: Find pixel-level edges (Sobel, Canny). Preliminary step for many tasks.",
+            "Thresholding: Simple segmentation by intensity cutoff (binary image creation). Useful if objects clearly brighter/darker.",
+            "Edge Detection (Example): Filters (like Sobel) compute gradients; Canny applies Gaussian blur + gradient + non-max suppression + hysteresis thresholding.",
+            "Segmentation: Can be global (thresholding) or more advanced (region growing, clustering, deep learning)."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "Data Difference: CG creates synthetic data; CV deals with noisy real data (lighting, occlusions).",
+            "Emphasize that.",
+            "Feature vs Template: Early CV used hand-crafted features; modern CV (not likely covered) uses ML/ AI. But exam likely sticks to basics (edges, thresholds)."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "computer_vision",
+      "title": "Computer Vision Basics",
+      "pages": [
+        13,
+        14
+      ],
+      "raw_text": "relative to environment) without pre-set markers.\nExplanation: Markerless AR and HoloLens use SLAM to place objects stably in real world.\nQ: Describe one difference between Virtual Reality and Augmented Reality.\nA: VR immerses the user in a fully digital environment (blocks real world)【13†L242-L250】, while AR\nkeeps the real world and overlays additional info【11†L279-L287】.\nExplanation: Key difference: AR augments reality, VR replaces it. This is often tested.\nQ: What are the three levels of VR immersion?\nA: Non-immersive (desktop 3D, e.g. computer game), semi-immersive (CAVE or wide-screen\nsimulators), fully immersive (HMD or dome with head tracking).\nExplanation: This taxonomy comes from slides (though exact terms may vary).\nQ: What is a 360° video and how does it relate to VR?\nA: A 360° video is a spherical video that captures all directions. When viewed on VR goggles, you can\nlook around in the fixed viewpoint (the camera can’t move). It’s a passive VR experience (no motion\ninside scene).\nExplanation: It’s like watching a pre-recorded real scene from all angles.\nComputer Vision Basics\nMust-Know Concepts\nDefinition: Computer Vision (CV) is about interpreting images and videos – enabling computers to\n“see” and extract information. Unlike CG (create images) and IP (enhance images), CV analyzes\nimages. \nPipeline: Steps often: Acquire image → Preprocess (noise reduction) → Feature Extraction (edges,\ncorners, textures) → Recognition/Classification/Detection → Decision (class label, object identity, etc.). \nCV Tasks:\nClassification: Identify main object (one label for whole image). E.g. “This is a cat.” \nObject Detection: Find and classify objects with bounding boxes. E.g. “Person at (x,y), Car at (u,v).” \nSegmentation: Label each pixel (e.g. background vs object; semantic segmentation or instance\nsegmentation). \nEdge Detection: Find pixel-level edges (Sobel, Canny). Preliminary step for many tasks. \nThresholding: Simple segmentation by intensity cutoff (binary image creation). Useful if objects\nclearly brighter/darker. \nEdge Detection (Example): Filters (like Sobel) compute gradients; Canny applies Gaussian blur +\ngradient + non-max suppression + hysteresis thresholding. \nSegmentation: Can be global (thresholding) or more advanced (region growing, clustering, deep\nlearning). \nHigh-Yield Notes\nData Difference: CG creates synthetic data; CV deals with noisy real data (lighting, occlusions).\nEmphasize that. \nFeature vs Template: Early CV used hand-crafted features; modern CV (not likely covered) uses ML/\nAI. But exam likely sticks to basics (edges, thresholds). \n3. \n4. \n5. \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n13\n\n\nCommon Trap: Don’t mix “detection” with “segmentation.” Detection boxes vs pixel classification. \nExample Application: Brain tumor detection via threshold (slides gave that example). They might\nask to describe steps: e.g. “Threshold MRI to segment tumor vs background.” \nMultiple Objects: Classification handles one object per image; detection can handle many;\nsegmentation yields precise shape. \nReinforcement Questions\nQ: What is the main goal of computer vision? How is it different from image processing?\nA: CV’s goal is to extract meaningful information from images (interpret content). Image Processing\nmainly modifies images (improve quality, transform). CV analyzes, IP enhances.\nExplanation: Distinguish generation/enhancement vs analysis. Example: IP might denoise; CV might\ndetect a tumor in the denoised image.\nQ: A system labels an image as “cat” or “dog.” Is this classification, detection, or segmentation?\nA: Classification (assign one label to the whole image).\nExplanation: There’s no localization or per-pixel mask, just global label.\nQ: How does object detection differ from semantic segmentation?\nA: Object detection finds objects and draws bounding boxes. Semantic segmentation labels every\npixel with a class. Detection gives coarse location; segmentation gives exact shape.\nExplanation: Key difference: segmentation is pixel-level classification.\nQ: Explain the role of thresholding in CV, with an example.\nA: Thresholding converts a grayscale image to binary by choosing a cutoff (T). E.g. to detect bright\nobjects, set pixels > T = object (1), else background (0). Example: simple tumor detection on MRI.\nExplanation: Simple but effective if object is much brighter/darker.\nQ: What is an edge detector (e.g. Sobel or Canny) used for?\nA: To find significant intensity changes (edges) in an image. Edges often correspond to object\nboundaries or features.\nExplanation: Preprocessing step, often feeding into higher-level tasks (like segmentation or\nrecognition).\nPrevious Exams Analysis\nTopic Frequency Analysis\nWe examined finals/midterms (2021–2025). The most frequently tested topics (present in current syllabus)\nare:\nAugmented Reality (AR): Appears consistently high (e.g. 14–15 mentions/year after 2021). AR is a top\npriority. \nGraphics Systems & Coordinate Concepts: (Fundamentals: frame buffer, pixels, transformations).\nFrequent mentions (3→9→9 per year, rising). \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n• \n• \n14\n",
+      "subsections": [
+        {
+          "title": "Must-Know Concepts",
+          "bullets": [
+            "Definition: Computer Vision (CV) is about interpreting images and videos – enabling computers to",
+            "“see” and extract information. Unlike CG (create images) and IP (enhance images), CV analyzes images.",
+            "Pipeline: Steps often: Acquire image → Preprocess (noise reduction) → Feature Extraction (edges, corners, textures) → Recognition/Classification/Detection → Decision (class label, object identity, etc.).",
+            "CV Tasks:",
+            "Classification: Identify main object (one label for whole image). E.g. “This is a cat.”",
+            "Object Detection: Find and classify objects with bounding boxes. E.g. “Person at (x,y), Car at (u,v).”",
+            "Segmentation: Label each pixel (e.g. background vs object; semantic segmentation or instance segmentation).",
+            "Edge Detection: Find pixel-level edges (Sobel, Canny). Preliminary step for many tasks.",
+            "Thresholding: Simple segmentation by intensity cutoff (binary image creation). Useful if objects clearly brighter/darker.",
+            "Edge Detection (Example): Filters (like Sobel) compute gradients; Canny applies Gaussian blur + gradient + non-max suppression + hysteresis thresholding.",
+            "Segmentation: Can be global (thresholding) or more advanced (region growing, clustering, deep learning)."
+          ]
+        },
+        {
+          "title": "High-Yield Notes",
+          "bullets": [
+            "Data Difference: CG creates synthetic data; CV deals with noisy real data (lighting, occlusions).",
+            "Emphasize that.",
+            "Feature vs Template: Early CV used hand-crafted features; modern CV (not likely covered) uses ML/ AI. But exam likely sticks to basics (edges, thresholds).",
+            "Common Trap: Don’t mix “detection” with “segmentation.” Detection boxes vs pixel classification.",
+            "Example Application: Brain tumor detection via threshold (slides gave that example). They might ask to describe steps: e.g. “Threshold MRI to segment tumor vs background.”",
+            "Multiple Objects: Classification handles one object per image; detection can handle many; segmentation yields precise shape."
+          ]
+        },
+        {
+          "title": "Reinforcement Questions",
+          "qa": [
+            {
+              "question": "What is the main goal of computer vision? How is it different from image processing?",
+              "answer": "CV’s goal is to extract meaningful information from images (interpret content). Image Processing mainly modifies images (improve quality, transform). CV analyzes, IP enhances.",
+              "explanation": "Distinguish generation/enhancement vs analysis. Example: IP might denoise; CV might detect a tumor in the denoised image."
+            },
+            {
+              "question": "A system labels an image as “cat” or “dog.” Is this classification, detection, or segmentation?",
+              "answer": "Classification (assign one label to the whole image).",
+              "explanation": "There’s no localization or per-pixel mask, just global label."
+            },
+            {
+              "question": "How does object detection differ from semantic segmentation?",
+              "answer": "Object detection finds objects and draws bounding boxes. Semantic segmentation labels every pixel with a class. Detection gives coarse location; segmentation gives exact shape.",
+              "explanation": "Key difference: segmentation is pixel-level classification."
+            },
+            {
+              "question": "Explain the role of thresholding in CV, with an example.",
+              "answer": "Thresholding converts a grayscale image to binary by choosing a cutoff (T). E.g. to detect bright objects, set pixels > T = object (1), else background (0). Example: simple tumor detection on MRI.",
+              "explanation": "Simple but effective if object is much brighter/darker."
+            },
+            {
+              "question": "What is an edge detector (e.g. Sobel or Canny) used for?",
+              "answer": "To find significant intensity changes (edges) in an image. Edges often correspond to object boundaries or features.",
+              "explanation": "Preprocessing step, often feeding into higher-level tasks (like segmentation or recognition). Previous Exams Analysis Topic Frequency Analysis We examined finals/midterms (2021–2025). The most frequently tested topics (present in current syllabus) are: Augmented Reality (AR): Appears consistently high (e.g. 14–15 mentions/year after 2021). AR is a top priority. Graphics Systems & Coordinate Concepts: (Fundamentals: frame buffer, pixels, transformations). Frequent mentions (3→9→9 per year, rising)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "analysis",
+      "title": "Previous Exams Analysis",
+      "pages": [
+        14,
+        15,
+        16
+      ],
+      "raw_text": "Common Trap: Don’t mix “detection” with “segmentation.” Detection boxes vs pixel classification. \nExample Application: Brain tumor detection via threshold (slides gave that example). They might\nask to describe steps: e.g. “Threshold MRI to segment tumor vs background.” \nMultiple Objects: Classification handles one object per image; detection can handle many;\nsegmentation yields precise shape. \nReinforcement Questions\nQ: What is the main goal of computer vision? How is it different from image processing?\nA: CV’s goal is to extract meaningful information from images (interpret content). Image Processing\nmainly modifies images (improve quality, transform). CV analyzes, IP enhances.\nExplanation: Distinguish generation/enhancement vs analysis. Example: IP might denoise; CV might\ndetect a tumor in the denoised image.\nQ: A system labels an image as “cat” or “dog.” Is this classification, detection, or segmentation?\nA: Classification (assign one label to the whole image).\nExplanation: There’s no localization or per-pixel mask, just global label.\nQ: How does object detection differ from semantic segmentation?\nA: Object detection finds objects and draws bounding boxes. Semantic segmentation labels every\npixel with a class. Detection gives coarse location; segmentation gives exact shape.\nExplanation: Key difference: segmentation is pixel-level classification.\nQ: Explain the role of thresholding in CV, with an example.\nA: Thresholding converts a grayscale image to binary by choosing a cutoff (T). E.g. to detect bright\nobjects, set pixels > T = object (1), else background (0). Example: simple tumor detection on MRI.\nExplanation: Simple but effective if object is much brighter/darker.\nQ: What is an edge detector (e.g. Sobel or Canny) used for?\nA: To find significant intensity changes (edges) in an image. Edges often correspond to object\nboundaries or features.\nExplanation: Preprocessing step, often feeding into higher-level tasks (like segmentation or\nrecognition).\nPrevious Exams Analysis\nTopic Frequency Analysis\nWe examined finals/midterms (2021–2025). The most frequently tested topics (present in current syllabus)\nare:\nAugmented Reality (AR): Appears consistently high (e.g. 14–15 mentions/year after 2021). AR is a top\npriority. \nGraphics Systems & Coordinate Concepts: (Fundamentals: frame buffer, pixels, transformations).\nFrequent mentions (3→9→9 per year, rising). \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n• \n• \n14\n\n\nColor Models & Theory: (RGB, CMY, HSV, color spaces). Rare in 2021-22 but jumped (0→12 mentions\nin 2023 onward). Now important. \n2D Transformations: (Translation/rotation/reflection, etc.) Constant: ~3–6 mentions yearly.\nMaintaining stable importance. \nVirtual Reality (VR): Some focus (a few questions); often paired with AR sections or definitions. \nComputer Vision & Image Processing: Rare (very few mentions); likely lower priority given syllabus.\n(We see 1–2 mentions of thresholding or segmentation, mostly context.) \nTrends: AR/VR topics are very hot (rising and high frequency). Color theory usage increased (perhaps new\nto syllabus recently). Rasterization (scan conversion) has low frequency historically (few line-circle-fill\nquestions in old exams), but they are core syllabus – they could appear, but past suggests moderate priority.\nImage processing appears infrequently in exams, but still worthy as Tier C.\nTopic\nAppearances (2021–2025)\nTrend/Notes\nAugmented Reality (AR)\n~15 per year (2023–25)\nIncreasing\nVirtual/Mixed Reality (VR/MR)\nfew mentions\nStable low\nGraphics Systems & Displays\n~3→9 per year\nIncreasing\nColor Models/Theory\n0→12 per year\nIncreasing\n2D Transformations\n~3–6 per year\nStable\nRasterization (Lines/Circles)\nVery few\nDecreasing\nRegion Filling\nNone\nNot tested yet\nImage Enhancement (filters)\nVery few\nNot tested often\nComputer Vision Tasks\n0–2 mentions\nVery low\nPattern Analysis\nAR/VR Questions: Often definition or concept. E.g. “Name AR types”, “SLAM vs markers”, “VR immersion\nlevels”. They repeat vocabulary and differences (AR vs VR). They test conceptual understanding, not\nnumeric calculation. \nColor/Display: Newer trend: color spaces often grouped (RGB vs CMY vs HSV). Past Qs may ask for\nconversions or properties (e.g. “subtract CMY from 1”). Watch for “gamut problems” or “undercolor\nremoval” type traps. \nTransformations: Common style: “Given a sequence of transforms, find final matrix or coordinates.” Or\nconceptual “properties of transform matrices”. Professors often invert order or change pivot – check\nslides on center-of-rotation (traps). \nRaster Lines: Rare but when asked, usually algorithmic: e.g. “What is decision parameter after k steps?”\nor “Compare DDA vs Bresenham”. Sometimes fill-in-a-table of coordinates for a line. \nCircle Algorithms: Even rarer. Possibly “midpoint circle vs parametric” or “point symmetry logic.” Might\ntest understanding of octant plotting. \nHistogram/Filters: When used, in multiple-choice quizzes in slides. But few exam Qs. If asked, likely\nconcept: “Which filter preserves edges best?” (Answer: median) or “What does histogram\nequalization do?”. \n• \n• \n• \n• \n• \n• \n• \n• \n• \n• \n15\n\n\nComputer Vision/Thresholding: Rare single questions, often conceptual “CV vs CG vs IP?” or \n“Thresholding example.” The slides had a few MCQs (like “Thresholding outputs binary image”).\nWhy they appear: AR/VR and color are newer syllabus areas with broad interest. Transforms and displays\nare fundamental CG topics. Repetition of AR/VR suggests professor’s focus (Tier A). Rasterization, filling,\nimage processing have been less emphasized historically (Tier B/C) but still core taught topics. Possibly\nfilling will show up on exam once.\nHigh-Priority Focus Areas\nTier A (Highest Priority): Augmented Reality/Virtual Reality (AR/VR/MR/XR), Color Models, Graphics\nSystems/Display, 2D Transformations.\nJustification: These topics have the most frequent exam appearances and are heavily covered in\nlectures. AR/VR are consistently tested; professor emphasizes differences and types. Color theory\nand transformation fundamentals are also repeated and appear critical.\nTier B (Important): Rasterization (lines, circles) and core image processing (filtering, histogram).\nJustification: While less frequent historically, these are core to the syllabus. Questions on line\nalgorithms or smoothing/sharpening could appear. Should prepare well but prioritize after Tier A.\nTier C (Lower Priority): Region filling algorithms, advanced vision (classification/detection details),\n360° video.\nJustification: No past exam questions on filling or 360° specifically; likely less tested. Understanding is\nstill needed, but after A/B. If time is limited, focus on A/B first.\nExam Prediction\nConfidence Levels: Based on syllabus emphasis and past trends.\n(High) AR/VR Concept Question: e.g. “Describe how augmented reality differs from virtual reality and\ngive one example of each.”\nReason: AR/VR repeatedly appear; definitions and differences are asked almost yearly. Lecture slides\nexplicitly compare AR vs VR【11†L279-L287】【13†L242-L250】. \n(High) 2D Transform Sequence: e.g. “Find the composite transformation matrix for a rotation of 30°\nabout point (x0,y0) followed by a translation.”\nReason: 2D transform formulas and composition are core; many exam Qs involve combining\ntransforms or specific cases (rotate about origin vs other point). \n(Medium) Color Conversion: e.g. “Convert RGB(255,128,0) to HSV.” or “Given a color, compute its LUT\nindex in 8-bit.”\nReason: Color is now heavily covered; slides included examples of LUT indexing. Likely an example\ncalculation (similar to our reinforcement Q). \n(Medium) Bresenham vs DDA: e.g. “Explain Bresenham’s algorithm for lines; why is it faster than\nDDA?”\nReason: Lines seldom appear, but this concept was taught explicitly; could be a short-answer or MCQ.\n• \n• \n• \n• \n• \n• \n• \n• \n16\n",
+      "subsections": [
+        {
+          "title": "Topic Frequency Analysis",
+          "bullets": [
+            "We examined finals/midterms (2021–2025). The most frequently tested topics (present in current syllabus) are: Augmented Reality (AR): Appears consistently high (e.g. 14–15 mentions/year after 2021). AR is a top priority. Graphics Systems & Coordinate Concepts: (Fundamentals: frame buffer, pixels, transformations)."
+          ]
+        },
+        {
+          "title": "Pattern Analysis",
+          "bullets": [
+            "AR/VR Questions: Often definition or concept. E.g. “Name AR types”, “SLAM vs markers”, “VR immersion levels”. They repeat vocabulary and differences (AR vs VR). They test conceptual understanding, not numeric calculation. Color/Display: Newer trend: color spaces often grouped (RGB vs CMY vs HSV). Past Qs may ask for conversions or properties (e.g. “subtract CMY from 1”). Watch for “gamut problems” or “undercolor removal” type traps. Transformations: Common style: “Given a sequence of transforms, find final matrix or coordinates.” Or conceptual “properties of transform matrices”. Professors often invert order or change pivot – check slides on center-of-rotation (traps). Raster Lines: Rare but when asked, usually algorithmic: e.g. “What is decision parameter after k steps?” or “Compare DDA vs Bresenham”. Sometimes fill-in-a-table of coordinates for a line. Circle Algorithms: Even rarer. Possibly “midpoint circle vs parametric” or “point symmetry logic.” Might test understanding of octant plotting. Histogram/Filters: When used, in multiple-choice quizzes in slides. But few exam Qs. If asked, likely concept: “Which filter preserves edges best?” (Answer: median) or “What does histogram equalization do?”. • • • • • • • • • • 15 Computer Vision/Thresholding: Rare single questions, often conceptual “CV vs CG vs IP?” or “Thresholding example.” The slides had a few MCQs (like “Thresholding outputs binary image”). Why they appear: AR/VR and color are newer syllabus areas with broad interest. Transforms and displays are fundamental CG topics. Repetition of AR/VR suggests professor’s focus (Tier A). Rasterization, filling, image processing have been less emphasized historically (Tier B/C) but still core taught topics. Possibly filling will show up on exam once."
+          ]
+        },
+        {
+          "title": "High-Priority Focus Areas",
+          "bullets": [
+            "Tier A (Highest Priority): Augmented Reality/Virtual Reality (AR/VR/MR/XR), Color Models, Graphics"
+          ]
+        },
+        {
+          "title": "Exam Prediction",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "mock_exam",
+      "title": "Mock Exam",
+      "pages": [
+        17,
+        18,
+        19
+      ],
+      "raw_text": "(Medium/Low) Histogram Equalization: e.g. “What does histogram equalization do to an image’s\ncontrast?” Possibly accompanied by a small histogram example.\nReason: One question on histogram was in slides; less tested in past, but fair chance for a conceptual\nquestion. \n(Low) Region Filling Pseudocode: e.g. “Give pseudocode for flood-fill with 4-neighbors.”\nReason: Lecture included it, but no past exam Q. Could appear, but less certain. \n(Low) 360° Video: e.g. “What is a 360° video and how is it used?”\nReason: Lecture had it, but historical exam frequency is zero. Could be a single MCQ or a small part of\na larger AR question.\nFor each prediction, support patterns: AR/VR predictions from frequent past questions (Professor loves XR\ntopics). Transforms from fundamental importance. Color from new slides + patterns. Low-confidence if no\ndirect precedent but aligned with recent syllabus.\nMock Exam\nInstructions: Solve all parts. Use lecture concepts; show relevant formulas or reasoning.\n(Easy) Computer Graphics vs Computer Vision: Briefly differentiate CG, Image Processing, and\nComputer Vision in terms of purpose and outputs. \n(Easy) RGB and CMY: Given an RGB color (0.2, 0.5, 0.7), compute the corresponding CMY values. \n(Easy) Histogram Stretch: An 8-bit image has min intensity 50, max 200. What linear transformation\nmaps this range to [0,255]? \n(Medium) 2D Transform: Apply a 90° rotation about the point (2,3) to the point (5,7). Show steps\n(translate, rotate, translate back). \n(Medium) Line Rasterization: Draw by calculation (DDA or Bresenham) the pixels for the line from\n(2,3) to (7,5). (List coordinates of chosen pixels.) \n(Medium) Augmented Reality: List and briefly explain three types of AR. \n(Hard) Circle Drawing: Outline Bresenham’s midpoint circle algorithm steps for radius r=5. Compute\nthe first few points. \n(Hard) Image Filtering: Given a 5×5 grayscale patch, apply a 3×3 mean filter and a 3×3 median filter to\nthe center pixel. (Use given values.) \n(Hard) Virtual Reality: Describe three levels of VR immersion and give an example device or scenario\nfor each. \n(Hard) Composite Transform: Find the single 3×3 homogeneous matrix that translates by (1,2), then\nrotates 45°, then scales by 2 in x and 0.5 in y (about the origin). \nAnswer Key\nAnswer: CG generates images; IP enhances/filters images; CV interprets/analyzes images.\nExplanation: CG = synthesis (e.g. rendering objects). IP = modify existing image (denoise). CV =\nextract info (detect faces). \nAnswer: CMY = (1–R, 1–G, 1–B) = (0.8, 0.5, 0.3).\nExplanation: Subtractive complement of RGB (assuming normalized [0,1]). \n• \n• \n• \n1. \n2. \n3. \n4. \n5. \n6. \n7. \n8. \n9. \n10. \n1. \n2. \n17\n\n\nAnswer: New = round((old–50)(255/(200–50))). Formula: new = (old–50)1.7 (approx).\nExplanation: It linearly maps 50→0 and 200→255. (Exact factor=255/150 = 1.7). \nAnswer: Translate (2,3) to origin: (x–2, y–3): (5–2,7–3)=(3,4). Rotate 90°: (x',y')=(-4,3). Translate back:\nadd (2,3): (x'',y'') = (-4+2,3+3)=(-2,6).\nExplanation: Rotation matrix used is [0 -1;1 0]. Check each step. \nAnswer: Δx=5, Δy=2, Δx>Δy. Using Bresenham: start at (2,3). p0 = 2Δy–Δx = 4–5 = -1. \nStep 1: (3,3), p<0 → p1 = p0+2Δy = -1+4=3. \nStep 2: (4,4), p1>=0 → p2 = p1+2(Δy–Δx) = 3+2*(2–5) = -3. \nStep 3: (5,4), p2<0 → p3 = -3+4 = 1. \nStep 4: (6,5), p3>=0 → p4 = 1+2*(2–5) = -5. \nStep 5: (7,5).\nPixels: (2,3), (3,3), (4,4), (5,4), (6,5), (7,5).\nExplanation: This sequence approximates the line. Verify symmetrical stepping.\nAnswer: (a) Marker-based AR: Uses visual markers to place content (e.g. QR codes for AR). (b) \nMarkerless/SLAM: Uses camera/IMU to map environment (e.g. AR navigation on phone). (c) Projection\nAR: Projects images onto surfaces (e.g. interactive tabletop display).\nExplanation: Each type augments differently; lecture listed these categories.\nAnswer: Radius=5. Start at (x=0,y=5), p=1–5=–4. \n(0,5): plot. p<0 → next (1,5), p1=−4+2*0+3=−1. \np1<0 → next (2,5), p2=−1+2*1+3=4. \np2>=0 → next (3,4), p3=4+2(2−5)+5=4+2(−3)+5=−1. \np3<0 → (4,4), p4=−1+2*3+3=8. \nContinue until x>y. Points in first octant: (0,5), (1,5), (2,5), (3,4), (4,4). (Then symmetric).\nExplanation: This follows midpoint logic. (Full fill would mirror these points to get the circle.) \nAnswer: Suppose center value= C, neighbors shown (example needed). For mean: replace center\nwith average of 3×3 values. For median: sort 9 values, pick middle.\nExample: If patch = \n10 20 30\n20 50 40\n30 40 60\n3. \n4. \n5. \n6. \n7. \n8. \n9. \n10. \n11. \n12. \n13. \n14. \n15. \n16. \n17. \n18. \n18\n\n\nMean: (sum=300) avg=33 (rounded). Median: sorted [10,20,20,30,30,40,40,50,60], median=30.\nExplanation: Mean blurs uniformly, median preserves a typical neighbor.\nAnswer: (a) Non-immersive: PC or console games (simple 3D on screen). (b) Semi-immersive: Flight\nsimulators with partial cockpit or large screen. (c) Fully immersive: VR headset (e.g. Oculus Rift) gives\n360° view and tracking.\nExplanation: These align with lecture: lower levels offer partial immersion, full requires HMD.\nAnswer: Translation(1,2): $T=\\begin{pmatrix}1&0&1\\0&1&2\\0&0&1\\end{pmatrix}$. Rotation45°:\n$R=\\begin{pmatrix}c&-s&0\\s&c&0\\0&0&1\\end{pmatrix}$ with $c=\\cos45°=0.7071$, $s=0.7071$.\nScaling: $S=\\begin{pmatrix}2&0&0\\0&0.5&0\\0&0&1\\end{pmatrix}$. Composite = $S \\cdot R \\cdot T$\n(matrix multiply in that order).\nNumerically: \n(Final numeric multiplication yields the answer matrix.)\nExplanation: Multiply as 3×3. Order: last applied is leftmost or vice versa depending convention;\ncareful to match lecture convention.\n1. \n2. \nM =\n.\n2\n0\n0\n0\n0.5\n0\n0\n0\n1\n0.7071\n0.7071\n0\n−0.7071\n0.7071\n0\n0\n0\n1\n1\n0\n0\n0\n1\n0\n1\n2\n1\n19\n",
+      "subsections": [
+        {
+          "title": "Document Text",
+          "bullets": [
+            "(Medium/Low) Histogram Equalization: e.g. “What does histogram equalization do to an image’s contrast?” Possibly accompanied by a small histogram example.",
+            "Reason: One question on histogram was in slides; less tested in past, but fair chance for a conceptual question. (Low) Region Filling Pseudocode: e.g. “Give pseudocode for flood-fill with 4-neighbors.”",
+            "Reason: Lecture included it, but no past exam Q. Could appear, but less certain. (Low) 360° Video: e.g. “What is a 360° video and how is it used?”",
+            "Reason: Lecture had it, but historical exam frequency is zero. Could be a single MCQ or a small part of a larger AR question.",
+            "For each prediction, support patterns: AR/VR predictions from frequent past questions (Professor loves XR topics). Transforms from fundamental importance. Color from new slides + patterns. Low-confidence if no direct precedent but aligned with recent syllabus.",
+            "Mock Exam",
+            "Instructions: Solve all parts. Use lecture concepts; show relevant formulas or reasoning. (Easy) Computer Graphics vs Computer Vision: Briefly differentiate CG, Image Processing, and",
+            "Computer Vision in terms of purpose and outputs. (Easy) RGB and CMY: Given an RGB color (0.2, 0.5, 0.7), compute the corresponding CMY values. (Easy) Histogram Stretch: An 8-bit image has min intensity 50, max 200. What linear transformation maps this range to [0,255]? (Medium) 2D Transform: Apply a 90° rotation about the point (2,3) to the point (5,7). Show steps (translate, rotate, translate back). (Medium) Line Rasterization: Draw by calculation (DDA or Bresenham) the pixels for the line from (2,3) to (7,5). (List coordinates of chosen pixels.) (Medium) Augmented Reality: List and briefly explain three types of AR. (Hard) Circle Drawing: Outline Bresenham’s midpoint circle algorithm steps for radius r=5. Compute the first few points. (Hard) Image Filtering: Given a 5×5 grayscale patch, apply a 3×3 mean filter and a 3×3 median filter to the center pixel. (Use given values.) (Hard) Virtual Reality: Describe three levels of VR immersion and give an example device or scenario for each. (Hard) Composite Transform: Find the single 3×3 homogeneous matrix that translates by (1,2), then rotates 45°, then scales by 2 in x and 0.5 in y (about the origin).",
+            "Answer Key",
+            "Answer: CG generates images; IP enhances/filters images; CV interprets/analyzes images.",
+            "Explanation: CG = synthesis (e.g. rendering objects). IP = modify existing image (denoise). CV = extract info (detect faces).",
+            "Answer: CMY = (1–R, 1–G, 1–B) = (0.8, 0.5, 0.3).",
+            "Explanation: Subtractive complement of RGB (assuming normalized [0,1]).",
+            "6.",
+            "7.",
+            "8.",
+            "9.",
+            "10.",
+            "Answer: New = round((old–50)(255/(200–50))). Formula: new = (old–50)1.7 (approx).",
+            "Explanation: It linearly maps 50→0 and 200→255. (Exact factor=255/150 = 1.7).",
+            "Answer: Translate (2,3) to origin: (x–2, y–3): (5–2,7–3)=(3,4). Rotate 90°: (x',y')=(-4,3). Translate back: add (2,3): (x'',y'') = (-4+2,3+3)=(-2,6).",
+            "Explanation: Rot"
+          ]
+        },
+        {
+          "title": "Note",
+          "bullets": [
+            "The mock exam and answer key are preserved in the raw_text field; the JSON also keeps page-level text for exact reconstruction."
+          ]
+        }
+      ]
+    }
+  ]
+}

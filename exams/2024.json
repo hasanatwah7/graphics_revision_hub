@@ -1,0 +1,162 @@
+{
+  "year": 2024,
+  "exam_type": "Final",
+  "subject": "Computer Graphics",
+  "questions": [
+    {
+      "number": 1,
+      "question": "Mansoura University Faculty of Computers and Information Information Systems Department Final Exam - 60 Questions (60 Points) - Model (2 A popular form of collision representation for humanoid characters . Relies on GPS, digital compass, velocity meter, or accelerometer . games that are played on feature phones, smart phones, tables, etc. . 3D modelling techniques include . Game business model where it collects the data/information from the users and sell it . designs what a game consists of and how it plays, defining all the core elements . To get the dot product of two vectors . Value is the brightness of the color. It ranges from 0 to 100 in Game Programming, AI stupidity rules include The amount of elapsed game time since the last frame. independent video games, most often created without the publisher’s financial support Architectural drawing with no distance distortion is presented using We perform ............... On a single coordinate point by adding offsets to its coordinates so as to generate a new coordinate position. least immersive implementation of virtual reality technology Final Exam - 60 Questions (60 Points) - Model (2) - Page 1 of 4 . A collection of 2D sprites are made to move independently of each other to create a sense of added depth",
+      "options": {
+        "A": "non-immersive simulations (B) semi-immersive simulations (C) fully-immersive simulations",
+        "D": "none"
+      }
+    },
+    {
+      "number": 21,
+      "question": "pixels’ intensities in local regions are very similar . creates the soundtrack for a game, including music, sound effects, character voics and spoken instructions",
+      "options": {
+        "A": "animator (B) gamedesigner (C) audioengineer (D) game programmer"
+      }
+    },
+    {
+      "number": 23,
+      "question": "The maximum amount of colors in an indexed table is 23. DB. . Sealing factors with absolute values less than 1 move objects .............. the coordinate origin",
+      "options": {
+        "A": "closer to (B) farther than (C) both (D) not related"
+      }
+    },
+    {
+      "number": 25,
+      "question": "In Harmony Schemes, if we choose three colors which lie close together on a color wheel. This is calkd (4) Monochromatic (B) Complementary (C) Analogous (D) Tetradic _ combines live action with CGI VFX A technique that uses video cameras to capture motion of light-emitting diodes placed on the joints of the sector's Socr 2D ixnage that the vertex can use to decorate the surface it is part of instead of a simple color Is created by combining black and white—or grey—with a base hue A player is standing at (1,2) with a laser rifle, and an enemy robot is at (4,3). To get the vector that the lsser most travel, you can . Super precise collision detection, but it requires some serious system resources. . In 3D, types of normal include When the vectors are pointing the same direction the dot product is Final Exam - 60 Questions (60 Points) - Model (2) - Page 2 of 4",
+      "options": {
+        "A": "zero (B) negative (C) positive (D) none"
+      }
+    },
+    {
+      "number": 12,
+      "question": "collection of vertices, edges, and faces that define the shape of a 3D object",
+      "options": {
+        "A": "position (B) color (C) normal (D) texture"
+      }
+    },
+    {
+      "number": 43,
+      "question": "Imaginary geometric shapes around game objects that are used to determine collision detection.",
+      "options": {
+        "A": "hitboxes (B) sprite sheet (C) tilemap (D) loop"
+      }
+    },
+    {
+      "number": 44,
+      "question": "Move the camera forward or backward, toward or away from the subject",
+      "options": {
+        "A": "pan (B) tilt (C) roll (D) dolly"
+      }
+    },
+    {
+      "number": 45,
+      "question": "Information can be deemed — irrelevant when the image sample density exceeds the limits of visual acuity given the display /viewing conditions",
+      "options": {
+        "A": "visual (B) application-specific"
+      }
+    },
+    {
+      "number": 46,
+      "question": "The subset of colors which can be accurately represented within a given color space or by a certain output device",
+      "options": {
+        "A": "color model (B) GAMUT (C) both A and BB (D) no correct answer"
+      }
+    },
+    {
+      "number": 47,
+      "question": "Perceived achromatic intensity of reflecting object",
+      "options": {
+        "A": "hue (B) saturation (C) lightness (D) no correct answer"
+      }
+    },
+    {
+      "number": 48,
+      "question": "VFX uses include",
+      "options": {
+        "A": "add impressive content to the movie (B) create an imaginary environment (C) add special effects (D) all"
+      }
+    },
+    {
+      "number": 49,
+      "question": "where multiple objects fight to be renered closest to the camera",
+      "options": {
+        "A": "X-Fighting (B) Y-Fighting (C) B-Fighting (D) Z-Fighting"
+      }
+    },
+    {
+      "number": 50,
+      "question": "Is the number of bits that are used for each pixel,",
+      "options": {
+        "A": "resolution (B) depth (C) resolution (D) ratio"
+      }
+    },
+    {
+      "number": 51,
+      "question": "The light that exposes the outline of the subject. 52, The tendency for the different parts/clements of your object to move with different timings",
+      "options": {
+        "A": "anticipation (B) Exaggeration (C) overlapping (D) spacing"
+      }
+    },
+    {
+      "number": 53,
+      "question": "Can be easily scaled and otherwise manipulated to accommodate the resolution of a spectrum of output devices",
+      "options": {
+        "A": "vector images (B) raster images (C) BMP images (D) none"
+      }
+    },
+    {
+      "number": 54,
+      "question": "Game business model that is a one-time deal to sell the game and its code to another company",
+      "options": {
+        "A": "hybrid model (B) crowdsourcing model (C) licensing (D) non-game focused monetization"
+      }
+    },
+    {
+      "number": 55,
+      "question": "allows players to select an item from a menu or interact with the environment with minimal neck and head gestures",
+      "options": {
+        "A": "gaze control (B) eye control (C) speech control (D) arm control"
+      }
+    },
+    {
+      "number": 56,
+      "question": "Game business model that is a mix between in-app purchases and ad-display",
+      "options": {
+        "A": "hybrid model (B) crowdsourcing model (C) licensing (D) non-game focused monetization"
+      }
+    },
+    {
+      "number": 57,
+      "question": "The most common visual effect used",
+      "options": {
+        "A": "CGI (B) Compositing and green screen (C) Motion capture (D) all"
+      }
+    },
+    {
+      "number": 58,
+      "question": "is a game designed for a primary purpose other than pure entertainment",
+      "options": {
+        "A": "serious game (B) applied game (C) a,b (D) none"
+      }
+    },
+    {
+      "number": 59,
+      "question": "implies a complete immersion experience that replaces the physical world",
+      "options": {
+        "A": "AR (B) MR (C) VR (D) XR"
+      }
+    },
+    {
+      "number": 60,
+      "question": "A transformation that distorts the shape of an object layers that had been caused to slide over each other is called. Best Wishes Dr. Haitham El-Ghareeb, Dr. Nabila El-Adawy",
+      "options": {
+        "A": "reflection (B) shear (C) rotation (D) translation"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1334 @@
+[
+  {
+    "year": 2023,
+    "exam_type": "Final",
+    "subject": "Computer Graphics",
+    "questions": [
+      {
+        "number": 1,
+        "question": "The __________ degree photos or videos are visuals in which the view in every direction is captured and presented simultaneously.",
+        "options": {
+          "A": "180",
+          "B": "660",
+          "C": "360"
+        },
+        "answer": "C",
+        "explanation": "360-degree cameras capture spherical video/images covering all directions simultaneously."
+      },
+      {
+        "number": 2,
+        "question": "In Room Scale based VR Locomotion, user is teleported immediately to target location.",
+        "options": {
+          "A": "True",
+          "B": "False"
+        },
+        "answer": "B",
+        "explanation": "In room-scale VR, the user physically walks around in their real space to move in the virtual space. Teleportation is a separate locomotion technique to cover larger distances."
+      },
+      {
+        "number": 3,
+        "question": "The __________ games are sold to user with a given price. So, user has to pay to play the game.",
+        "options": {
+          "A": "Ad-Supported",
+          "B": "Premium",
+          "C": "Free"
+        },
+        "answer": "B",
+        "explanation": "Premium games require an upfront payment to purchase and download them."
+      },
+      {
+        "number": 4,
+        "question": "__________ is essentially the process by which a color is removed from an image. For example: Green Screens.",
+        "options": {
+          "A": "Chroma Keying",
+          "B": "Normal Mapping",
+          "C": "Displacement Vectorization"
+        },
+        "answer": "A",
+        "explanation": "Chroma Keying involves isolating and removing a specific color (usually green or blue) to replace it with a background image or video."
+      },
+      {
+        "number": 5,
+        "question": "The __________ refers to when a collection of 2D sprites or layers of sprites are made to move independently to create a sense of added depth (simulated Z-depth).",
+        "options": {
+          "A": "Crowd-Sourcing",
+          "B": "Parallax scrolling",
+          "C": "Augmented Reality"
+        },
+        "answer": "B",
+        "explanation": "Parallax scrolling moves background layers slower than foreground layers, creating an illusion of depth in 2D games."
+      },
+      {
+        "number": 6,
+        "question": "The length of __________ vector is always one unit.",
+        "options": {
+          "A": "Normalized",
+          "B": "Rotated",
+          "C": "Sheared"
+        },
+        "answer": "A",
+        "explanation": "A normalized vector (unit vector) has a length of exactly 1."
+      },
+      {
+        "number": 7,
+        "question": "In game loop, the __________ phase is responsible for detecting input from user (such as keyboard and mouse).",
+        "options": {
+          "A": "Updating world",
+          "B": "Generating Output",
+          "C": "Processing Input"
+        },
+        "answer": "C",
+        "explanation": "The three phases of a game loop are: Process Input, Update World, and Render Output."
+      },
+      {
+        "number": 8,
+        "question": "The __________ map is useful to create large 2D scenes that contain repeatable drawing patterns (shapes).",
+        "options": {
+          "A": "Tile",
+          "B": "Name",
+          "C": "Vector"
+        },
+        "answer": "A",
+        "explanation": "Tilemaps use small, reusable image squares (tiles) to construct large game environments efficiently."
+      },
+      {
+        "number": 9,
+        "question": "In isometric projection, the angle between each of the three axes is __________.",
+        "options": {
+          "A": "100°",
+          "B": "120°",
+          "C": "150°"
+        },
+        "answer": "B",
+        "explanation": "An isometric projection shows three dimensions with 120 degrees of separation between the projected axes."
+      },
+      {
+        "number": 10,
+        "question": "The __________ is the part of the animation software that represents the animation's progress over time.",
+        "options": {
+          "A": "TimeLine",
+          "B": "FrameLine",
+          "C": "Working on Two's"
+        },
+        "answer": "A",
+        "explanation": "The timeline displays frames sequentially, indicating how properties change over time."
+      },
+      {
+        "number": 11,
+        "question": "The magnetic motion capture uses __________ placed on an actor's body that measure magnetic fields created by a transmitter.",
+        "options": {
+          "A": "Colors",
+          "B": "Sensors",
+          "C": "Clays"
+        },
+        "answer": "B",
+        "explanation": "Magnetic motion capture tracking systems employ sensors to measure position and orientation relative to a transmitter source."
+      },
+      {
+        "number": 12,
+        "question": "The rule of __________ is a method of breaking up an image or design into different sections using columns and rows that form a grid.",
+        "options": {
+          "A": "Thirds",
+          "B": "One's",
+          "C": "Electro-mechanical"
+        },
+        "answer": "A",
+        "explanation": "The Rule of Thirds divides a composition into a 3x3 grid, aligning key subjects along the gridlines or intersections."
+      },
+      {
+        "number": 13,
+        "question": "In three point lighting theory, the fill light typically has __________ the light intensity of the key light.",
+        "options": {
+          "A": "Same",
+          "B": "Twice",
+          "C": "Half"
+        },
+        "answer": "C",
+        "explanation": "The fill light softens shadows created by the key light and is generally set to half or lower intensity."
+      },
+      {
+        "number": 14,
+        "question": "A tilt is a rotation of the camera __________.",
+        "options": {
+          "A": "Vertically (pitch)",
+          "B": "Horizontally (yaw)",
+          "C": "Randomly"
+        },
+        "answer": "A",
+        "explanation": "Tilt tilts the camera up and down (vertical rotation); Pan turns it left and right (horizontal)."
+      },
+      {
+        "number": 15,
+        "question": "The 3D __________ face has only 4 vertices.",
+        "options": {
+          "A": "Triangle",
+          "B": "Quad",
+          "C": "N-GON"
+        },
+        "answer": "B",
+        "explanation": "A Quad face is composed of 4 vertices, a triangle has 3, and an N-gon has 5 or more."
+      },
+      {
+        "number": 16,
+        "question": "The __________ modeling uses the operations of union, intersection and difference to change the geometry of a shape.",
+        "options": {
+          "A": "Primitive",
+          "B": "Laser",
+          "C": "Boolean"
+        },
+        "answer": "C",
+        "explanation": "Boolean operations combine solid models using set theory operations (union, intersect, subtract)."
+      },
+      {
+        "number": 17,
+        "question": "In UV mapping, the coordinates U and V are normalized and range from 0 to __________.",
+        "options": {
+          "A": "1",
+          "B": "2",
+          "C": "1000"
+        },
+        "answer": "A",
+        "explanation": "UV texture coordinates map points on a 3D model to coordinates in 2D textures ranging from 0.0 to 1.0."
+      },
+      {
+        "number": 18,
+        "question": "__________ mapping uses RGB values to control the surface normal components (X, Y, Z) and create the illusion of fake depth.",
+        "options": {
+          "A": "Bump",
+          "B": "Displacement",
+          "C": "Normal"
+        },
+        "answer": "C",
+        "explanation": "Normal maps encode normal vectors as color channels (R=X, G=Y, B=Z) to modify lighting response."
+      },
+      {
+        "number": 19,
+        "question": "When an object's position is calculated relative to the position of another object, it is called __________.",
+        "options": {
+          "A": "Relative position",
+          "B": "Absolute position",
+          "C": "Fixed position"
+        },
+        "answer": "A",
+        "explanation": "Relative positioning defines coordinates in reference to a parent or target object's system."
+      },
+      {
+        "number": 20,
+        "question": "The size of an 8-bit color depth image is __________ the size of a 24-bit image of the same resolution.",
+        "options": {
+          "A": "One-fourth",
+          "B": "One-third",
+          "C": "Two-thirds"
+        },
+        "answer": "B",
+        "explanation": "8 bits is 1 byte, while 24 bits is 3 bytes. Thus, the storage size is 1/3 of the 24-bit equivalent."
+      },
+      {
+        "number": 21,
+        "question": "When the image contains large areas of uniform color, it is recommended to use the __________ format.",
+        "options": {
+          "A": "BMP",
+          "B": "GIF",
+          "C": "JPEG"
+        },
+        "answer": "B",
+        "explanation": "GIF/PNG are lossless formats ideal for sharp lines and flat colors, while JPEG is designed for smooth gradients in photos."
+      },
+      {
+        "number": 22,
+        "question": "In additive color models (like RGB), mixing two colors results in a __________.",
+        "options": {
+          "A": "Same color",
+          "B": "Darker color",
+          "C": "Brighter color"
+        },
+        "answer": "C",
+        "explanation": "Additive mixing combines light waves, which increases total light energy and produces a brighter color."
+      },
+      {
+        "number": 23,
+        "question": "The subset of colors which can be accurately represented within a given color space or by a certain output device is called the __________.",
+        "options": {
+          "A": "Color harmony",
+          "B": "GAMUT",
+          "C": "Both"
+        },
+        "answer": "B",
+        "explanation": "The gamut of an output device is the complete subset of colors that it can accurately reproduce."
+      },
+      {
+        "number": 24,
+        "question": "Saturation ranges from 0 to 100%. When saturation is 0%, the color becomes __________.",
+        "options": {
+          "A": "Grey",
+          "B": "Primary color",
+          "C": "Faded color"
+        },
+        "answer": "A",
+        "explanation": "At 0% saturation, there is no chromatic color component left, resulting in grayscale (grey/white/black)."
+      },
+      {
+        "number": 25,
+        "question": "In color harmony schemes, choosing three colors that lie close together on the color wheel is called __________.",
+        "options": {
+          "A": "Monochromatic",
+          "B": "Complementary",
+          "C": "Analogous"
+        },
+        "answer": "C",
+        "explanation": "Analogous colors are adjacent to each other on the color wheel (e.g. Red, Red-Orange, Orange)."
+      },
+      {
+        "number": 26,
+        "question": "A __________ is created by adding black to a base hue.",
+        "options": {
+          "A": "Shade",
+          "B": "Tint",
+          "C": "Tone"
+        },
+        "answer": "A",
+        "explanation": "Shade = Hue + Black. Tint = Hue + White. Tone = Hue + Grey."
+      },
+      {
+        "number": 27,
+        "question": "A rigid body transformation that moves objects without deformation is __________.",
+        "options": {
+          "A": "Translation",
+          "B": "Scaling",
+          "C": "Shear"
+        },
+        "answer": "A",
+        "explanation": "Rigid body transformations preserve shapes and lengths (Translation and Rotation)."
+      },
+      {
+        "number": 28,
+        "question": "In some systems, negative values can be specified for the scaling parameters, this results in __________.",
+        "options": {
+          "A": "Rotation",
+          "B": "Reflection",
+          "C": "Shear"
+        },
+        "answer": "B",
+        "explanation": "A negative scaling factor reflects the coordinates across the respective axis."
+      },
+      {
+        "number": 29,
+        "question": "A reflection about the line x = 0 (the y-axis) flips __________ coordinates while keeping __________ coordinates the same.",
+        "options": {
+          "A": "Y, X",
+          "B": "X, Y",
+          "C": "X, X"
+        },
+        "answer": "B",
+        "explanation": "Reflection across the y-axis changes (x, y) to (-x, y), thereby flipping the X coordinates while keeping Y constant."
+      },
+      {
+        "number": 30,
+        "question": "A transformation that distorts the shape of an object, like sliding layers over each other, is called __________.",
+        "options": {
+          "A": "Reflection",
+          "B": "Shear",
+          "C": "Rotation"
+        },
+        "answer": "B",
+        "explanation": "Shearing slants objects in one direction by an offset proportional to their distance along the other axis."
+      },
+      {
+        "number": 31,
+        "question": "The need to compress media data is motivated by __________.",
+        "options": {
+          "A": "Storage requirements",
+          "B": "Transmission requirements",
+          "C": "Both storage and transmission"
+        },
+        "answer": "C",
+        "explanation": "Compression makes files smaller for disk storage and enables faster transfer speeds over networks."
+      },
+      {
+        "number": 32,
+        "question": "Compression can be considered as a science.",
+        "options": {
+          "A": "True",
+          "B": "False"
+        },
+        "answer": "A",
+        "explanation": "Information theory, coding, and signal processing form the scientific basis of data compression."
+      },
+      {
+        "number": 33,
+        "question": "__________ irrelevancy occurs when the image sample density exceeds the limits of visual acuity.",
+        "options": {
+          "A": "Visual (Psychovisual)",
+          "B": "Application-specific",
+          "C": "Statistical"
+        },
+        "answer": "A",
+        "explanation": "Visual irrelevancy represents details in an image that the human eye cannot perceive under normal viewing conditions."
+      },
+      {
+        "number": 34,
+        "question": "The image signal has statistical redundancy.",
+        "options": {
+          "A": "True",
+          "B": "False"
+        },
+        "answer": "A",
+        "explanation": "Adjacent pixels in an image tend to have similar values, meaning there is spatial redundancy that can be compressed."
+      },
+      {
+        "number": 35,
+        "question": "Entropy represents the average amount of information contained per symbol in the source S.",
+        "options": {
+          "A": "True",
+          "B": "False"
+        },
+        "answer": "A",
+        "explanation": "Entropy (H) measures the absolute minimum bits needed on average to encode messages from a source."
+      },
+      {
+        "number": 36,
+        "question": "Given a picture that has an equal distribution of black and white pixels, where probabilities are P1=0.5 and P2=0.5, the entropy H is __________.",
+        "options": {
+          "A": "0",
+          "B": "1",
+          "C": "2"
+        },
+        "answer": "B",
+        "explanation": "H = - (0.5 * log2(0.5) + 0.5 * log2(0.5)) = 0.5 + 0.5 = 1 bit per pixel."
+      },
+      {
+        "number": 37,
+        "question": "LZW uses fixed-length codewords to represent variable-length strings of symbols/characters that commonly occur together.",
+        "options": {
+          "A": "True",
+          "B": "False"
+        },
+        "answer": "A",
+        "explanation": "LZW builds a dictionary mapping variable-length strings to fixed-size indexes (typically 12 bits)."
+      },
+      {
+        "number": 38,
+        "question": "Computer vision is concerned with the theory for building artificial systems that obtain information from images.",
+        "options": {
+          "A": "True",
+          "B": "False"
+        },
+        "answer": "A",
+        "explanation": "Computer vision aims to extract meaning, interpretations, or 3D geometry from digital images/videos."
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "exam_type": "Final",
+    "subject": "Computer Graphics",
+    "questions": [
+      {
+        "number": 1,
+        "question": "A popular form of collision representation for humanoid characters in video games is a:",
+        "options": {
+          "A": "Bounding Box (AABB/OBB)",
+          "B": "Capsule",
+          "C": "Bounding Circle"
+        },
+        "answer": "B",
+        "explanation": "Capsules are widely preferred for humanoid characters because they fit tall, standing shapes well and slide smoothly off walls."
+      },
+      {
+        "number": 2,
+        "question": "Markerless/Location-based AR aligns virtual objects with the real world using device sensors, which typically include:",
+        "options": {
+          "A": "GPS, digital compass, and accelerometer",
+          "B": "Printed physical markers",
+          "C": "Laser scanning exclusively"
+        },
+        "answer": "A",
+        "explanation": "Location-based AR relies on device sensors (GPS, compass, gyroscope) and visual tracking algorithms like SLAM."
+      },
+      {
+        "number": 3,
+        "question": "Which game developer role is responsible for creating the soundtrack, sound effects, and voice overs?",
+        "options": {
+          "A": "Animator",
+          "B": "Audio Engineer / Sound Designer",
+          "C": "Game Programmer"
+        },
+        "answer": "B",
+        "explanation": "Audio engineers manage all sound assets, ambient sounds, soundtracks, and dialogue tracks."
+      },
+      {
+        "number": 4,
+        "question": "Scaling factors with absolute values less than 1 move points __________ the coordinate origin.",
+        "options": {
+          "A": "Closer to",
+          "B": "Farther from",
+          "C": "Neither"
+        },
+        "answer": "A",
+        "explanation": "Scaling factors |s| < 1 compress coordinates, bringing them closer to the center of scaling (origin)."
+      },
+      {
+        "number": 5,
+        "question": "What is the maximum number of colors that can be defined in a standard 8-bit indexed color palette (LUT)?",
+        "options": {
+          "A": "16",
+          "B": "256",
+          "C": "16.7 Million"
+        },
+        "answer": "B",
+        "explanation": "An 8-bit index can address up to 2^8 = 256 unique colors in a Lookup Table."
+      },
+      {
+        "number": 6,
+        "question": "In the HSV color model, Value (V) represents the brightness of the color and ranges from 0 to __________.",
+        "options": {
+          "A": "1",
+          "B": "100",
+          "C": "360"
+        },
+        "answer": "B",
+        "explanation": "HSV channels are: Hue (0-360°), Saturation (0-100%), and Value (0-100%)."
+      },
+      {
+        "number": 7,
+        "question": "What is 'delta time' in game programming?",
+        "options": {
+          "A": "The time of the current frame relative to system boot",
+          "B": "The elapsed game time since the last frame",
+          "C": "The fixed refresh rate of the display monitor"
+        },
+        "answer": "B",
+        "explanation": "Delta time measures frame duration, allowing movement calculations to be normalized for framerate independence."
+      },
+      {
+        "number": 8,
+        "question": "Independent video games, most often created without publisher financial support, are called:",
+        "options": {
+          "A": "Triple-A games",
+          "B": "Indie games",
+          "C": "Social games"
+        },
+        "answer": "B",
+        "explanation": "Indie (Independent) games are developed by small teams or individuals without corporate backing."
+      },
+      {
+        "number": 9,
+        "question": "Architectural drawings with no distance distortion (parallel projection) are presented using:",
+        "options": {
+          "A": "Perspective projection",
+          "B": "Orthographic projection",
+          "C": "Isometric projection only"
+        },
+        "answer": "B",
+        "explanation": "Orthographic projections preserve relative dimensions and lines remain parallel, preventing distance distortion."
+      },
+      {
+        "number": 10,
+        "question": "We perform __________ on a single coordinate point by adding offsets to its coordinates to generate a new coordinate position.",
+        "options": {
+          "A": "Translation",
+          "B": "Scaling",
+          "C": "Rotation"
+        },
+        "answer": "A",
+        "explanation": "Translation moves coordinates linearly: x' = x + tx, y' = y + ty."
+      },
+      {
+        "number": 11,
+        "question": "What is the least immersive implementation level of virtual reality technology?",
+        "options": {
+          "A": "Non-immersive (desktop simulation)",
+          "B": "Semi-immersive (CAVE projection)",
+          "C": "Fully-immersive (HMD glasses)"
+        },
+        "answer": "A",
+        "explanation": "Non-immersive VR renders a 3D scene on a standard 2D flat monitor without full sensory enclosing."
+      },
+      {
+        "number": 12,
+        "question": "A collection of 2D vertices, edges, and faces that define the shape of a 3D object is called a:",
+        "options": {
+          "A": "Texture map",
+          "B": "Polygon mesh",
+          "C": "Shader pipeline"
+        },
+        "answer": "B",
+        "explanation": "Meshes use connected vertex lists to model the outer surface shell of 3D objects."
+      },
+      {
+        "number": 13,
+        "question": "Imaginary bounding shapes around game objects used to determine collision detection are called:",
+        "options": {
+          "A": "Hitboxes",
+          "B": "Sprite sheets",
+          "C": "Tilemaps"
+        },
+        "answer": "A",
+        "explanation": "Hitboxes define bounding boundaries (often rectangular or circular) for fast overlap calculations."
+      },
+      {
+        "number": 14,
+        "question": "Moving a camera forward or backward, toward or away from the subject, is known as:",
+        "options": {
+          "A": "Panning",
+          "B": "Tilting",
+          "C": "Dollying"
+        },
+        "answer": "C",
+        "explanation": "Dolly refers to moving the camera rig physically closer or further away."
+      },
+      {
+        "number": 15,
+        "question": "The subset of colors which can be accurately represented within a given color space or by a certain output device is the color __________.",
+        "options": {
+          "A": "Gamut",
+          "B": "Model",
+          "C": "Harmony"
+        },
+        "answer": "A",
+        "explanation": "A gamut defines the range of colors a monitor or printer is physically capable of reproducing."
+      },
+      {
+        "number": 16,
+        "question": "What term describes the perceived achromatic intensity of a reflecting object?",
+        "options": {
+          "A": "Hue",
+          "B": "Saturation",
+          "C": "Lightness"
+        },
+        "answer": "C",
+        "explanation": "Lightness (or brightness) measures perceived intensity independently of chromaticity (hue/saturation)."
+      },
+      {
+        "number": 17,
+        "question": "A rendering issue in 3D graphics where multiple objects fight to be rendered closest to the camera due to depth precision limits is called:",
+        "options": {
+          "A": "X-Fighting",
+          "B": "Z-Fighting",
+          "C": "Z-Buffering"
+        },
+        "answer": "B",
+        "explanation": "Z-fighting occurs when coplanar polygons have identical or near-identical Z-values, causing rendering glitches."
+      },
+      {
+        "number": 18,
+        "question": "Color depth in computer graphics is defined as the:",
+        "options": {
+          "A": "Number of pixels in an image",
+          "B": "Number of bits used to represent each pixel's color",
+          "C": "Compression ratio of the file"
+        },
+        "answer": "B",
+        "explanation": "Color depth (bit depth) determines the variety of unique colors available (e.g. 24-bit depth supports 16.7M colors)."
+      },
+      {
+        "number": 19,
+        "question": "A 2D vector graphic representation is highly advantageous because it:",
+        "options": {
+          "A": "Uses a grid of pixels to store details",
+          "B": "Can be easily scaled without resolution loss",
+          "C": "Allows fotorealistic capture easily"
+        },
+        "answer": "B",
+        "explanation": "Vectors store mathematical paths (points, lines) rather than pixels, enabling infinite scaling."
+      },
+      {
+        "number": 20,
+        "question": "A transformation that distorts the shape of an object by shifting parallel layers relative to each other is:",
+        "options": {
+          "A": "Reflection",
+          "B": "Shear",
+          "C": "Translation"
+        },
+        "answer": "B",
+        "explanation": "Shearing shifts coordinates proportionally to their distance from a parallel axis: x' = x + sh_x * y."
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "exam_type": "Final",
+    "subject": "Computer Graphics",
+    "questions": [
+      {
+        "number": 1,
+        "question": "Which of the following is true for vector subtraction?",
+        "options": {
+          "A": "It sums up forces",
+          "B": "It finds the displacement vector (distance and direction) between two points",
+          "C": "It creates a scalar product"
+        },
+        "answer": "B",
+        "explanation": "Subtracting vector A from B yields the displacement vector from A to B."
+      },
+      {
+        "number": 2,
+        "question": "What is the ratio of an image's width to its height?",
+        "options": {
+          "A": "Aspect ratio",
+          "B": "Equity ratio",
+          "C": "Quantization ratio"
+        },
+        "answer": "A",
+        "explanation": "Aspect ratio is expressed as width:height (e.g., 16:9 or 4:3)."
+      },
+      {
+        "number": 3,
+        "question": "What does vector addition help compute in game physics engines?",
+        "options": {
+          "A": "Texture mappings",
+          "B": "Integrated positions and velocities",
+          "C": "Color blending values"
+        },
+        "answer": "B",
+        "explanation": "Adding velocity vectors to position vectors updates object locations over time."
+      },
+      {
+        "number": 4,
+        "question": "Which of the following statements about the HTML5 <canvas> is true?",
+        "options": {
+          "A": "Canvas content forms individual nodes in the DOM tree",
+          "B": "Canvas graphics are drawn programmatically using a JavaScript API",
+          "C": "Canvas shapes can be styled directly using CSS vector rules"
+        },
+        "answer": "B",
+        "explanation": "Canvas is a single element providing a pixel grid drawn using JS API calls."
+      },
+      {
+        "number": 5,
+        "question": "What does the Canvas function strokeText('Hello', 50, 50); do?",
+        "options": {
+          "A": "Draws filled text characters",
+          "B": "Draws the outline of text characters",
+          "C": "Underlines system text"
+        },
+        "answer": "B",
+        "explanation": "strokeText outlines the text; fillText fills it with color."
+      },
+      {
+        "number": 6,
+        "question": "What is the type name of images with 24-bit color depth?",
+        "options": {
+          "A": "Indexed color",
+          "B": "Grayscale",
+          "C": "True Color"
+        },
+        "answer": "C",
+        "explanation": "24-bit depth allocates 8 bits each for Red, Green, and Blue, creating True Color."
+      },
+      {
+        "number": 7,
+        "question": "Which of the following is NOT a valid transformation method in the HTML5 Canvas API?",
+        "options": {
+          "A": "rotate()",
+          "B": "translate()",
+          "C": "skew()"
+        },
+        "answer": "C",
+        "explanation": "Canvas supports translate, rotate, and scale. Skew is not a standard method; shear is done via transform()."
+      },
+      {
+        "number": 8,
+        "question": "Which of these is a raster graphics file format?",
+        "options": {
+          "A": "SVG",
+          "B": "PNG",
+          "C": "PDF"
+        },
+        "answer": "B",
+        "explanation": "PNG stores images as arrays of pixels (raster), while SVG stores paths (vector)."
+      },
+      {
+        "number": 9,
+        "question": "The term rendering in computer graphics refers to:",
+        "options": {
+          "A": "The process of creating 3D meshes",
+          "B": "The process of converting 3D geometric descriptions into a 2D image",
+          "C": "Adding color maps to surfaces"
+        },
+        "answer": "B",
+        "explanation": "Rendering calculates light interactions to translate virtual 3D models into flat screen pixels."
+      },
+      {
+        "number": 10,
+        "question": "What is the primary purpose of Z-buffering?",
+        "options": {
+          "A": "Storing surface texture files",
+          "B": "Handling screen refresh rate",
+          "C": "Resolving visibility and occlusion of overlapping polygons"
+        },
+        "answer": "C",
+        "explanation": "Z-buffer stores the depth of each pixel to ensure objects closer to the camera obscure those behind them."
+      },
+      {
+        "number": 11,
+        "question": "What is the output result of a cross product between two 3D vectors?",
+        "options": {
+          "A": "A scalar dot value",
+          "B": "An angle in radians",
+          "C": "A vector perpendicular to both input vectors"
+        },
+        "answer": "C",
+        "explanation": "The cross product of two vectors yields a third vector orthogonal to their plane."
+      },
+      {
+        "number": 12,
+        "question": "Which color model is often used in professional photography for a wider gamut representation?",
+        "options": {
+          "A": "YIQ",
+          "B": "Adobe RGB",
+          "C": "CMYK"
+        },
+        "answer": "B",
+        "explanation": "Adobe RGB offers a larger green-cyan gamut than sRGB, which is preferred for photography."
+      },
+      {
+        "number": 13,
+        "question": "What is delta time used for in game loops?",
+        "options": {
+          "A": "Calculating the user score",
+          "B": "Making game physics updates frame-rate independent",
+          "C": "Compressing media files"
+        },
+        "answer": "B",
+        "explanation": "Multiplying physics movements by delta time ensures objects move at the same speed regardless of frames per second."
+      },
+      {
+        "number": 14,
+        "question": "What is 'Lightness' (L) in the HSL model and how does it differ from 'Value' (V) in HSV?",
+        "options": {
+          "A": "L is the average of RGB max and min components, whereas V is simply the maximum RGB component",
+          "B": "L is the intensity of red light, whereas V is blue light",
+          "C": "There is no difference between them"
+        },
+        "answer": "A",
+        "explanation": "L in HSL is calculated as (max + min)/2, giving a symmetric scale for brightness, whereas V in HSV is max(R,G,B)."
+      },
+      {
+        "number": 15,
+        "question": "What is a shear transformation primarily used for in graphics?",
+        "options": {
+          "A": "Enlarging objects",
+          "B": "Shrinking objects",
+          "C": "Sliding parallel layers of an object relative to one another"
+        },
+        "answer": "C",
+        "explanation": "Shear shifts coordinates along one direction by an amount proportional to the other coordinate."
+      },
+      {
+        "number": 16,
+        "question": "What is the difference between stroke() and fill() in the HTML5 Canvas API?",
+        "options": {
+          "A": "stroke() outlines the path; fill() fills the path interior",
+          "B": "stroke() fills the path; fill() only outlines it",
+          "C": "They perform the exact same action"
+        },
+        "answer": "A",
+        "explanation": "fill() renders solid colors inside shapes; stroke() draws lines along shape outlines."
+      },
+      {
+        "number": 17,
+        "question": "What size matrix is standard for representing 3D transformations?",
+        "options": {
+          "A": "3x3 Matrix",
+          "B": "4x4 Matrix",
+          "C": "5x5 Matrix"
+        },
+        "answer": "B",
+        "explanation": "3D translation and projection require 4x4 matrices in homogeneous coordinates."
+      },
+      {
+        "number": 18,
+        "question": "What does anti-aliasing improve in an image?",
+        "options": {
+          "A": "Frame rendering performance",
+          "B": "Visual smoothness by reducing jagged edges (jaggies)",
+          "C": "The resolution of the source asset"
+        },
+        "answer": "B",
+        "explanation": "Anti-aliasing blends edge pixels with background colors to soften stair-step distortion."
+      },
+      {
+        "number": 19,
+        "question": "Which of the following is an additive color model used in digital displays?",
+        "options": {
+          "A": "CMYK",
+          "B": "RGB",
+          "C": "YIQ"
+        },
+        "answer": "B",
+        "explanation": "Displays mix Red, Green, and Blue light beams (additive) to create colors."
+      },
+      {
+        "number": 20,
+        "question": "What is the primary advantage of vector graphics over raster graphics?",
+        "options": {
+          "A": "Faster rendering times",
+          "B": "Resolution independence (lossless scaling)",
+          "C": "Smaller display monitor requirements"
+        },
+        "answer": "B",
+        "explanation": "Vectors scale infinitely without pixelation because they use mathematical primitives."
+      },
+      {
+        "number": 21,
+        "question": "How many bits are needed to encode 16 quantization levels in an analog-to-digital converter (ADC)?",
+        "options": {
+          "A": "2 bits",
+          "B": "4 bits",
+          "C": "8 bits"
+        },
+        "answer": "B",
+        "explanation": "2^4 = 16. Thus, 4 bits are required to represent 16 distinct quantization levels."
+      },
+      {
+        "number": 22,
+        "question": "Which of the following is NOT a primary color in the additive RGB color model?",
+        "options": {
+          "A": "Yellow",
+          "B": "Red",
+          "C": "Green"
+        },
+        "answer": "A",
+        "explanation": "Yellow is a secondary color in RGB (created by Red + Green light) but a primary in CMY subtractive models."
+      },
+      {
+        "number": 23,
+        "question": "In which aspect can Data Visualization assist researchers?",
+        "options": {
+          "A": "Analyzing and exploring data",
+          "B": "Presenting insights",
+          "C": "All of the mentioned options"
+        },
+        "answer": "C",
+        "explanation": "Data visualization aids in raw exploration, pattern detection, analysis, and final presentation of metrics."
+      },
+      {
+        "number": 24,
+        "question": "What is the purpose of the closePath() function in the Canvas API?",
+        "options": {
+          "A": "Fills the shape",
+          "B": "Draws a straight line from the current point back to the start of the current sub-path",
+          "C": "Deletes the canvas path"
+        },
+        "answer": "B",
+        "explanation": "closePath() closes a path loop by connecting the end point back to the origin of that path segment."
+      },
+      {
+        "number": 25,
+        "question": "If scaling factors Sx, Sy, and Sz are equal in 3D transformations, it is called:",
+        "options": {
+          "A": "Differential scaling",
+          "B": "Reflection",
+          "C": "Uniform scaling"
+        },
+        "answer": "C",
+        "explanation": "Uniform scaling scales all dimensions by the same ratio, preserving object proportions."
+      },
+      {
+        "number": 26,
+        "question": "What is the smallest addressable unit in a raster image?",
+        "options": {
+          "A": "Voxel",
+          "B": "Pixel",
+          "C": "Polygon"
+        },
+        "answer": "B",
+        "explanation": "A pixel (picture element) is the smallest physical point in a raster image grid."
+      },
+      {
+        "number": 27,
+        "question": "Which operation is considered a rigid-body transformation?",
+        "options": {
+          "A": "Scaling",
+          "B": "Rotation",
+          "C": "Shearing"
+        },
+        "answer": "B",
+        "explanation": "Rotation and translation preserve distances and shapes, making them rigid-body transforms."
+      },
+      {
+        "number": 28,
+        "question": "What is a vector commonly used for in 2D/3D game programming?",
+        "options": {
+          "A": "Storing static texture images",
+          "B": "Storing positions, directions, and velocities of entities",
+          "C": "Saving sound waveforms"
+        },
+        "answer": "B",
+        "explanation": "Vectors represent direction and magnitude, ideal for tracking positions and movements in space."
+      },
+      {
+        "number": 29,
+        "question": "Which geometric shape is commonly used for basic hitboxes in 2D games?",
+        "options": {
+          "A": "Triangle",
+          "B": "Circle and Box (Rectangle)",
+          "C": "Pentagon"
+        },
+        "answer": "B",
+        "explanation": "Circles and axis-aligned boxes (rectangles) are used for simple, high-performance collision checks."
+      },
+      {
+        "number": 30,
+        "question": "Which process converts a graphical primitive's geometric definition into pixel coordinates?",
+        "options": {
+          "A": "Translation",
+          "B": "Scan conversion (Rasterization)",
+          "C": "Infographics"
+        },
+        "answer": "B",
+        "explanation": "Scan conversion decides which screen pixels correspond to lines, circles, or polygons."
+      },
+      {
+        "number": 31,
+        "question": "In the RGB color model, what color is produced by mixing red and green at full intensity?",
+        "options": {
+          "A": "Blue",
+          "B": "Yellow",
+          "C": "Cyan"
+        },
+        "answer": "B",
+        "explanation": "Red light + Green light = Yellow light (additive mixing)."
+      },
+      {
+        "number": 32,
+        "question": "What is an infographic?",
+        "options": {
+          "A": "A word processor program",
+          "B": "A visual representation of information in a graphic format",
+          "C": "A database schema"
+        },
+        "answer": "B",
+        "explanation": "Infographics combine text, icons, and diagrams to present complex data clearly."
+      },
+      {
+        "number": 33,
+        "question": "What is the default width and height of an HTML5 <canvas> element if not specified?",
+        "options": {
+          "A": "100x100 pixels",
+          "B": "300x150 pixels",
+          "C": "500x500 pixels"
+        },
+        "answer": "B",
+        "explanation": "By default, the canvas element is initialized to a width of 300 pixels and height of 150 pixels."
+      },
+      {
+        "number": 34,
+        "question": "In Bresenham's line-drawing algorithm for slope m < 1, what coordinates are plotted next if decision parameter p < 0?",
+        "options": {
+          "A": "(x_k + 1, y_k)",
+          "B": "(x_k + 1, y_k + 1)",
+          "C": "(x_k, y_k + 1)"
+        },
+        "answer": "A",
+        "explanation": "For p < 0, the next pixel chosen is the East pixel, meaning x is incremented by 1 and y remains unchanged."
+      },
+      {
+        "number": 35,
+        "question": "What is the primary purpose of the <canvas> element in HTML5?",
+        "options": {
+          "A": "Displaying static images",
+          "B": "Drawing graphics dynamically via JavaScript",
+          "C": "Formatting page layouts"
+        },
+        "answer": "B",
+        "explanation": "Canvas acts as a scriptable container to draw dynamic lines, shapes, and pixel buffers on the fly."
+      }
+    ]
+  },
+  {
+    "year": 2022,
+    "exam_type": "Final",
+    "subject": "Computer Graphics",
+    "questions": [
+      {
+        "number": 1,
+        "question": "The basic task of __________ is to generate image by geometry description of objects in 3D space.",
+        "options": { "A": "Rendering", "B": "Modeling", "C": "Animation" },
+        "answer": "A",
+        "explanation": "Rendering converts a 3D scene description (geometry, lights, materials) into a 2D image."
+      },
+      {
+        "number": 2,
+        "question": "In the RGB color model, combining red and blue light at full intensity produces:",
+        "options": { "A": "Yellow", "B": "Magenta", "C": "Cyan" },
+        "answer": "B",
+        "explanation": "Additive mixing: Red + Blue = Magenta. Red + Green = Yellow. Green + Blue = Cyan."
+      },
+      {
+        "number": 3,
+        "question": "The DDA (Digital Differential Analyzer) line-drawing algorithm calculates the number of steps as:",
+        "options": { "A": "steps = max(|Δx|, |Δy|)", "B": "steps = min(|Δx|, |Δy|)", "C": "steps = |Δx| + |Δy|" },
+        "answer": "A",
+        "explanation": "DDA steps along the dominant axis (larger absolute difference), iterating max(|Δx|, |Δy|) times."
+      },
+      {
+        "number": 4,
+        "question": "In Bresenham's circle drawing algorithm, the initial decision parameter p0 for radius r is:",
+        "options": { "A": "p0 = r", "B": "p0 = 1 − r", "C": "p0 = r − 1" },
+        "answer": "B",
+        "explanation": "The midpoint circle algorithm starts with p0 = 1 − r. When p < 0 choose East, else choose South-East."
+      },
+      {
+        "number": 5,
+        "question": "Which 2D transformation uses homogeneous coordinates to enable matrix multiplication of all transforms?",
+        "options": { "A": "Scaling", "B": "Translation", "C": "Shear" },
+        "answer": "B",
+        "explanation": "Translation is NOT linear (cannot be expressed as a 2×2 matrix), but homogeneous 3×3 matrices allow translation to be combined with rotation and scaling."
+      },
+      {
+        "number": 6,
+        "question": "Reflecting a point (x, y) across the line y = x gives:",
+        "options": { "A": "(−x, −y)", "B": "(y, x)", "C": "(x, −y)" },
+        "answer": "B",
+        "explanation": "Reflection in the line y = x simply swaps the x and y coordinates."
+      },
+      {
+        "number": 7,
+        "question": "When the scaling factor is negative (e.g. Sx = −1, Sy = 1), the result is equivalent to:",
+        "options": { "A": "A rotation by 180°", "B": "A reflection across the y-axis", "C": "A shear in x" },
+        "answer": "B",
+        "explanation": "Sx = −1 negates the x-coordinates, which is identical to reflecting across the y-axis."
+      },
+      {
+        "number": 8,
+        "question": "Boundary-fill and flood-fill are two common algorithms for:",
+        "options": { "A": "Line rasterization", "B": "Region filling", "C": "Image compression" },
+        "answer": "B",
+        "explanation": "Both algorithms fill a closed region starting from an interior seed point."
+      },
+      {
+        "number": 9,
+        "question": "Which fill algorithm stops when it reaches a pixel matching the boundary color?",
+        "options": { "A": "Flood fill", "B": "Boundary fill", "C": "Scan-line fill" },
+        "answer": "B",
+        "explanation": "Boundary-fill expands from a seed point until it hits pixels of the specified boundary color."
+      },
+      {
+        "number": 10,
+        "question": "The process of spreading a histogram uniformly across all intensity levels to improve contrast is called:",
+        "options": { "A": "Gamma correction", "B": "Histogram equalization", "C": "Contrast stretching" },
+        "answer": "B",
+        "explanation": "Histogram equalization remaps intensities using the cumulative distribution function (CDF) to produce a flat histogram."
+      },
+      {
+        "number": 11,
+        "question": "A 3×3 mean (box) filter applied to an image produces a:",
+        "options": { "A": "Sharpened edge result", "B": "Blurred (smoothed) result", "C": "Binary threshold result" },
+        "answer": "B",
+        "explanation": "Averaging neighboring pixels suppresses high-frequency detail, producing blur/smoothing."
+      },
+      {
+        "number": 12,
+        "question": "In the frequency domain, a low-pass filter is used to:",
+        "options": { "A": "Sharpen edges", "B": "Smooth / blur the image", "C": "Detect boundaries" },
+        "answer": "B",
+        "explanation": "Low-pass filters retain low spatial frequencies (smooth regions) and suppress high frequencies (edges/noise)."
+      },
+      {
+        "number": 13,
+        "question": "Augmented Reality (AR) differs from Virtual Reality (VR) in that AR:",
+        "options": { "A": "Replaces the real world with a virtual one", "B": "Overlays digital content onto the real world", "C": "Requires a head-mounted display exclusively" },
+        "answer": "B",
+        "explanation": "AR augments the real environment with virtual objects; VR replaces it entirely."
+      },
+      {
+        "number": 14,
+        "question": "Which AR type uses physical printed images or QR codes to align virtual objects?",
+        "options": { "A": "Markerless AR", "B": "Projection-based AR", "C": "Marker-based AR" },
+        "answer": "C",
+        "explanation": "Marker-based AR (e.g. ARToolKit) detects a predefined 2D marker/QR image to position 3D objects."
+      },
+      {
+        "number": 15,
+        "question": "SLAM stands for:",
+        "options": { "A": "Simple Layered Augmented Mapping", "B": "Simultaneous Localization And Mapping", "C": "Sensor Linked Attribute Module" },
+        "answer": "B",
+        "explanation": "SLAM builds a map of an unknown environment while simultaneously tracking the device's location within it — key to markerless AR."
+      },
+      {
+        "number": 16,
+        "question": "Computer Vision is primarily concerned with:",
+        "options": { "A": "Generating synthetic images from geometry", "B": "Interpreting and extracting meaning from images", "C": "Compressing image data for storage" },
+        "answer": "B",
+        "explanation": "CV enables machines to understand visual information (classification, detection, segmentation)."
+      },
+      {
+        "number": 17,
+        "question": "Which computer vision task assigns a single label to an entire input image?",
+        "options": { "A": "Object detection", "B": "Semantic segmentation", "C": "Image classification" },
+        "answer": "C",
+        "explanation": "Classification outputs one global label (e.g. 'cat') for the whole image, unlike detection or segmentation."
+      },
+      {
+        "number": 18,
+        "question": "The Sobel operator is commonly used in computer vision for:",
+        "options": { "A": "Color quantization", "B": "Edge detection", "C": "Noise removal" },
+        "answer": "B",
+        "explanation": "Sobel computes image gradients to highlight intensity transitions, used as an edge detector."
+      },
+      {
+        "number": 19,
+        "question": "In CMY color model, the formula to convert from RGB is:",
+        "options": { "A": "C = R, M = G, Y = B", "B": "C = 1−R, M = 1−G, Y = 1−B", "C": "C = R+G, M = G+B, Y = B+R" },
+        "answer": "B",
+        "explanation": "CMY is the subtractive complement of RGB: C = 1−R, M = 1−G, Y = 1−B."
+      },
+      {
+        "number": 20,
+        "question": "In raster graphics, a frame buffer stores:",
+        "options": { "A": "Vector path commands for each object", "B": "Color values for every pixel on the screen", "C": "3D mesh geometry data" },
+        "answer": "B",
+        "explanation": "The frame buffer is a block of memory holding the RGB (or RGBA) color value of each screen pixel."
+      }
+    ]
+  },
+  {
+    "year": 2021,
+    "exam_type": "Final",
+    "subject": "Computer Graphics",
+    "questions": [
+      {
+        "number": 1,
+        "question": "Computer Graphics is concerned with:",
+        "options": { "A": "Building databases of image data", "B": "Generating and manipulating images using computers", "C": "Analyzing images to extract information" },
+        "answer": "B",
+        "explanation": "CG focuses on creating, modifying, and rendering visual content programmatically."
+      },
+      {
+        "number": 2,
+        "question": "If two vectors are perpendicular, their dot product is:",
+        "options": { "A": "Positive", "B": "Negative", "C": "Zero" },
+        "answer": "C",
+        "explanation": "The dot product of two orthogonal vectors is 0 because cos(90°) = 0."
+      },
+      {
+        "number": 3,
+        "question": "The result of calling LERP(start, end, 0.5) is:",
+        "options": { "A": "The start point", "B": "The end point", "C": "The midpoint between start and end" },
+        "answer": "C",
+        "explanation": "LERP(a, b, t) = a + t*(b−a). At t = 0.5 it returns the midpoint."
+      },
+      {
+        "number": 4,
+        "question": "The game loop consists of three phases. Which of the following correctly completes: 'Input Processing, __________ World, Generate Output'?",
+        "options": { "A": "Delete", "B": "Update", "C": "Create" },
+        "answer": "B",
+        "explanation": "The three canonical game loop phases are: Process Input → Update World → Generate Output."
+      },
+      {
+        "number": 5,
+        "question": "A __________ is a 2D visual object (image) in the game world used to represent characters or background elements.",
+        "options": { "A": "Tilemap", "B": "Sprite", "C": "Shader" },
+        "answer": "B",
+        "explanation": "Sprites are 2D bitmap images rendered in a game scene, commonly used for characters and UI."
+      },
+      {
+        "number": 6,
+        "question": "When a design contains many repeating patterns, it is best to use a __________ map.",
+        "options": { "A": "Normal", "B": "Bump", "C": "Tile" },
+        "answer": "C",
+        "explanation": "Tilemaps use a grid of small reusable tiles to efficiently build large, repetitive environments."
+      },
+      {
+        "number": 7,
+        "question": "In the DDA line algorithm, the number of steps required equals:",
+        "options": { "A": "|Δx| × |Δy|", "B": "max(|Δx|, |Δy|)", "C": "min(|Δx|, |Δy|)" },
+        "answer": "B",
+        "explanation": "DDA uses the larger difference to ensure no gaps appear in the drawn line."
+      },
+      {
+        "number": 8,
+        "question": "In isometric projection, the angle between each of the three projected axes is:",
+        "options": { "A": "90°", "B": "120°", "C": "60°" },
+        "answer": "B",
+        "explanation": "Isometric projection spaces the X, Y, and Z axes equally at 120° apart."
+      },
+      {
+        "number": 9,
+        "question": "Which raster image format supports lossless compression?",
+        "options": { "A": "JPEG", "B": "BMP", "C": "PNG" },
+        "answer": "C",
+        "explanation": "PNG uses the DEFLATE lossless compression algorithm, preserving all pixel data exactly."
+      },
+      {
+        "number": 10,
+        "question": "If an image has an original size of 200×Y pixels and is scaled to 100×400 pixels while maintaining the same aspect ratio, what is Y?",
+        "options": { "A": "200", "B": "800", "C": "1200" },
+        "answer": "B",
+        "explanation": "Aspect ratio preserved: 200/Y = 100/400 → Y = 200 × 400 / 100 = 800 pixels."
+      },
+      {
+        "number": 11,
+        "question": "In the RGB color model, which primary color combination produces white light?",
+        "options": { "A": "Red + Green", "B": "Red + Blue", "C": "Red + Green + Blue" },
+        "answer": "C",
+        "explanation": "All three additive primaries at maximum intensity combine to produce white (255, 255, 255)."
+      },
+      {
+        "number": 12,
+        "question": "The Hue component in the HSV/HSL model represents:",
+        "options": { "A": "The brightness of the color", "B": "The angle on the color wheel (0–360°) indicating color type", "C": "The purity of the color" },
+        "answer": "B",
+        "explanation": "Hue is the perceived color attribute (e.g. 0° = red, 120° = green, 240° = blue)."
+      },
+      {
+        "number": 13,
+        "question": "Translation in 2D moves a point P(x, y) by offsets (tx, ty). The result is:",
+        "options": { "A": "P'(x × tx, y × ty)", "B": "P'(x + tx, y + ty)", "C": "P'(x − tx, y − ty)" },
+        "answer": "B",
+        "explanation": "Translation adds the displacement vector to each coordinate: x' = x + tx, y' = y + ty."
+      },
+      {
+        "number": 14,
+        "question": "Applying a rotation by 90° CCW to point (1, 0) gives:",
+        "options": { "A": "(0, 1)", "B": "(−1, 0)", "C": "(1, 0)" },
+        "answer": "A",
+        "explanation": "R(90°) = [[0,−1],[1,0]]. Applying to (1,0): x' = −0 = 0, y' = 1. Result: (0, 1)."
+      },
+      {
+        "number": 15,
+        "question": "Region-filling algorithms begin from a __________ point inside the region.",
+        "options": { "A": "Boundary", "B": "Seed", "C": "Centroid" },
+        "answer": "B",
+        "explanation": "Flood-fill and boundary-fill both start at an interior seed pixel and expand outward."
+      },
+      {
+        "number": 16,
+        "question": "8-way connected fill includes diagonal neighbors. Compared to 4-way connectivity, 8-way fill:",
+        "options": { "A": "Fills fewer pixels", "B": "Fills more pixels (including diagonal connections)", "C": "Produces identical results" },
+        "answer": "B",
+        "explanation": "8-connectivity checks all 8 neighbors per pixel, allowing fill to propagate through diagonal gaps."
+      },
+      {
+        "number": 17,
+        "question": "Augmented Reality overlays digital information onto the real world. Which sensor type is essential for markerless AR location tracking?",
+        "options": { "A": "Barometer", "B": "GPS and accelerometer", "C": "Infrared distance sensor" },
+        "answer": "B",
+        "explanation": "GPS provides geographic location; accelerometer tracks device orientation and motion for markerless AR."
+      },
+      {
+        "number": 18,
+        "question": "Non-immersive Virtual Reality typically involves:",
+        "options": { "A": "A head-mounted display (HMD)", "B": "A CAVE projection system", "C": "A standard computer monitor and input devices" },
+        "answer": "C",
+        "explanation": "Non-immersive VR presents a virtual world on a desktop screen; the user is not surrounded by the virtual environment."
+      },
+      {
+        "number": 19,
+        "question": "In image processing, applying a high-pass filter to an image will:",
+        "options": { "A": "Blur and smooth the image", "B": "Emphasize edges and fine details", "C": "Convert the image to grayscale" },
+        "answer": "B",
+        "explanation": "High-pass filters remove low-frequency (smooth) components, leaving behind high-frequency edges and details."
+      },
+      {
+        "number": 20,
+        "question": "In the convolution theorem, spatial-domain convolution is equivalent to __________ in the frequency domain.",
+        "options": { "A": "Addition", "B": "Division", "C": "Multiplication" },
+        "answer": "C",
+        "explanation": "The convolution theorem states: f * g in spatial domain ↔ F × G in frequency domain. This is why frequency-domain filtering is computationally efficient."
+      }
+    ]
+  }
+]
